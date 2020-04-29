@@ -1,0 +1,102 @@
+-- 菜单添加
+-- 考试系统菜单节点
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017020815164120256001955', '', '考试系统', NULL, 1, '0', NULL, NULL, NULL, NULL, NULL, '1', '', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+-- 试题管理菜单叶子
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017020815180441685712330', '/exam/question/questionManagerIndex', '试题管理', '2017020815164120256001955', 1, '1', NULL, NULL, NULL, NULL, NULL, '1', 'questionManagerIndex', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+-- 试题预览按钮
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017050310052749980176207', '/exam/question/showQuestionPreview', '试题预览', '2017020815180441685712330', 1, '2', NULL, NULL, NULL, NULL, NULL, '1', 'showQuestionPreview', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+-- 添加试题按钮
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017020815184733341773800', '/exam/question/addQuestion', '添加试题', '2017020815180441685712330', 1, '2', NULL, NULL, NULL, NULL, NULL, '1', 'addQuestion', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+-- 编辑试题按钮
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017022417281327755698000', '/exam/question/editQusetionInfo', '编辑试题', '2017020815180441685712330', 1, '2', NULL, NULL, NULL, NULL, NULL, '1', 'editQusetionInfo', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+-- 删除试题按钮
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017022417284657212297682', '/exam/question/delQusetionInfos', '删除试题', '2017020815180441685712330', 1, '2', NULL, NULL, NULL, NULL, NULL, '1', 'delQusetionInfos', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+
+-- 试题信息表
+CREATE TABLE syjzhpt.ots_questions_info (
+  qsn_info_id varchar(32) NOT NULL COMMENT '试题信息ID',
+  qsn_info_type varchar(32) DEFAULT NULL COMMENT '试题类型（对应aa10 ''QSNLX'）',
+  qsn_info_state tinyint(3) DEFAULT NULL COMMENT '试题状态,0=禁用,1=启用',
+  qsn_info_preview text DEFAULT NULL COMMENT '试题预览信息',
+  qsn_info_desc text NOT NULL COMMENT '试题题干描述',
+  qsn_info_rule text DEFAULT NULL COMMENT '试题判分规则',
+  qsn_info_explain text DEFAULT NULL COMMENT '试题答案解释',
+  qsn_info_trade varchar(32) NOT NULL COMMENT '试题知识点',
+  aae013 text DEFAULT NULL COMMENT '备注',
+  aae011 varchar(32) DEFAULT NULL COMMENT '经办人',
+  aae036 datetime DEFAULT NULL COMMENT '经办时间',
+  PRIMARY KEY (qsn_info_id)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 3276
+CHARACTER SET utf8
+COLLATE utf8_general_ci
+COMMENT = '试题信息表';
+
+-- 试题考点对应表
+CREATE TABLE syjzhpt.ots_question_trade (
+  qsn_trade_id varchar(32) NOT NULL DEFAULT '0' COMMENT '考试点信息ID',
+  qsn_id varchar(32) NOT NULL DEFAULT '0' COMMENT '试题ID',
+  qsn_trade varchar(30) DEFAULT NULL COMMENT '考试点,代码表EXAMTRADE如食品，药品',
+  PRIMARY KEY (qsn_trade_id)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 332
+CHARACTER SET utf8
+COLLATE utf8_general_ci
+COMMENT = '试题考点对应表';
+
+-- 试题知识点添加
+INSERT INTO syjzhpt.aa09(AAA100, AAA101, AAA104, AAZ094) VALUES
+('EXAMTRADE', '知识点', '1', '2017060617561792289801027');
+INSERT INTO syjzhpt0329.aa10(AAA100, AAA102, AAA103, AAE030, AAE031, AAZ093, AAZ094, AAA104, AAA101, AAA105, aaa106, aaa107, aae011, aae036) VALUES
+('EXAMTRADE', '1', '知识点', NULL, NULL, '2017060617495719086429215', '2017060617561792289801027', '0', '考试知识点', '1', 'KSZSDLB', '1', '0', '2017-06-06 17:54:46');
+
+
+-- 试题数据表
+CREATE TABLE syjzhpt.ots_questions_data (
+  qsn_data_id varchar(32) NOT NULL COMMENT '试题数据ID',
+  qsn_info_id varchar(32) NOT NULL COMMENT '关联试题信息ID',
+  qsn_data_com char(255) DEFAULT NULL COMMENT '组件元素:input richtext)',
+  qsn_data_option text DEFAULT NULL COMMENT '组件参数[选项]',
+  qsn_data_optiondesc text DEFAULT NULL COMMENT '组件参数[选项描述]',
+  qsn_data_isanswer int(11) DEFAULT NULL COMMENT '组件参数[是否为答案]',
+  qsn_data_sort int(10) UNSIGNED DEFAULT NULL COMMENT '当前结构在整体的位置',
+  aae011 varchar(32) DEFAULT NULL COMMENT '经办人',
+  aae036 datetime DEFAULT NULL COMMENT '经办时间',
+  PRIMARY KEY (qsn_data_id),
+  INDEX FK_Reference_1 (qsn_info_id)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 1092
+CHARACTER SET utf8
+COLLATE utf8_general_ci
+COMMENT = '试题数据表';
+
+-- 错题表
+CREATE TABLE syjzhpt.ots_questions_error (
+  error_id varchar(32) NOT NULL DEFAULT '' COMMENT '错题ID',
+  qsn_info_id varchar(32) NOT NULL COMMENT '试题ID',
+  qsn_error_item varchar(500) NOT NULL COMMENT '错误原因',
+  aae011 varchar(32) NOT NULL COMMENT '经办人',
+  aae036 datetime NOT NULL COMMENT '经办时间',
+  PRIMARY KEY (error_id)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 4096
+CHARACTER SET utf8
+COLLATE utf8_general_ci
+COMMENT = '试题错题库';
+
+-- 下拉框参数维护（试题类型）
+call PRC_INSERTCODE('QSNLX','试题类型','1','1','单选','199405',null,@P_CODE,@P_MSG); 
+call PRC_INSERTCODE('QSNLX','试题类型','1','2','多选','199405',null,@P_CODE,@P_MSG);
+call PRC_INSERTCODE('QSNLX','试题类型','1','3','判断','199405',null,@P_CODE,@P_MSG);
+call PRC_INSERTCODE('QSNLX','试题类型','1','4','填空','199405',null,@P_CODE,@P_MSG);
+call PRC_INSERTCODE('QSNLX','试题类型','1','5','简答','199405',null,@P_CODE,@P_MSG);

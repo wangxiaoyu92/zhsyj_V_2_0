@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>找回密码</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit">
+        <div class="fl"><p class="dangqian fl">当前位置：</p><a id="a0">找回密码</a></div>
+        <div class="fr"><p class="fl">已有账号？</p><a href="javascript:linkToSelf(' / index.jsp')" class="lijidenglu fr">立即登录</a></div>
+    </div>
+    <div class="zhuce zhuce02">
+        <p class="zhucetit">找回登录密码</p>
+
+        <form id="form" onsubmit="return myreg()">
+            <ul>
+                <li class="name">
+                    <p class="name fl"><span>*</span>登录账号</p>
+                    <input class="fl" type="text" name="username" id="username"/>
+
+                    <p class="fl tishi">* 账号不能为空</p>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>注册的电子邮箱Email：</p>
+                    <input class="fl" type="text" name="useremail" id="useremail"/>
+
+                    <div class="clear"></div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+            <div class="anniu"style="text-align: center">
+                <input type="submit" value="确认找回"/>
+                <input type="reset" value="清空重置" id="reset"/>
+                <!--<a href="javascript:history.go(-1)"><input type="button" value="返回"/></a>-->
+            </div>
+        </form>
+    </div>
+
+    <div class="clear"></div>
+</div>
+<div id="foot"></div>
+<script>
+    $("#top").load("muban_top.html");
+    $("#foot").load("muban_foot.html");
+    // 保存
+    function myreg() {
+        var url = pathname + '/pub/pub/findpwtijiao';
+        var loginurl = pathname + '/index.jsp';
+        if (!$('#username').val()) {
+            alert('登录账号不能为空');
+            return false;
+        }
+        if (!$('#useremail').val()) {
+            alert('电子邮箱不能为空');
+            return false;
+        }
+        $.ajax({
+            url: url,
+            type: "post",
+            dataType: 'json',
+            data: $('#form').serialize(),
+            success: function (result) {
+                if (result.code == '0') {
+                    alert('成功：请登录邮箱确认'+result.msg);
+                    linkToSelf('/index.jsp');
+//                    $('#reset').click();
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+        return false;
+    }
+</script>
+</body>
+</html>

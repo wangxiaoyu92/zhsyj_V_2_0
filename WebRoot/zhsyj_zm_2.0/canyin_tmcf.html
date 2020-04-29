@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>食堂监控详情</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css"/>-->
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <!--<script type="text/javascript" src="js/common.js"></script>-->
+
+
+    <script type="text/javascript" src="../jslib/myflashflowplayer/mclzplayer2.js"></script>
+    <script type="text/javascript" src="../jslib/myflashflowplayer/flowplayer-3.2.13.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../jslib/myflashflowplayer/mclzplayer.css"/>
+    <link href="../jslib/myflashflowplayer/home/inPage/files/css/css.css" rel="stylesheet" type="text/css" />
+    <link href="../jslib/myflashflowplayer/FlatUI/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../jslib/myflashflowplayer/FlatUI/dist/css/flat-ui.min.css" rel="stylesheet">
+</head>
+
+<body style="width: 1000px;min-width: 200px">
+
+<!-------------xuexiaoshitang-------------------->
+<div style="padding-top: 10px"></div>
+    <div style="padding-left: 10px">
+        <div class="mclzPlayer2" id="mclzPlayer2"></div>
+    </div>
+
+
+<script type="text/javascript">
+
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, comid = '', jkybh = '', camorgid = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            comid = list[i].split('=')[1];
+        }
+        if ("jkybh" == name) {
+            jkybh = list[i].split('=')[1];
+        }
+        if ("camorgid" == name) {
+            camorgid = list[i].split('=')[1];
+        }
+    }
+
+    window.onload = function () {
+        loadCameraPlayer2();
+        viewCameraNew2(jkybh);
+    };
+
+</script>
+</body>
+</html>

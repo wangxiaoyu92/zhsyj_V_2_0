@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<service xmlns="http://xfire.codehaus.org/config/1.0">
+		<name>PubService</name>
+		<serviceClass>com.zzhdsoft.siweb.service.IPubService</serviceClass>
+		<implementationClass>com.zzhdsoft.siweb.service.PubServiceImpl</implementationClass>
+		<inHandlers>
+<!--			<handler handlerClass="org.codehaus.xfire.util.dom.DOMInHandler" />-->
+<!--			<bean class="org.codehaus.xfire.security.wss4j.WSS4JInHandler"-->
+<!--				xmlns="">-->
+<!--				<property name="properties">-->
+<!--					<props>-->
+<!--						<prop key="action">UsernameToken</prop>-->
+<!--						<prop key="passwordCallbackClass">-->
+<!--							com.zzhdsoft.siweb.service.PasswordHandler-->
+<!--						</prop>-->
+<!--					</props>-->
+<!--				</property>-->
+<!--			</bean>-->
+			
+<!--			<handler handlerClass="com.zzhdsoft.utils.serviceHandler.WebserviceServerHandler"/>  -->
+		</inHandlers>
+	</service>
+</beans>  

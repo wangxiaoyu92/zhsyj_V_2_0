@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<leaf-config>	
+	<config name="DATABASE" value="mysql"/>
+	<config name="DATE_FORMAT" value="yyyyMMdd"/>
+	<config name="DATETIME_FORMAT" value="yyyy-MM-dd hh:mm:ss"/>
+	<config name="DEFAULT_APP_TITLE" value="社会保险管理信息系统"/>
+	<config name="VERSION_INFO" value="V2.0"/>
+	<config name="DEFAULT_ENCODING" value="UTF-8"/>
+
+	<config name="SUPER_USER" value="admin"/>
+	<config name="SUPER_USERS" value="admin,zjf"/>
+	<config name="USERID" value="userid"/>
+	<config name="USERNAME" value="username"/>
+	<config name="PASSWORD" value="password"/>
+	<config name="RESET_PASSWORD" value="123456"/>
+	
+	<config name="VALIDATE_RULES" value="validateRules"/>
+	<config name="VALIDATE_CONFIG" value="validateConfig"/>
+	<config name="CONFIG_FILE" value="/WEB-INF/conf/Config.xml"/>
+	<config name="EXCEL_VALIDATE_CONFIG_FILE" value="/WEB-INF/conf/ValidateConfig.xml"/>
+	<config name="EXCEL_VALIDATE_RULE_FILE" value="/WEB-INF/conf/ValidateRule.xml"/>
+	
+	<config name="UPLOAD_FILE_PATH" value="/upload"/>
+	<config name="DOWNLOAD_FILE_PATH" value="/download"/>
+	<config name="CAMERA_UPLOAD_FILE_PATH" value="/camera/upload"/>
+	<config name="CAMERA_DOWNLOAD_FILE_PATH" value="/camera/download"/>
+	<config name="TEMP_FILE_PATH" value="/temp"/>
+		
+	<!-- ftp的上传文件的用户名与密码 -->
+	<config name="FTP_USERNAME" value="test"/>
+	<config name="FTP_PASSWORD" value="test001"/>
+	<config name="FTP_IP" value="127.0.0.1"/>
+	<config name="FTP_PORT" value="21"/>	  
+	<!-- 压缩比(像素与原图的比率)。 对于高像素的摄像头，像素在2500以上的，推荐比率为0.3-0.6。根据实际情况调整大小 -->
+	<config name="PIC_COMPRESSION_RATE" value="0.6"/>
+	<!-- 压缩质量.太低容易失真,太高文件太大,推荐0.3-0.8  -->
+	<config name="PIC_COMPRESSION_QUELITY" value="0.5"/>
+	
+	<!-- 微信公众号 -->
+	<config name="APPID" value="APPID"/>
+	<config name="APPSECRET" value="APPSECRET"/>
+	<config name="ACCESS_TOKEN" value="ACCESS_TOKEN"/>
+	
+	<!-- 短信信箱  -->
+	<config name="MAS_UserName" value="Q005J002738"/>
+	<config name="MAS_PWD" value="B55C2060A9D7812319508C2E2573D2A2"/>
+	<config name="MAS_CorpCode" value="10657006031546"/>
+	
+</leaf-config>

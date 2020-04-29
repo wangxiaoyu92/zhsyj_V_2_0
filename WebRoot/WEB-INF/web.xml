@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.4" 
+	xmlns="http://java.sun.com/xml/ns/j2ee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+	<display-name>业务经办系统</display-name>
+	<!--Web监控配置-->
+	<filter>
+        <filter-name>DruidWebStatFilter</filter-name>
+        <filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+        <init-param>
+            <param-name>exclusions</param-name>
+            <param-value>*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*,/rs/*</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>DruidWebStatFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+	<filter>
+		<filter-name>nutz</filter-name>
+		<filter-class>org.nutz.mvc.NutFilter</filter-class>
+		<init-param>
+			<param-name>modules</param-name>
+			<param-value>com.zzhdsoft.mvc.MainModule</param-value>
+		</init-param>
+		<init-param>
+			<param-name>ignore</param-name>
+			<param-value>^(.+[.])(jsp|png|gif|jpg|js|css|jspx|jpeg|html)$</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>nutz</filter-name>
+		<url-pattern>/*</url-pattern>
+		<dispatcher>REQUEST</dispatcher>
+		<dispatcher>FORWARD</dispatcher>
+		<dispatcher>INCLUDE</dispatcher>
+	</filter-mapping>
+
+	<listener>
+		<listener-class>
+			com.lbs.leaf.sysmanage.webcontroller.LeafInitApplicationListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			com.lbs.leaf.sysmanage.webcontroller.ValidateConfigApplicationListener
+		</listener-class>
+	</listener>
+	<!--<listener>
+		框架CodeList初始化
+		<listener-class>
+			com.lbs.leaf.sysmanage.webcontroller.InitCodeListApplicationListener
+		</listener-class>
+
+	</listener>-->
+	<!--<listener>
+		 Session监听器，用于统计在线用户数
+		<listener-class>
+			com.lbs.leaf.sysmanage.webcontroller.SysManagerSessionAttributeListener
+		</listener-class>
+
+	</listener>-->
+	<!-- Quartz初始化 -->
+	<context-param>
+		<param-name>job-config-file</param-name>
+		<param-value>job.properties</param-value>
+	</context-param>
+	<listener>
+		<listener-class>
+			com.zzhdsoft.job.JobListener
+		</listener-class>
+	</listener> 
+	
+	<!-- 配置Quartz初始化参数 -->
+	<context-param> 
+			<param-name>quartz-config-file</param-name>
+			<param-value>quartz.properties</param-value> 
+		</context-param>
+	<context-param>
+		<param-name>shutdown-on-unload</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	<context-param>
+		<param-name>start-scheduler-on-load</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
+	<jsp-config>
+		<taglib>
+			<taglib-uri>/WEB-INF/sicp3.tld</taglib-uri>
+			<taglib-location>/WEB-INF/sicp3.tld</taglib-location>
+		</taglib>
+	</jsp-config>
+	
+	<!--WebService数据服务-->
+	<servlet>
+		<servlet-name>XFireServlet</servlet-name>
+		<servlet-class>
+			org.codehaus.xfire.transport.http.XFireConfigurableServlet
+		</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>XFireServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	<!--微信服务 -->
+	<servlet>
+		<servlet-name>WeixinServlet</servlet-name>
+		<servlet-class>com.weixin.servlet.WeixinServlet</servlet-class>		
+	</servlet>
+	<!--建行网银支付服务 -->
+	<servlet>
+		<servlet-name>CcbReceiveVerifyServlet</servlet-name>
+		<servlet-class>com.zzhdsoft.utils.CCBSign.CcbReceiveVerifyServlet</servlet-class>
+	</servlet>
+	<!--验证码服务 -->	
+	<servlet>
+		<servlet-name>CodeServlet</servlet-name>
+		<servlet-class>com.zzhdsoft.utils.servlet.CodeServlet</servlet-class>
+	</servlet>
+	<!--二维码服务 -->	
+	<servlet>
+		<servlet-name>QRCodeServlet</servlet-name>
+		<servlet-class>com.zzhdsoft.utils.servlet.QRCodeServlet</servlet-class>
+	</servlet>
+	<!--文件上传服务 -->
+	<servlet>
+		<servlet-name>UploadServlet</servlet-name>
+		<servlet-class>com.zzhdsoft.utils.servlet.UploadServlet</servlet-class>
+	</servlet>
+	<!--报表服务 -->
+	<servlet>
+		<servlet-name>ReportServlet</servlet-name>
+		<servlet-class>com.fr.web.ReportServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WeixinServlet</servlet-name>
+		<url-pattern>/servlet/WeixinServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CcbReceiveVerifyServlet</servlet-name>
+		<url-pattern>/servlet/CcbReceiveVerifyServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CodeServlet</servlet-name>
+		<url-pattern>/servlet/CodeServlet</url-pattern>
+	</servlet-mapping>
+		<servlet-mapping>
+		<servlet-name>QRCodeServlet</servlet-name>
+		<url-pattern>/servlet/QRCodeServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>UploadServlet</servlet-name>
+		<url-pattern>/servlet/UploadServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ReportServlet</servlet-name>
+		<url-pattern>/servlet/ReportServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!--Web监控 -->
+	<servlet>
+        <servlet-name>DruidStatView</servlet-name>
+        <servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+    	<init-param>  
+	        <!-- 允许清空统计数据 -->  
+	        <param-name>resetEnable</param-name>  
+	        <param-value>true</param-value>  
+	   	</init-param>  
+	    <init-param>  
+	        <!-- 用户名 -->  
+	        <param-name>loginUsername</param-name>  
+	        <param-value>druid</param-value>  
+	    </init-param>  
+	    <init-param>  
+	        <!-- 密码 -->  
+	        <param-name>loginPassword</param-name>  
+	        <param-value>druid</param-value>  
+	    </init-param>     	
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DruidStatView</servlet-name>
+        <url-pattern>/druid/*</url-pattern>
+    </servlet-mapping>
+    
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+	<error-page>
+		<error-code>404</error-code>
+		<location>/jsp/error/404.jsp</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/jsp/error/500.jsp</location>
+	</error-page>
+	<error-page>
+		<exception-type>java.lang.Exception</exception-type>
+		<location>/jsp/error/error.jsp</location>
+	</error-page>
+	
+	<session-config>
+		<session-timeout>6000</session-timeout>
+	</session-config>
+</web-app>

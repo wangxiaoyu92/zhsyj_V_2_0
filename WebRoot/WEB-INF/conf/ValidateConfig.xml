@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Validate>
+	<!--
+		col与colHeader两个属性至少有一个不能为空，如果两个属性同时存在，则col属性为高优先级
+	-->
+	<!-- 车辆基本信息 -->
+	<rule name="ClDTO" entityClass="com.zzhdsoft.siweb.dto.wl.ClDTO">
+		<conf col="" colHeader="车牌号" title="车牌号" propertyName="clcph"
+			depends="required,String30" />
+		<conf col="" colHeader="长度" title="长度" propertyName="clcd"
+			depends="required,String30" />
+		<conf col="" colHeader="载重" title="载重" propertyName="clzz"
+			depends="required,bigDecimal" />
+		<conf col="" colHeader="最大载重" title="最大载重" propertyName="clzdzz"
+			depends="required,bigDecimal" />
+		<conf col="" colHeader="车辆类型" title="车辆类型" propertyName="cllx"
+			depends="required,String30" />
+		<conf col="" colHeader="燃料类型" title="燃料类型" propertyName="clrllx"
+			depends="required,String30" />
+		<conf col="" colHeader="车辆身份" title="车辆身份" propertyName="clsf"
+			depends="required,String30" />
+		<conf col="" colHeader="备注" title="备注" propertyName="bz"
+			depends="String100" />
+	</rule>
+	<!-- 司机基本信息 -->
+	<rule name="SjDTO" entityClass="com.zzhdsoft.siweb.dto.wl.SjDTO">
+		<conf col="" colHeader="姓名" title="姓名" propertyName="sjname"
+			depends="required,String30" />
+		<conf col="" colHeader="身份证件类型" title="身份证件类型" propertyName="sjsfzjlx"
+			depends="required,String30" />
+		<conf col="" colHeader="身份证号" title="身份证号" propertyName="sjsfzh"
+			depends="required,card" />
+		<conf col="" colHeader="手机号" title="手机号" propertyName="sjsjh"
+			depends="required,String30" />
+		<conf col="" colHeader="车牌号" title="车牌号" propertyName="sjcph"
+			depends="required,String30" />
+		<conf col="" colHeader="驾驶证号" title="驾驶证号" propertyName="sjjszh"
+			depends="String30" />
+		<conf col="" colHeader="驾驶证领取日期" title="驾驶证领取日期" propertyName="sjjszlqrq"
+			depends="yearMonthDay" />
+		<conf col="" colHeader="驾驶证有效期" title="驾驶证有效期" propertyName="sjjszyxq"
+			depends="yearMonthDay" />
+		<conf col="" colHeader="司机身份" title="司机身份" propertyName="sjsf"
+			depends="String30" />
+		<conf col="" colHeader="备注" title="备注" propertyName="bz"
+			depends="String100" />
+	</rule>
+	<!-- 客户基本信息 -->
+	<rule name="KhDTO" entityClass="com.zzhdsoft.siweb.dto.wl.KhDTO">
+		<conf col="" colHeader="客户名称" title="客户名称" propertyName="khname"
+			depends="required,String100" />
+		<conf col="" colHeader="联系人" title="联系人" propertyName="lxr"
+			depends="required,String30" />
+		<conf col="" colHeader="联系电话" title="联系电话" propertyName="lxdh"
+			depends="required,String30" />
+		<conf col="" colHeader="客户地址" title="客户地址" propertyName="khdz"
+			depends="required,String100" />
+		<conf col="" colHeader="位置标记状态" title="位置标记状态" propertyName="bjzt"
+			depends="required,String30" />
+		<conf col="" colHeader="备注" title="备注" propertyName="bz"
+			depends="String100" />
+	</rule>
+	<!-- 装卸货地基本信息 -->
+	<rule name="ZxhdDTO" entityClass="com.zzhdsoft.siweb.dto.wl.ZxhdDTO">
+		<conf col="" colHeader="装卸货地名称" title="装卸货地名称" propertyName="zxhdname"
+			depends="required,String100" />
+		<conf col="" colHeader="联系人" title="联系人" propertyName="lxr"
+			depends="required,String30" />
+		<conf col="" colHeader="联系电话" title="联系电话" propertyName="lxdh"
+			depends="required,String30" />
+		<conf col="" colHeader="装卸货地地址" title="装卸货地地址" propertyName="zxhddz"
+			depends="required,String100" />
+		<conf col="" colHeader="位置标记状态" title="位置标记状态" propertyName="bjzt"
+			depends="required,String30" />
+		<conf col="" colHeader="备注" title="备注" propertyName="bz"
+			depends="String100" />
+	</rule>
+	<!-- 厨师基本信息 -->
+	<rule name="CsDTO" entityClass="com.askj.ncjtjc.dto.CsDTO">
+		<conf col="" colHeader="厨师姓名" title="厨师姓名" propertyName="csxm"
+			depends="required,String30" />
+		<conf col="" colHeader="身份证号" title="身份证号" propertyName="cssfzjhm"
+			depends="required,card" />
+		<conf col="" colHeader="手机号" title="手机号" propertyName="cssjh"
+			depends="required,String30" />
+		<conf col="" colHeader="文化程度" title="文化程度" propertyName="cswhcd"
+			depends="String30" />
+		<conf col="" colHeader="从业年限" title="从业年限" propertyName="cscynx"
+			depends="String30" />
+		<conf col="" colHeader="健康证明" title="健康证明" propertyName="csjkzm"
+			depends="String30" />
+		<conf col="" colHeader="培训情况" title="培训情况" propertyName="cspxqk"
+			depends="String30" />
+		<conf col="" colHeader="家庭住址" title="家庭住址" propertyName="csjtzz"
+			depends="String100" />
+		<conf col="" colHeader="户口所在地" title="户口所在地" propertyName="cshkszd"
+			depends="String100" />
+		<conf col="" colHeader="备注" title="备注" propertyName="aae013"
+			depends="String100" />
+	</rule>
+
+	<!-- 企业基本信息 -->
+	<rule name="PcompanyDTO" entityClass="com.askj.baseinfo.dto.PcompanyDTO">
+		<conf col="" colHeader="企业名称" title="企业名称" propertyName="commc"
+			  depends="required,String100" />
+		<conf col="" colHeader="企业地址" title="企业地址" propertyName="comdz"
+			  depends="required,String100" />
+		<conf col="" colHeader="企业大类" title="企业大类" propertyName="comdalei"
+			  depends="required,String30" />
+		<conf col="" colHeader="企业法人/业主" title="企业法人/业主" propertyName="comfrhyz"
+			  depends="String30" />
+		<conf col="" colHeader="企业法人/业主身份证号" title="企业法人/业主身份证号" propertyName="comfrsfzh"
+			  depends="String30" />
+		<conf col="" colHeader="企业负责人" title="企业负责人" propertyName="comfzr"
+			  depends="String30" />
+		<conf col="" colHeader="固定电话" title="固定电话" propertyName="comgddh"
+			  depends="String30" />
+		<conf col="" colHeader="移动电话" title="移动电话" propertyName="comyddh"
+			  depends="String30" />			  
+	    <conf col="" colHeader="企业成立日期" title="企业成立日期" propertyName="comclrq"
+			  depends="date" />
+		<conf col="" colHeader="资质证明类型" title="资质证明类型" propertyName="comxkzlx"
+			  depends="String10" />	
+		<conf col="" colHeader="资质证明编号/注册号" title="资质证明编号/注册号" propertyName="comxkzbh"
+			depends="String50" />
+		<conf col="" colHeader="资质证明有效期起" title="资质证明有效期起" propertyName="comxkyxqq"
+			depends="date" />			
+		<conf col="" colHeader="资质证明有效期止" title="资质证明有效期止" propertyName="comxkyxqz"
+			depends="date" />						
+		<conf col="" colHeader="资质证明许可范围/经营范围" title="资质证明许可范围/经营范围" propertyName="comxkfw"
+			  depends="String4000" />
+		<conf col="" colHeader="资质证明主题业态" title="资质证明主题业态" propertyName="comxkzztyt"
+			  depends="String6" />				
+		<conf col="" colHeader="资质证明组成形式" title="资质证明组成形式" propertyName="comxkzzcxs"
+			  depends="String50" />
+	  	<conf col="" colHeader="企业所属统筹区" title="企业所属统筹区" propertyName="aaa027"
+			  depends="String30" />					  
+	</rule>
+
+	<!-- 两员基本信息 -->
+	<rule name="LyDTO" entityClass="com.askj.ncjtjc.dto.LyDTO">
+		<conf col="" colHeader="两员姓名" title="两员姓名" propertyName="lyxm"
+			  depends="required,String30" />
+		<conf col="" colHeader="身份证号" title="身份证号" propertyName="lysfzjhm"
+			  depends="required,card" />
+		<conf col="" colHeader="手机号" title="手机号" propertyName="lysjh"
+			  depends="required,String30" />
+		<conf col="" colHeader="文化程度" title="文化程度" propertyName="lywhcd"
+			  depends="String30" />
+		<conf col="" colHeader="从业年限" title="从业年限" propertyName="lycynx"
+			  depends="String30" />
+		<conf col="" colHeader="健康证明" title="健康证明" propertyName="lyjkzm"
+			  depends="String30" />
+		<conf col="" colHeader="培训情况" title="培训情况" propertyName="lypxqk"
+			  depends="String30" />
+		<conf col="" colHeader="家庭住址" title="家庭住址" propertyName="lyjtzz"
+			  depends="String100" />
+		<conf col="" colHeader="户口所在地" title="户口所在地" propertyName="lyhkszd"
+			  depends="String100" />
+		<conf col="" colHeader="备注" title="备注" propertyName="aae013"
+			  depends="String100" />
+	</rule>
+	
+	<!-- 溯源码生产明细表 -->
+	<rule name="Qsymscmxb" entityClass="com.askj.spsy.entity.Qsymscmxb">
+		<conf col="" colHeader="溯源码" title="溯源码" propertyName="sym"
+			  depends="required,String60" />
+	</rule>
+	
+	<!-- 检验检测数据上传 -->
+	<rule name="JyjcjgDTO" entityClass="com.askj.jyjc.dto.JyjcjgDTO">
+		<conf col="" colHeader="仪器类别" title="仪器类别" propertyName="impyqlb"
+			  depends="String50" />
+		<conf col="" colHeader="编号" title="编号" propertyName="impbh"
+			  depends="String20" />
+		<conf col="" colHeader="样品种类" title="样品种类" propertyName="impypzl"
+			  depends="String50" />
+	    <conf col="" colHeader="样品名称" title="样品名称" propertyName="impypmc"
+			  depends="String50" />
+		<conf col="" colHeader="检测项目" title="检测项目" propertyName="impjcxm"
+			  depends="String50" />
+		<conf col="" colHeader="含量" title="含量" propertyName="imphl"
+			depends="String20" />
+		<conf col="" colHeader="检测结果" title="检测结果" propertyName="impjcjg"
+			depends="String20" />
+		<conf col="" colHeader="所属区域" title="所属区域" propertyName="impssqy"
+			  depends="String30" />
+		<conf col="" colHeader="用户名称" title="用户名称" propertyName="impyhmc"
+			  depends="String50" />
+		<conf col="" colHeader="被检企业" title="被检企业" propertyName="impbjqy"
+			  depends="String100" />
+		<conf col="" colHeader="产品商标" title="产品商标" propertyName="impcpsb"
+			  depends="String50" />
+		<conf col="" colHeader="产品批次" title="产品批次" propertyName="impcppc"
+			  depends="String50" />
+		<conf col="" colHeader="产品规格" title="产品规格" propertyName="impcpgg"
+			  depends="String20" />
+		<conf col="" colHeader="生产厂家" title="生产厂家" propertyName="impsccj"
+			  depends="String100" />		
+		<conf col="" colHeader="抽样时间" title="抽样时间" propertyName="impcysj"
+			  depends="String20" />
+	  	<conf col="" colHeader="检测时间" title="检测时间" propertyName="impjcsj"
+			  depends="String20" />
+	  	<conf col="" colHeader="检测人员" title="检测人员" propertyName="impjcry"
+			  depends="String20" />	
+	  	<conf col="" colHeader="备注" title="备注" propertyName="impbz"
+			  depends="String50" />	
+	  	<conf col="" colHeader="补充1" title="补充1" propertyName="impbc1"
+			  depends="String50" />	
+	  	<conf col="" colHeader="补充2" title="补充2" propertyName="impbc2"
+			  depends="String50" />	
+	  	<conf col="" colHeader="入库日期" title="入库日期" propertyName="imprkrq"
+			  depends="String20" />	
+	</rule>	
+	<!-- 抽样登记基本信息 -->
+	<rule name="JyjccydjDTO" entityClass="com.askj.jyjc.dto.JyjccydjDTO">
+		<conf col="" colHeader="抽样编号" title="抽样编号" propertyName="cybh"
+			  depends="required,String30" />
+		<conf col="" colHeader="抽样分类" title="抽样分类" propertyName="cyfl"
+			  depends="String100" />
+		<conf col="" colHeader="被抽样单位" title="被抽样单位" propertyName="bcydw"
+			  depends="String100" />
+		<conf col="" colHeader="被抽样单位分类" title="被抽样单位分类" propertyName="bcydwfl"
+			  depends="String30" />
+		<conf col="" colHeader="被抽样单位地址" title="被抽样单位地址" propertyName="bcydwdz"
+			  depends="String30" />
+		<conf col="" colHeader="被抽样单位联系电话" title="被抽样单位联系电话" propertyName="tel"
+			  depends="String30" />
+		<conf col="" colHeader="样品名称" title="样品名称" propertyName="ypmc"
+			  depends="String30" />
+		<conf col="" colHeader="样品批号或生产日期" title="样品批号或生产日期" propertyName="ypbh"
+			  depends="String100" />
+		<conf col="" colHeader="抽样数量" title="抽样数量" propertyName="countcy"
+			  depends="String100" />
+		<conf col="" colHeader="抽样经手人" title="抽样经手人" propertyName="cyjsr"
+			  depends="String100" />
+		<conf col="" colHeader="生产单位" title="生产单位" propertyName="scdw"
+			  depends="String100" />
+		<conf col="" colHeader="抽样时间" title="抽样时间" propertyName="cysj"
+			  depends="String100" />
+	</rule>	
+	
+	<!-- 抽样报告信息 -->
+	<rule name="JyjccybgDTO" entityClass="com.askj.jyjc.dto.JyjccybgDTO">
+		<conf col="" colHeader="抽验编号" title="抽验编号" propertyName="cybh"
+			  depends="required,String30" />
+	  	<conf col="" colHeader="受检单位" title="受检单位" propertyName="bcydw"
+			  depends="String100" />
+		<conf col="" colHeader="受检单位地址" title="受检单位地址" propertyName="bcydwdz"
+			  depends="String100" />
+		<conf col="" colHeader="生产单位" title="生产单位" propertyName="scdw"
+			  depends="String100" />
+		<conf col="" colHeader="样品名称" title="样品名称" propertyName="ypmc"
+			  depends="String30" />
+		<conf col="" colHeader="样品规格/数量" title="样品规格/数量" propertyName="countcy"
+			  depends="String100" />
+		<conf col="" colHeader="报告书编号" title="报告书编号" propertyName="bgbh"
+			  depends="required,String30" />	  	  	  
+		<conf col="" colHeader="收到报告日期" title="收到报告日期" propertyName="jsbgrq"
+			  depends="String100" />	  	  	  
+		<conf col="" colHeader="报告送达日期" title="报告送达日期" propertyName="bgsdrq"
+			  depends="String100" />
+		<conf col="" colHeader="检测日期" title="检测日期(年/月/日-年/月/日)" propertyName="jcrq"
+			  depends="String100" />	  	  	  	  
+		<conf col="" colHeader="立案号" title="立案号" propertyName="lah"
+			  depends="String100" />
+		<conf col="" colHeader="检测单位" title="检测单位" propertyName="jcdwmc"
+			  depends="String100" />
+		<conf col="" colHeader="移交情况" title="移交情况" propertyName="yjqk"
+			  depends="String100" />
+		<conf col="" colHeader="检测项目" title="检测项目" propertyName="jxjcxmmc"
+			  depends="String100" />
+		<conf col="" colHeader="不合格项目" title="不合格项目" propertyName="sfhg"
+			  depends="String30" />	  
+		<conf col="" colHeader="单位" title="单位" propertyName="dw"
+			  depends="String100" />	
+		<conf col="" colHeader="结果" title="结果" propertyName="jyjcjg"
+			  depends="String100" />
+		<conf col="" colHeader="标准值" title="标准值" propertyName="bzz"
+			  depends="String100" />
+	</rule>	
+	
+	<!-- 审批企业基本信息 -->
+	<rule name="ApprovePcompanyDTO" entityClass="com.askj.baseinfo.dto.ApprovePcompanyDTO">
+		<conf col="" colHeader="序号" title="序号" propertyName="orderno"
+			  depends="required" />
+		<conf col="" colHeader="经济性质" title="经济性质" propertyName="comqyxz"
+			  depends="required" />
+		<conf col="" colHeader="经营者姓名" title="经营者姓名" propertyName="commc"
+			  depends="required" />
+	  	<conf col="" colHeader="营业执照号" title="营业执照号" propertyName="comyyzzh"
+			  depends="String50" />
+		<conf col="" colHeader="法定代表人/业主" title="法定代表人/业主" propertyName="comfrhyz"
+			  depends="String50" />
+		<conf col="" colHeader="住所" title="住所" propertyName="frhyzzs"
+			  depends="String200" />
+		<conf col="" colHeader="经营场所" title="经营场所" propertyName="comdz"
+			  depends="String200" />
+		<conf col="" colHeader="经营面积" title="经营面积" propertyName="comzmj"
+			  depends="String50" />
+		<conf col="" colHeader="主体业态" title="主体业态" propertyName="comxkzztyt"
+			  depends="String200" />		
+		<conf col="" colHeader="经营项目" title="经营项目" propertyName="comxkfw"
+			  depends="String4000" />	  
+	    <conf col="" colHeader="经营类别" title="经营类别" propertyName="comdmlx"
+			  depends="String200" />
+	    <conf col="" colHeader="许可证号" title="许可证号" propertyName="comxkzbh"
+			  depends="String50" />	
+		<conf col="" colHeader="监管机构" title="监管机构" propertyName="orgname"
+			  depends="String200" />		  
+		<conf col="" colHeader="监管人员" title="监管人员" propertyName="comrcjdglry"
+			  depends="String100" />	  
+		<conf col="" colHeader="发证日期" title="发证日期" propertyName="comxkyxqq"
+			depends="date" />			
+		<conf col="" colHeader="有效期至" title="有效期至" propertyName="comxkyxqz"
+			depends="date" />	  
+		<conf col="" colHeader="发证机关" title="发证机关" propertyName="xkzorg"
+			depends="String200" />	  
+		<conf col="" colHeader="联系电话" title="联系电话" propertyName="comyddh"
+			  depends="String30" />		  
+	    <conf col="" colHeader="受理日期" title="受理日期" propertyName="comslrq"
+			  depends="date" />
+	</rule>
+</Validate>

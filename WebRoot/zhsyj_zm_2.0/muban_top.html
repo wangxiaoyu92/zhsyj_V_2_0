@@ -1,0 +1,381 @@
+﻿<!--<script type="text/javascript" src=""></script>-->
+<!--<link rel="stylesheet" type="text/css" href="css/style.css"/>-->
+<!------------header------------->
+<style>
+    /*.header_link a{ background:url(../images/menubg.png)  left center no-repeat; padding-left:25px; float:left; margin-right:26px;color:rgba(255,255,255,0.9);}*/
+    .header_link a:link {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .header_link a:visited {
+        color: rgba(255, 255, 255, 0.9);
+    }
+
+    .header_link a:hover {
+        color: rgba(255, 255, 255, 1);
+    }
+</style>
+<div class="header">
+    <div class="logo fl">
+        <a href="">
+            <img src="" onerror="onLoad(this)" width="283" height="30"/>
+        </a>
+    </div>
+    <div class="header_link fr">
+        <a href="http://sa.wanxiangbd.cn:8080/fs-circulation/login" class="qiye">企业入口</a>
+        <a href="javascript:linkToSelf('login.html')" class="jianguan">监管入口</a>
+
+        <a href="javascript:linkToSelf('/index.jsp')" class="denglu">用户登录</a>
+        <!--<a href="javascript:linkToSelf('zhuce.html')" class="zhuce01">用户注册</a>-->
+    </div>
+    <div class="clear"></div>
+</div>
+<!------------banner------------->
+
+<!------------askjmenu------------->
+<div class="menu">
+    <div class="menu_list fl">
+        <div class="all">
+            <a href="javascript:linkToSelf('/index_zhsyj_zm.jsp')">平台首页</a>
+        </div>
+        <ul>
+            <li>
+                <a href="javascript:linkToSelf('shitang.html?title=学校食堂','101201')">互联网+明厨亮灶</a>
+
+            </li>
+            <li>
+                <a href="javascript:linkToSelf('caishichang.html','101401')">放心菜市场</a>
+                <ul>
+                    <li>
+                        <a href="javascript:linkToSelf('caishichang.html','101401')">农贸市场</a>
+                    </li>
+                    <li>
+                        <a href="javascript:linkToSelf('ditu.html','101401')">菜市场地图</a>
+                    </li>
+                    <!--<li>
+                        <a href="javascript:linkToSelf('caishichang.html','101401')">超市</a>
+                    </li>-->
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:linkToSelf('shengchan.html','101101')">透明生产</a>
+                <ul>
+                    <li>
+                        <a href="javascript:linkToSelf('shengchan.html','101101')">生产企业</a>
+                    </li>
+                    <li>
+                        <a href="javascript:linkToSelf('ditu.html','101101')">生产企业地图</a>
+                    </li>
+                </ul>
+
+            </li>
+            <li>
+                <a href="javascript:linkToSelf('liutong.html','101302')">透明流通</a>
+                <ul>
+                    <li>
+                        <a href="javascript:linkToSelf('liutong.html','101302')">食品零售企业</a>
+                    </li>
+                    <li>
+                        <a href="javascript:linkToSelf('liutong.html','101301')">食品批发企业</a>
+                    </li>
+                    <li>
+                        <a href="javascript:linkToSelf('ditu.html','101302')"> 企业地图</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:linkToSelf('canyin.html','101202')">透明餐饮</a>
+                <ul>
+                    <li>
+                        <a href="javascript:linkToSelf('canyin.html','101202')">社会餐饮</a>
+
+                    </li>
+                    <li>
+                        <a href="javascript:linkToSelf('canyin.html','101201')">食堂</a>
+                    </li>
+                    <li>
+                        <a href="javascript:linkToSelf('canyin.html','101205')">网络餐饮</a>
+                    </li>
+                    <li>
+                        <a href="javascript:linkToSelf('ditu.html','101202')">美食地图</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:linkToSelf('ndwcList.html')">政民互动</a>
+                <ul>
+                    <li>
+                        <a href="javascript:linkToSelf('ndwcList.html')">你点我检</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="menu_weixin fr">
+        <a href="#">微信关注</a>
+
+        <div class="xixi">
+            <img width="96" height="96"/></div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div id="img" class=""></div>
+<div class="aboutsearch">
+    <div class="aboutsearch_con">
+        <div class="shitanglist fl">
+            <ul></ul>
+        </div>
+        <div class="suosuokuang fl">
+            <input type="text" value="" id="t_commc">
+            <a class="search_btn" id="search_btn">查&nbsp;询</a>
+        </div>
+    </div>
+</div>
+<script>
+    function onLoad(img) {
+        img.src = pathname + "/zhsyj_zm_2.0/images/logo.png";
+        img.onerror = null;   //控制不要一直跳动
+    }
+    $(function () {
+        //右上角展示企业微信二维码
+        $('.xixi img').attr('src', pathname + '/img/msyy.jpg');
+        //引入common.js
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = pathname + "/zhsyj_zm_2.0/js/common.js";
+        head.appendChild(script);
+
+        var test = decodeURI(window.location.search);
+        var list = test.substring(1, test.length).split('&');
+        var name, title = '', comdalei = '', currlocation = '', comid = '', commc = '';
+        for (var i = 0; i < list.length; i++) {
+            name = list[i].split('=')[0];
+            if ("title" == name) {
+                title = list[i].split('=')[1];
+            }
+            if ("comdalei" == name) {
+                comdalei = list[i].split('=')[1];
+            }
+            if ("currlocation" == name) {
+                currlocation = list[i].split('=')[1];
+            }
+            if ("commc" == name) {
+                commc = list[i].split('=')[1];
+            }
+
+        }
+        var top;
+        if (!dalei) {
+            dalei = comdalei.substring(0, comdalei.length - 1);
+        }
+        if (currlocation) {
+            $('.xuexiaotit').empty();
+            $('.xuexiaotit').html('<div class="fl"><p class="dangqian fl">当前位置：</p><a id="a0"></a></div><div class="fr"><p>共找到 <span id="sp"></span> 条数据</p></div>');
+            if('互联网+明厨亮灶' === document.title){
+                $('#a0').html('互联网+明厨亮灶');
+            }else if('放心菜市场' === document.title){
+                $('#a0').html('放心菜市场');
+            }else if('透明餐饮' === document.title){
+                if(comdalei==='101202'){
+                    $('#a0').html('社会餐饮');
+                }else if(comdalei==='101201'){
+                    $('#a0').html('食堂');
+                }else if(comdalei==='101205'){
+                    $('#a0').html('网络餐饮');
+                }
+            }else if('透明流通' === document.title){
+                if(comdalei==='101302'){
+                    $('#a0').html('食品零售');
+                }else if(comdalei==='101301'){
+                    $('#a0').html('食品批发');
+                }
+            }else if('透明生产' === document.title){
+                if(comdalei==='101101'){
+                    $('#a0').html('食品生产企业');
+                }else if(comdalei==='101102'){
+                    $('#a0').html('小作坊');
+                }else if(comdalei==='101103'){
+                    $('#a0').html('原料生产基地');
+                }else if(comdalei==='102101'){
+                    $('#a0').html('药品生产企业');
+                }else if(comdalei==='103101'){
+                    $('#a0').html('化妆品生产企业');
+                }else if(comdalei==='104101'){
+                    $('#a0').html('保健品生产企业');
+                }else if(comdalei==='105101'){
+                    $('#a0').html('医疗器械生产企业');
+                }
+            }else if('你点我检' === document.title){
+                $('#a0').html('你点我检');
+            }else if('找回密码' === document.title){
+                $('.xuexiaotit').empty();
+                $('.xuexiaotit').html('<div class="fl"><p class="dangqian fl">当前位置：</p><a id="a0"></a></div>' +
+                '<div class="fr"><p class="fl">已有账号？</p><a href="javascript:linkToSelf(\' / index.jsp\')" class="lijidenglu fr">立即登录</a></div>');
+                $('#a0').html('找回密码');
+            }else if('用户注册' === document.title){
+                $('.xuexiaotit').empty();
+                $('.xuexiaotit').html('<div class="fl"><p class="dangqian fl">当前位置：</p><a id="a0"></a></div>'+
+                '<div class="fr"><p class="fl">已有账号？</p><a href="javascript:linkToSelf(\' / index.jsp\')" class="lijidenglu fr">立即登录</a></div>');
+                $('#a0').html('用户注册');
+            }else if ('用户注册' != document.title && '找回密码' != document.title && '互联网+明厨亮灶' != document.title && '透明餐饮' != document.title && '透明流通' != document.title && '透明生产' != document.title && '放心菜市场' != document.title && '你点我检' != document.title) {
+                $('.xuexiaotit').empty();
+                $('.xuexiaotit').html('<div class="fl"><p class="dangqian fl">当前位置：</p><a id="a0"></a> <a> ></a> <a id="a1"> </a><a> ></a> <a id="a2"> </a></div>');
+
+                $('#a0').html('平台首页');
+//                $('#a0').attr('href', pathname + '/index_zhsyj_zm.jsp');
+                    $('#a1').html(commc);
+
+//                $('#a1').attr('onclick', 'history.go(-1)');
+                $('#a2').html(document.title);
+//                $('#a2').attr('href', fullUrl);
+            }
+        }
+        if ('企业网络地图' === document.title) {
+            $('.xuexiaotit').html('<div class="fl"><p class="fl">当前位置：</p><a id="a0"></a> <a> ></a><a id="a2"> </a></div><div class="fr"><p>共找到 <span id="sp"></span> 条数据</p></div>');
+            $('#a0').html('平台首页');
+//            $('#a0').attr('href', pathname + '/index_zhsyj_zm.jsp');
+
+            if(comdalei==='101202'){
+                $('#a2').html('社会餐饮地图');
+            }else if(comdalei==='101201'){
+                $('#a2').html('食堂地图');
+            }else if(comdalei==='101205'){
+                $('#a2').html('网络餐饮地图');
+            }else if(comdalei==='101302'){
+                $('#a2').html('食品零售地图');
+            }else if(comdalei==='101301'){
+                $('#a2').html('食品批发地图');
+            }else if(comdalei==='101101'){
+                $('#a2').html('食品生产企业地图');
+            }else if(comdalei==='101102'){
+                $('#a2').html('小作坊地图');
+            }else if(comdalei==='101103'){
+                $('#a2').html('原料生产基地地图');
+            }else if(comdalei==='102101'){
+                $('#a2').html('药品生产企业地图');
+            }else if(comdalei==='103101'){
+                $('#a2').html('化妆品生产企业地图');
+            }else if(comdalei==='104101'){
+                $('#a2').html('保健品生产企业地图');
+            }else if(comdalei==='105101'){
+                $('#a2').html('医疗器械生产企业地图');
+            }else if ('10140' === dalei) {
+                $('#a2').html('菜市场地图');
+            }
+//            $('#a2').attr('href', fullUrl);
+        }
+
+        if ('10120' === dalei) {
+            if ('学校食堂' === title) {
+                top = '食堂';
+            } else {
+                top = '餐饮';
+            }
+        } else if ('10130' === dalei) {
+            top = '流通';
+        } else if ('10140' === dalei) {
+            top = '菜市场';
+        } else if ('10110' === dalei) {
+            top = '生产';
+        } else if ('10210' === dalei) {
+            top = '生产';
+        } else if ('10310' === dalei) {
+            top = '生产';
+        } else if ('10410' === dalei) {
+            top = '生产';
+        } else if ('10510' === dalei) {
+            top = '生产';
+        } else if ("" == comdalei || null == comdalei || comdalei == 'undefined') {
+            $('.aboutsearch').attr("hidden", "hidden");
+            top = document.title;
+        }
+        if ("食堂" === top) {
+            $('#img').addClass('xuexiaobanner');
+            var a = " <li><a href=\"javascript:linkToSelf('shitang.html?title=学校食堂','101201')\">互联网+明厨亮灶</a></li>"
+            $('.shitanglist ul').append(a);
+        }
+        if ("菜市场" === top) {
+            $('#img').addClass('fxcscbanner');
+            var a = "<li><a href=\"javascript:linkToSelf('ditu.html','101401')\">菜市场地图</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('caishichang.html','101401')\">农贸市场</a></li>"
+                    /*"<li><a href=\"javascript:linkToSelf('caishichang.html','101401')\">超市 </a></li>"*/
+            $('.shitanglist ul').append(a);
+        }
+        if ("生产" === top) {
+            $('#img').addClass('tmscbanner');
+            var a = "<li><a class='hide'>生产企业地图</a>" +
+                    "<ul>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','101101')\"> 食品生产企业</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','101102')\">小作坊</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','101103')\">原料生产基地</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','102101')\">药品生产企业</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','103101')\">化妆品生产企业</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','104101')\">保健品生产企业</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','105101')\">医疗器械生产企业</a></li>" +
+                    "</ul></li>" +
+                    "<li><a>生产企业</a>" +
+                    "<ul>" +
+                    "<li><a href=\"javascript:linkToSelf('shengchan.html','101101')\"> 食品生产企业</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('shengchan.html','101102')\">小作坊</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('shengchan.html','101103')\">原料生产基地</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('shengchan.html','102101')\">药品生产企业</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('shengchan.html','103101')\">化妆品生产企业</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('shengchan.html','104101')\">保健品生产企业</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('shengchan.html','105101')\">医疗器械生产企业</a></li>" +
+                    "</ul></li>"
+            $('.shitanglist ul').append(a);
+        }
+        if ("流通" === top) {
+
+            $('#img').addClass('ltxsbanner');
+            var a = "<li><a> 企业地图</a>" +
+                    "<ul>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','101301')\">食品批发企业地图</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','101302')\">食品零售企业地图</a></li>" +
+                    "</ul></li>" +
+                    "<li><a href=\"javascript:linkToSelf('liutong.html','101301')\">食品批发企业</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('liutong.html','101302')\">食品零售企业</a></li>";
+
+            $('.shitanglist ul').append(a);
+        }
+        if ("餐饮" === top) {
+            $('#img').addClass('tmcybanner');
+            var a = "<li><a>美食地图</a>" +
+                    "<ul>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','101201')\">食堂</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','101202')\">社会餐饮</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('ditu.html','101205')\">网络餐饮</a></li>" +
+                    "</ul></li>" +
+                    "<li><a href=\"javascript:linkToSelf('canyin.html','101201')\">食堂</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('canyin.html','101202')\">社会餐饮</a></li>" +
+                    "<li><a href=\"javascript:linkToSelf('canyin.html','101205')\">网络餐饮</a></li>";
+            $('.shitanglist ul').append(a);
+        }
+        if ("用户注册" === top) {
+            $('#img').addClass('zhucebanner');
+            $('.aboutsearch').removeAttr("hidden");
+            var a = "<li><a href=\"javascript:linkToSelf('zhuce.html')\">用户注册</a></li>";
+            $('.shitanglist ul').append(a);
+        }
+        if ("找回密码" === top) {
+            $('#img').addClass('zhucebanner');
+            $('.aboutsearch').removeAttr("hidden");
+            var a = "<li><a href=\"javascript:linkToSelf('mima.html')\">找回密码</a></li>";
+            $('.shitanglist ul').append(a);
+        }
+        if ("你点我检" === top||"你点我检申请表" === top) {
+            $('#img').addClass('nidianwojia');
+            $('.aboutsearch').removeAttr("hidden");
+            var a = "<li><a href=\"javascript:linkToSelf('ndwcList.html')\">你点我检</a></li>";
+            $('.shitanglist ul').append(a);
+        }
+
+        $('#search_btn').click(function () {
+            var url = "query.html?commc=" + $("#t_commc").val() + "&comdalei=";
+            window.open(encodeURI(url));
+        })
+
+    })
+
+</script>

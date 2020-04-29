@@ -1,0 +1,1 @@
+ALTER table sysuserdw add `dwfs` varchar(30) DEFAULT NULL COMMENT '定位方式';

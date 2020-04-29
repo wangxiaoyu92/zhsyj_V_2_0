@@ -1,0 +1,99 @@
+<div id="maps" class="baidu_map" style="border:1px  solid #ccc;margin-top:15px;margin-right:0px;margin-left:0px;height:220px;">
+ 
+</div>
+<div class="row" style="border:1px  solid #ccc;margin-top:15px;margin-right:0px;margin-left:0px;">
+    <div style="margin-top:15px;">
+        <div class="col-xs-4 col-sm-4" style="font-size:20px;font-weight:bold;padding:0px;text-align:center;">公众评价</div>
+        <div class="col-xs-8 col-sm-8" style="color:#666;font-size:14px;margin-top:5px;font-family:'宋体';padding-left:0px">Public evaluation</div>
+    </div>
+    <div id="eva" class="list_lh" style="margin-top:60px;padding-left:15px;padding-right:15px;padding-bottom:10px;line-height:1.7;">
+        <div id="eva_list" class="list_lh">
+            <ul>
+               
+            </ul>
+        </div>
+        <!-- 代码结束 -->
+    </div>
+</div>
+<script type="text/javascript">
+   
+    $(function () {
+        $.ajax({
+            type: "post",
+            dataType: "json",//"json",
+            url: "control/enterprise_review_control.ashx",
+            data: { op: "top_list", datatime: new Date(), cid: getUrlParam('id'), type: 0 },
+            success: function (data) {
+                if (data != null) {
+                    var htmls = "";
+                    $.each(data, function (index, item) {
+                        htmls += "<li>";
+                        htmls += "<p>评价用户：<a href=\"#\" onclick=\"lookreview('" + item.ID + "')\">" + item.adduser + "</a></p>";
+                        htmls += "<p>评价时间：" + item.addtime + "</p>";
+                        htmls += " </li>";
+                    })
+                    $("#eva_list ul").append(htmls);
+                    $('#eva_list li:even').addClass('lieven');
+                    $("#eva_list").myScroll({
+                        speed: 40, //数值越大，速度越慢
+                        rowHeight: 68 //li的高度
+                    });
+                }
+               
+            }
+        });
+
+        $.ajax({
+            type: "post",
+            dataType: "json",//"json",
+            url: "control/enterprise_control.ashx",
+            data: { op: "info", datatime: new Date(), id: getUrlParam('id') },
+            success: function (data) {
+                if (data != null) {
+                    if (data[0].Coordinate != "") {
+                        var map = new BMap.Map("maps", { enableMapClick: false });
+                        var myGeo = new BMap.Geocoder();
+                        var pt = new BMap.Point(data[0].Coordinate.split(',')[0], data[0].Coordinate.split(',')[1]);
+                        map.centerAndZoom(pt, 16);
+                        map.enableScrollWheelZoom();
+                        map.enableContinuousZoom();
+                        var marker = new BMap.Marker(pt);
+                        map.addOverlay(marker);
+                        marker.setAnimation(BMAP_ANIMATION_BOUNCE);
+                        var opts = {
+                            position: pt,    // 指定文本标注所在的地理位置
+                            width: 250,     // 信息窗口宽度    
+                            height: 100,
+                            offset: new BMap.Size(10, -24)    //设置文本偏移量
+                        }
+                        var label = new BMap.Label(data[0].Enterprise_name, opts);  // 创建文本标注对象
+                        label.setStyle({
+                            borderColor: "red", color: "red", cursor: 'pointer', fontSize: "12px",      // 信息窗口宽度    
+                            height: "20px", lineHeight: "20px", fontFamily: "微软雅黑",
+                        });//设定单位名称边框颜色和文字颜色
+                        map.addOverlay(label);
+                    }
+                }
+            }
+        });
+    })
+   
+    function lookreview(id) {
+        layer.open({
+            type: 2,
+            title: '您的评价能使我们更进一步',
+            shift: 3,
+            shade: 0,
+            offset: '20%',
+            maxmin: false,
+            shadeClose: true,
+            area: ['970px', '370px'],
+            content: 'modal/review.html?id=' + id
+        });
+    }
+</script>
+<style>
+    .baidu_map label {
+    max-width:none;
+    }
+</style>

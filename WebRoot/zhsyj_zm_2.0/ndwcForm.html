@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>你点我检申请表</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+
+</head>
+
+<body>
+
+<!------------banner------------->
+<div id="top"></div>
+
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="zhuce">
+        <p class="zhucetit">你点我检</p>
+
+        <form id="form" onsubmit="return myreg()">
+            <ul>
+                <li class="name">
+                    <p class="name fl"><span>*</span>地区：</p>
+                    <input class="fl" type="text" id="aaa027"/>
+                    <input class="fl" type="hidden" name="aaa027" id="aaa"/>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>分类选择：</p>
+                    <select class="fl" style="position: inherit" name="ndwjddfl" id="ndwjddfl"></select>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>具体地点：</p>
+                    <input class="fl" type="text" id="commc" name="commc"/>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>检测食品：</p>
+
+                    <div id="ndwjjcyp" style="border: 1px solid #CCCCCC;width: 360px;margin-left: 230px"></div>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl">意见与建议：</p>
+                    <textarea class="fl" rows="5" cols="48" id="jcreason" name="jcreason"></textarea>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>是否公开 ：</p>
+                    <select class="fl" style="position: inherit" id="sfgk" name="sfgk"></select>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl">申请人姓名：</p>
+                    <input class="fl" name="sqrxm" type="text" id="sqrxm"/>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl">申请人性别：</p>
+                    <select class="fl" style="position: inherit" id="ryxb" name="ryxb"></select>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl">申请人电话：</p>
+                    <input class="fl" type="text" name="sqrtel" id="sqrtel"/>
+
+                    <div class="clear"></div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+            <div class="anniu" style="text-align: center">
+                <input type="submit" value="提交"/>
+                <input type="reset" value="清空重置" id="reset"/>
+                <!--<input type="button" value="返回" onclick="history.go(-1)" id="fh"/>-->
+                <a href="javascript:linkToSelf('ndwcList.html')"><input type="button" value="返回" onclick="fh()"
+                                                                        id="fh"/></a>
+
+            </div>
+        </form>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+<div id="foot"></div>
+<!--弹窗-->
+<div class="new-lsdj">
+    <div class="lsdj-box" style="width: 430px">
+        <div class="lsdj-title">
+            > 选择地区
+        </div>
+        <iframe src=""></iframe>
+        <img src="images/cancle.png" width="38" height="38"/>
+    </div>
+</div>
+
+<div id="jsp" style="display: none">
+    <iframe src="" width="" height=""></iframe>
+</div>
+
+<script>
+    $("#top").load("muban_top.html");
+    $("#foot").load("muban_foot.html");
+    $('#jsp iframe').attr('src', "jsp.jsp");
+    //    var pageNum = 1, pageSize = 30, pageSum = 0;
+
+    //统筹区
+    $('#aaa027').click(function () {
+        $(".new-lsdj").show();
+        $('.lsdj-box iframe').attr('src', "zTree.jsp");
+    });
+
+    //关闭统筹区
+    $(".lsdj-box img").click(function () {
+        $(".new-lsdj").hide();
+    });
+
+
+    $(function () {
+        $.ajax({
+            url: pathname + '/api/tmsyj/queryparentchild',
+            type: "post",
+            dataType: 'json',
+//            data: {page: pageNum, rows: pageSize},
+            success: function (result) {
+                if (result.code == '0') {
+                    $('#ndwjjcyp').empty();
+                    var html = "<table><tr>";
+                    $.each(result.rows, function (index, item) {
+                        if (index % 3 == 0) {
+                            html += "</tr><tr>";
+                        }
+                        html += "<td>";
+                        html += "<input type='checkbox' value='" + item.bh + "' name='ndwjjcyp'>" + item.mc;
+                        html += "</td>";
+                    });
+                    html += "</tr></table>";
+                    $('#ndwjjcyp').append(html);
+                    $("#ndwjjcyp input").css({"width": "15px", "height": "15px", "margen": "0px 0px 10px 0px"});
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    });
+
+
+    // 保存
+    function myreg() {
+        var url = pathname + '/api/tmsyj/addJyjcyp';
+        var loginurl = pathname + '/index.jsp';
+
+        if (!$('#aaa').val()) {
+            alert('地区不能为空');
+            return false;
+        }
+        if (!$('#ndwjddfl').val()) {
+            alert('选择分类不能为空');
+            return false;
+        }
+        if (!$('#commc').val()) {
+            alert('具体地点不能为空');
+            return false;
+        }
+        var check = $("input[type='checkbox']").length;
+        var a = '';
+        for (var i = 0; i < check; i++) {
+            a += $("input[type='checkbox']")[i].checked;
+        }
+        if (a.indexOf('true') < 0) {
+            alert('检测商品不能为空');
+            return false;
+        }
+        if ($('#sfgk').select().val() === '') {
+            alert('请选择是否公开');
+            return false;
+        }
+        $.ajax({
+            url: url,
+            type: "post",
+            dataType: 'json',
+            data: $('#form').serialize(),
+            success: function (result) {
+                if (result.code == '0') {
+                    alert('提交成功');
+                    var url = "http://" + homeURL + '/zhsyj_zm_2.0/ndwcList.html';
+                    window.location.href = encodeURI(url);
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+        return false;
+    }
+
+
+</script>
+</body>
+</html>

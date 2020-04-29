@@ -1,0 +1,173 @@
+.mclzPlayer{
+	padding:0px;
+    margin: 0px 0px 6px 0px;
+	border:1px solid black;
+	width: 1228px;
+	height: 604px;
+	float:left;
+}
+.mclzPlayer2{
+	padding:0px;
+    margin: 0px 0px 0px 20px;
+	border:1px solid black;
+	width: 927px;
+	height: 604px;
+	float:left;
+}
+.mclzPlayer .player{
+	margin:2px;
+	width:920px;
+	height:600px;
+	float:left;
+}
+.mclzPlayer2 .player{
+	margin:2px;
+	width:920px;
+	height:600px;
+	float:left;
+}
+.mclzPlayer .player1{
+	width:920px;
+	height:600px;
+	background-color: black;
+	float:left;
+}
+.mclzPlayer2 .player1{
+	width:920px;
+	height:596px;
+	background-color: black;
+	float:left;
+}
+.mclzPlayer .player4{
+	margin:2px;
+	width:455px;
+	height:295px;
+	background-color: black;
+	float:left;
+}
+.mclzPlayer2 .player4{
+	margin:2px;
+	width:455px;
+	height:295px;
+	background-color: black;
+	float:left;
+}
+.player_s{
+	border:2px solid red;
+}
+.player_s2{
+	border:2px solid red;
+}
+.mclzPlayer .list{
+	margin:2px;
+	width:298px;
+	height:600px;
+	background-color: black;
+	float:left;
+}
+.mclzPlayer .list .listTitle{
+	margin:2px;
+	width:296px;
+	height:40px;
+	background-color: black;
+	float:left;
+}
+.mclzPlayer .list .listTitle h4{
+	color: white;
+	margin-top: 4px;
+	font-weight: 900;
+}
+.mclzPlayer .list .listTitle .listTitleLeft{
+	margin:0px;
+	width:146px;
+	height:40px;
+	line-height:40px;
+	text-align:center ;
+	background-color: #6C6C6C;
+	float:left;
+}
+.mclzPlayer .list .listTitle .listTitleRight{
+	margin:0px;
+	width:150px;
+	height:40px;
+	line-height:40px;
+	text-align:center ;
+	background-color: black;
+	float:left;
+}
+.mclzPlayer .list .listTitle .listTitleRight .btn-group{
+	margin:0px;
+	margin-right:4px;
+	float:right;
+}
+.mclzPlayer .list .listTitle .listTitleRight .btn-group a{
+	padding: 6px 9px;
+	margin-top: 4px;
+}
+.mclzPlayer .list .listCentre{
+	margin:0px;
+	width:296px;
+	height:512px;
+	background-color: #4F4F4F;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+.mclzPlayer .list .listCentre .camList{
+	margin:2px;
+	padding:4px;
+	width:287px;
+	height:70px;
+	text-align:left;
+	float:left;
+	background-color:#8E8E8E;
+}
+.mclzPlayer .list .listCentre .camList2{
+	margin:2px;
+	padding:4px;
+	width:287px;
+	height:70px;
+	text-align:left;
+	background-color: #ADADAD;
+	float:left;
+}
+.mclzPlayer .list .listCentre a{
+	font:bold 23px/40px "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:bold;
+	color:white;
+	line-height:68px;
+	width:240px;
+	cursor: default;
+	text-decoration:none;
+	float:left;
+}
+.mclzPlayer .list .listCentre span{
+	margin-top:15px;
+	font-size: 20px;
+	width: 20px;
+	float:left;
+	color: #1abc9c;
+	/*background-color: ;*/
+}
+.mclzPlayer .list .listCentre img{
+	width:86px;
+	height:62px;
+	text-align:left;
+	vertical-align:middle;
+	float:left;
+}
+.mclzPlayer .list .listBottom{
+	margin:2px;
+	width:296px;
+	height:40px;
+	background-color: black;
+}
+.mclzPlayer .list .listBottom .btn-group{
+	margin:0px;
+	margin-left:4px;
+	margin-right:4px;
+	float:left;
+}
+.mclzPlayer .list .listBottom .btn-group a{
+	padding: 6px 8px;
+	margin-top: 4px;
+}

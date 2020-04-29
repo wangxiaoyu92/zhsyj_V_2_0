@@ -1,0 +1,297 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8" %>
+<%@ page import="com.zzhdsoft.utils.StringHelper" %>
+<% 
+	String contextPath = request.getContextPath();
+	String basePath = request.getScheme() + "://"	+ request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+%>
+<%
+	String t_currlocation = StringHelper.showNull2Empty(request.getParameter("currlocation"));
+	String t_comid = StringHelper.showNull2Empty(request.getParameter("comid"));
+%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=8">
+<script src="./js/jquery-1.12.0.min.js"></script>
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<script src="./js/bootstrap.min.js"></script>
+<script src="./js/business.js"></script>
+<script src="./js/common.js"></script>
+<script src="./js/custom.js"></script>
+<link href="./css/bootstrap-combined.min.css" rel="stylesheet">
+<script src="./js/bootstrap-paginator.js"></script>
+<link href="./css/style.css" rel="stylesheet">
+<script src="./js/layer.js"></script>
+<link href="./css/layer.css" rel="stylesheet">
+<script src="./js/jquery.imagezoom.js"></script>
+<link href="./css/imagezoom.css" rel="stylesheet">
+</head>
+<body>
+<div id="top"></div>	
+<div class="container" style="width:80%;margin-top:5px;min-width:1030px;">
+    <div class="current-location">
+		<span class="position" id="currlocation">当前位置：  </span>
+	</div>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-xs-12 col-sm-12" style="text-align:center;">
+            <!--选项卡内容 开始-->
+            <div class="tab_title" style="border-bottom:1px solid #048ad3;width:100%;height:40px; line-height:40px; margin-top:10px;">
+                <div id="table_0" class="table_show" style="width:50%;" onclick="sele_show(0)">透明厨房</div>
+                <div id="table_1" class="table_hide" style="width:50%;" onclick="sele_show(1)">餐饮具洗消记录</div>
+            </div>
+            <div class="tab_list"> 
+	            <div id="tables_0" class="tables" style="display:block;width:100%">
+	                <ul id="sp_content"></ul>
+	                <ul id="sp_page_list"></ul>
+	            </div>
+	            <div id="tables_1" class="tables" style="display:none;width:100%">
+                <table id="xx_content" class="table table-bordered" style="border-collapse:collapse;font-size:14px;">
+                    <thead>
+                        <tr>
+                            <th rowspan="2" style="vertical-align:central;text-align: center; font-size:14px;">洗消日期</th>
+                            <th rowspan="2" style="vertical-align:central;text-align: center; font-size:14px;">餐具名称</th>
+                            <th colspan="2" style="vertical-align:central;text-align: center;font-size:14px; ">消毒内容</th>
+                            <th colspan="2" style="vertical-align:central;text-align: center;font-size:14px;">消毒时间</th>
+                            <th rowspan="2" style="vertical-align:central;text-align: center;font-size:14px; ">操作人</th>
+                        </tr>
+                        <tr>
+                            <th style="vertical-align:central;text-align: center;font-size:14px; ">消毒方式</th>
+                            <th style="vertical-align:central;text-align: center;font-size:14px; ">温/浓渡</th>
+                            <th style="vertical-align:central;text-align: center; font-size:14px;">起始</th>
+                            <th style="vertical-align:central;text-align: center;font-size:14px;">结束</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <ul id="xx_page_list"></ul>
+            </div>
+        	</div>
+       	    <!--选项卡内容  结束-->   
+        </div>
+<!--         <div class="col-xs-4 col-sm-4" id="news"></div> -->
+    </div>
+</div>
+<div id="foot"></div>		
+<script type="text/javascript">
+	var basePath = '<%=basePath%>';
+	var contextPath = '<%=contextPath%>';
+	var t_currlocation = '<%=t_currlocation%>';	
+	var t_comid = '<%=t_comid%>';	
+   	
+   	var tabs = 2;
+	function sele_show(bh) {
+	    for (var i = 0; i <= tabs; i++) {
+	        if (i == bh) {
+	            $("#table_" + i + "").addClass('table_show');//添加样式，样式名为className
+	            $("#table_" + i + "").removeClass('table_hide');//删除样式，样式名为className
+	            $("#tables_" + i + "").css('display', 'block');
+	        } else {
+	            $("#table_" + i + "").addClass('table_hide');//添加样式，样式名为className
+	            $("#table_" + i + "").removeClass('table_show');//删除样式，样式名为className
+	            $("#tables_" + i + "").css('display', 'none');
+	        }
+	    } 
+	}
+	
+	var v_pageSize = 10;
+    var sp_options = {
+        currentPage: 1,
+        totalPages: 1,
+        bootstrapMajorVersion: 3,
+        numberOfPages: 5,
+        size: "large",
+        itemTexts: function (type, page, current) {
+            switch (type) {
+                case "first":
+                    return "首页";
+                case "prev":
+                    return "上一页";
+                case "next":
+                    return "下一页";
+                case "last":
+                    return "尾页";
+                case "page":
+                    return page;
+            }
+        },
+        tooltipTitles: function (type, page, current) {
+            switch (type) {
+                case "first":
+                    return "首页";
+                case "prev":
+                    return "上一页";
+                case "next":
+                    return "下一页";
+                case "last":
+                    return "尾页";
+                case "page":
+                    return page + "页";
+            }
+        }, onPageClicked: function (e, originalEvent, type, page) {
+            getJkyList(page, v_pageSize);
+        }
+    }
+    
+    var xx_options = {
+        currentPage: 1,
+        totalPages: 1,
+        bootstrapMajorVersion: 3,
+        numberOfPages: 5,
+        size: "large",
+        itemTexts: function (type, page, current) {
+            switch (type) {
+                case "first":
+                    return "首页";
+                case "prev":
+                    return "上一页";
+                case "next":
+                    return "下一页";
+                case "last":
+                    return "尾页";
+                case "page":
+                    return page;
+            }
+        },
+        tooltipTitles: function (type, page, current) {
+            switch (type) {
+                case "first":
+                    return "首页";
+                case "prev":
+                    return "上一页";
+                case "next":
+                    return "下一页";
+                case "last":
+                    return "尾页";
+                case "page":
+                    return page + "页";
+            }
+        }, onPageClicked: function (e, originalEvent, type, page) {
+            getCyjxxjlList(page, v_pageSize);
+        }
+    }
+	
+    $(function () {                
+        if (t_currlocation != '') {
+            $('#currlocation').html('当前位置：' + t_currlocation);
+        }
+        getJkyList(1, v_pageSize);  
+        getCyjxxjlList(1, v_pageSize);                
+    });
+
+    function getJkyList(page,pageSize) {
+    	$.ajax({
+        	url: basePath + "api/tmsyj/getJkyList",
+        	type: "post",
+            dataType: 'json',
+            data: { page: page, rows: pageSize, jkqybh: t_comid, jklx: '1' },
+			success: function(result){ 
+            	if(result.code == '0'){
+            		sp_options.currentPage = result.currPage;
+                 	sp_options.totalPages = result.totalPage; 
+                 	$('#sp_content').empty();                        
+                 	$.each(result.rows, function (index, item) {
+                    	var html = "";
+                        if (index != result.rows.length - 1) {
+                            html += "<li style=\"border-bottom:1px #999 dotted;height:135px;\">";
+	                    } else {
+	                        html += "<li style=\"border-bottom:1px #00a0ea solid;height:135px;text-align:left;\">";
+	                    }
+                        html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                        html += " <tr>";
+                        html += " 	<td rowspan=\"3\" width=\"140px\" style=\"padding-right:15px;\">";
+                        html += "   	<a href='#' onclick=\"show_video(\'" + IsNull(item.jkybh) + "\')\" \"><img src=\"images/webcamera.jpg\" style=\"height:120px;width:160px;\" /></a>";
+                        html += "   </td>";
+                        html += "   <td><a href='#' onclick=\"show_video(\'" + IsNull(item.jkybh) + "\')\"  style=\"font-size:17px;color: #0000F0;text-decoration:none;font-weight:bold;\" >" + IsNull(item.jkymc) + "</a></td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "   <td  style=\"font-size:14px;\">企业名称：" + IsNull(item.jkqymc) + "</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        if(item.state=='1'){
+	                        html += " <td  style=\"font-size:14px;\">在线状态：<span class=\"shop_camera\"><img class=\"shop_camera\" src=\"images/camera-on.png\"></span></td>";
+	   					}else{
+	                        html += " <td  style=\"font-size:14px;\">在线状态：<span class=\"shop_camera\"><img class=\"shop_camera\" src=\"images/camera-off.png\"></span></td>";
+	   					}
+                        html += " </tr>";
+                        html += "</table>";
+		                html += "</li>";
+                    	$('#sp_content').append(html);
+                     	if (index == result.rows.length - 1) {
+                        	$('#sp_page_list').bootstrapPaginator(sp_options);
+                    	}
+                 	});
+                    if (result.total<=0){
+                        var html = "";
+                        html += "<li style=\"border-bottom:1px #00a0ea solid;height:135px;\">";
+                        html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                        html += " <tr>";
+                        html += "     <td rowspan=\"5\" width=\"140px\" style=\"padding-right:15px;\">";
+                        html += "         <img src=\"images/kong.jpg\" style=\"height:120px;width:160px;\" />";
+                        html += "     </td>";
+                        html += "     <td  style=\"font-size:14px;\">没有查询到符合条件的记录，如有疑问请联系系统管理员！</td>";                        html += " </tr>";
+                        html += " <tr>";
+                        html += "</table>";
+                        html += "</li>";
+                        $('#sp_content').append(html);
+                    }
+              	}else{
+                	alert(result.msg);	                       
+              	} 
+         	}                     
+        });
+    }
+    
+    function getCyjxxjlList(page,pageSize) {
+    	$.ajax({
+        	url: basePath + "api/tmcy/getCyjxxjlList",
+        	type: "post",
+            dataType: 'json',
+            data: { page: page, rows: pageSize, comid: t_comid },
+            success: function(result){ 
+            	if(result.code == '0'){
+            		xx_options.currentPage = result.currPage;
+                 	xx_options.totalPages = result.totalPage; 
+                 	$('#xx_content tbody').empty();                        
+                 	$.each(result.rows, function (index, item) {
+                    	var html = "";
+	                    html += "<tr>";
+	                    html += "<td>"+(item.aae036).split(" ")[0]+"</td>";
+	                    html += "<td>"+item.cjmc+"</td>";
+	                    html += "<td>"+item.xdfsmc+"</td>";
+	                    html += "<td>"+item.wnd+"</td>";
+	                    html += "<td>"+(item.xdkssj).split(" ")[1]+"</td>";
+	                    html += "<td>"+(item.xdjssj).split(" ")[1]+"</td>";
+	                    html += "<td>"+item.aae011+"</td>";
+	                    html += "</tr>";
+                   	 	$('#xx_content tbody').append(html);
+                     	if (index == result.rows.length - 1) {
+                        	$('#xx_page_list').bootstrapPaginator(xx_options);
+                    	}
+                 	});
+              	}else{
+                	alert(result.msg);	                       
+              	} 
+         	}           
+        });
+    }
+    
+    function show_video(id) {
+        layer.open({
+            type: 2,
+            title: t_currlocation,
+            shift: 3,
+            offset: '50px',
+            scrollbar: false,
+            shade: 0,
+            shift:-1,
+            maxmin: false,
+            shadeClose: true,
+            closeBtn: 1, //不显示关闭按钮
+            area: ['930px', '550px'],
+            content: ['show_video.jsp?jkybh=' + id, 'no']
+        });
+    }
+</script>
+</body>
+</html>

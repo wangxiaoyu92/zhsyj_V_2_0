@@ -1,0 +1,169 @@
+/*默认文字超链接样式*/
+
+/*A:link {
+	COLOR: #014F8A; FONT-SIZE: 12px; TEXT-DECORATION: none; 
+}
+A:active {
+	COLOR: #014F8A; FONT-SIZE: 12px; TEXT-DECORATION: none; 
+}
+A:visited {
+	COLOR: #014F8A; FONT-SIZE: 12px; TEXT-DECORATION: none; 
+}
+A:hover {
+	COLOR: #000000; FONT-SIZE: 12px; TEXT-DECORATION: underline; 
+}*/
+
+/*导航条文字超链接样式*/
+
+A.nvalink:link {
+	COLOR: #000000; FONT-SIZE: 12px; TEXT-DECORATION: none; 
+}
+A.nvalink:active {
+	COLOR: #000000; FONT-SIZE: 12px; TEXT-DECORATION: none; 
+}
+A.nvalink:visited {
+	COLOR: #000000; FONT-SIZE: 12px; TEXT-DECORATION: none; 
+}
+A.nvalink:hover {
+	COLOR: #000000; FONT-SIZE: 12px; TEXT-DECORATION: none; 
+}
+
+/*重定义部分HTML标签*/
+BODY {
+	FONT-SIZE: 12px;
+	MARGIN: 0px;
+	COLOR:#014F8A;
+	BACKGROUND-COLOR:#1D6FCB;
+	SCROLLBAR-FACE-COLOR: #DBEFFF; 
+	SCROLLBAR-HIGHLIGHT-COLOR: #FFFFFF; 
+	SCROLLBAR-SHADOW-COLOR: #61ACE8; 	
+	SCROLLBAR-ARROW-COLOR: #014F8A; 	
+	SCROLLBAR-TRACK-COLOR: #DBEFFF; 
+	SCROLLBAR-3DLIGHT-COLOR: #61ACE8; 
+	SCROLLBAR-DARKSHADOW-COLOR: #FFFFFF;	
+}
+TD{
+	FONT-SIZE:12px;
+}
+P{
+	FONT-SIZE:12px;
+}
+DIV{
+	FONT-SIZE:12px;
+}
+HR {
+	COLOR: #000000;
+	HEIGHT: 1px;
+}
+
+/*定义表单元素样式*/
+
+.TextStyle{	
+	FONT-SIZE:12px;border:1px solid #3E89C1;HEIGHT: 20px;PADDING-TOP: 3px;
+}
+
+/*提交按扭*/
+.ButtonStyle{
+	FONT-SIZE:12px;HEIGHT: 20px;WIDTH: 50px;PADDING-TOP: 2px;
+	BORDER: #3E89C1 1px solid; BACKGROUND-COLOR: #bcddf9; color: #014F8A;
+}
+
+
+/*背景*/
+.LoginBgStyle_syjzhpt{
+	background-image: url(../images/login/syjzhpt/login_bg_syjzhpt.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.LoginBgStyle_asfoodsafe{
+	background-image: url(../images/login/asfoodsafe/login_bg_asfoodsafe.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.LoginBgStyle_zhyq{
+	background-image: url(../images/login/zhyq/login_bg_zhyq.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.LoginBgStyle_wl{
+	background-image: url(../images/login/wl/login_bg_wl.png);
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+.LoginBgStyle{
+	background-image: url(../images/login/login_bg.jpg);
+	background-repeat: repeat;
+	background-position: center center;
+}
+.LoginBgStyle input{
+	width: 190px;
+	height: 20px;/*zjf*/	
+}
+
+.maintab02 {
+	position:relative;
+	border: none;
+	margin: 0px;
+	padding: 0px;
+	top: -11px;
+	left:  388px;
+	float: left;
+	height: 333px;
+	width: 527px;
+	background-image:url(../images/login/dlk_bg.png);
+	background-repeat:no-repeat;
+}
+
+a img
+{ border:none;}
+
+
+.tdbg_1_1{
+	background:url(../images/login/tab_1_1.png) no-repeat;
+	cursor:hand;
+}
+.tdbg_2_1{
+	background:url(../images/login/tab_2_1.png) no-repeat;
+	cursor:hand;
+}
+.tdbg_3_1{
+	background:url(../images/login/tab_3_1.png) no-repeat;
+	cursor:hand;
+}
+.tdbg_4_1{
+	background:url(../images/login/tab_4_1.png) no-repeat;
+	cursor:hand;
+}
+
+.tdbg_1_2{
+	background:url(../images/login/tab_1_2.png) no-repeat;
+	cursor:hand;
+}
+.tdbg_2_2{
+	background:url(../images/login/tab_2_2.png) no-repeat;
+	cursor:hand;
+}
+.tdbg_3_2{
+	background:url(../images/login/tab_3_2.png) no-repeat;
+	cursor:hand;
+}
+.tdbg_4_2{
+	background:url(../images/login/tab_4_2.png) no-repeat;
+	cursor:hand;
+}
+
+#supersized-loader { position: absolute; top: 50%; left: 50%; z-index: 0; width: 60px; height: 60px; margin: -30px 0 0 -30px; text-indent: -999em; background: url(../../static/images/loading/loading2.gif) no-repeat center center; }
+#supersized { display: block; position: fixed; left: 0; top: 0; overflow: hidden; z-index: -999; height: 100%; width: 100%; }
+#supersized img { width: auto; height: auto; position: relative; display: none; outline: none; border: none; }
+#supersized.speed img { -ms-interpolation-mode: nearest-neighbor; image-rendering: -moz-crisp-edges; }  /*Speed*/
+#supersized.quality img { -ms-interpolation-mode: bicubic; image-rendering: optimizeQuality; }      /*Quality*/
+#supersized li { display: block; list-style: none; z-index: -30; position: fixed; overflow: hidden; top: 0; left: 0; width: 100%; height: 100%; background: #111; }
+#supersized a { width: 100%; height: 100%; display: block; }
+#supersized li.prevslide { z-index: -20; }
+#supersized li.activeslide { z-index: -10; }
+#supersized li.image-loading { background: #111 url(../../static/images/loading/loading2.gif) no-repeat center center; width: 100%; height: 100%; }
+#supersized li.image-loading img { visibility: hidden; }
+#supersized li.prevslide img,
+#supersized li.activeslide img { display: inline; }
+#supersized img { max-width: none !important }
+#supersized i { _zoom: 1;}

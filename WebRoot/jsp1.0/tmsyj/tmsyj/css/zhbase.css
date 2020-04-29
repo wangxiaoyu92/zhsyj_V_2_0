@@ -1,0 +1,175 @@
+/*全局样式开始*/
+
+body {
+	padding: 0px;
+	margin: 0px auto;
+	font-family: Microsoft YaHei, arial, '宋体';
+	color: #666;
+	width: 100%;
+	zoom: 1;
+	-webkit-text-size-adjust: none;
+	/*禁用Webkit内核浏览器的文字大小调整功能*/
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight: rgba(0, 0, 0, 0);
+	/*取出点击出现半透明的灰色背景*/
+	-webkit-user-select: none;
+	/*控制内容的可选择性*/
+	-ms-user-select: none;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+	-webkit-font-smoothing: antialiased;
+	/*设置字体的抗锯齿或者说光滑度*/
+}
+
+p,
+ul,
+li,
+form,
+dl,
+dt,
+dd,
+embed,
+div {
+	padding: 0px;
+	margin: 0px;
+}
+
+ul,
+li {
+	list-style: none;
+}
+
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+	padding: 0px;
+	margin: 0px;
+}
+
+select,
+input,
+textarea {
+	border-radius: 0;
+	-webkit-border-radius: 0;
+	color: #414446;
+}
+
+input:focus {
+	outline: none;
+}
+
+input,
+button,
+select,
+textarea {
+	outline: none;
+	/*-webkit-appearance:none;*/
+	/*强制去除表单自带的样式*/
+}
+
+textarea {
+	resize: none;
+	/*-webkit-appearance:none;*/
+	/*强制去除textarea自带的样式*/
+}
+
+textarea,
+input,
+select {
+	background: none;
+	border: none;
+	margin: 0;
+	padding: 0;
+}
+
+audio,
+canvas,
+progress,
+video {
+	display: inline-block;
+	vertical-align: baseline;
+}
+
+article,
+aside,
+footer,
+header,
+hgroup,
+nav,
+section,
+figure,
+figcaption {
+	display: block;
+}
+
+
+/*html5设置*/
+
+figure,
+figcaption {
+	margin: 0px;
+	padding: 0px;
+}
+
+img {
+	border: none;
+	border: 0;
+	max-width: 100%;
+	vertical-align: top;
+}
+
+a {
+	color: #666;
+	text-decoration: none;
+	noline: -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+a:focus {
+	outline: none;
+	-moz-outline: none;
+}
+
+a:hover {
+	color: #15182B;
+}
+
+.clear {
+	clear: both;
+	height: 0px;
+	overflow: hidden;
+}
+
+
+/*清除浮动*/
+
+.h30 {
+	height: 30px;
+}
+
+.h55 {
+	height: 55px;
+}
+/*全局样式结束*/
+
+#top {
+	width: 100%;
+	height: 132px;
+	background: url(../images/topbj.jpg)no-repeat;
+	background-size: 100% 100%;
+}
+
+.topwrap {
+	width: 1000px;
+	height: 132px;
+	margin: 0 auto;
+}
+
+.logo {
+	width: 435px;
+	height: 81px;
+	padding-top: 25px;
+}

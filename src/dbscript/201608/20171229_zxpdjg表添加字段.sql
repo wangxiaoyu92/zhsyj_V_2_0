@@ -1,0 +1,2 @@
+ALTER TABLE zxpdjg
+  ADD COLUMN reason VARCHAR(32) DEFAULT NULL COMMENT '对应zxpdjg表字段' AFTER commc

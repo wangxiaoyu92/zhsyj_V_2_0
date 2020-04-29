@@ -1,0 +1,57 @@
+<!-- <div id="tableshow" style="border-bottom:1px solid #048ad3;width:100%;height:40px; line-height:40px; margin-top:10px;"> -->
+<div id="tableshow" style="width:100%; overflow: hidden; line-height:40px;">
+<!--     <div class="table_show" style="width:55px;" id="table_0" onclick="sele_show(0)">姹ら槾鍘�/div> -->
+<!--     <div class="table_hide" style="width:55px;" id="table_1" onclick="sele_show(1)">鍩庡叧闀�/div> -->
+<!--     <div class="table_hide" style="width:55px;" id="table_2" onclick="sele_show(2)">鑿滃洯闀�/div> -->
+<!--     <div class="table_hide" style="width:55px;" id="table_3" onclick="sele_show(3)">浠诲浐闀�/div> -->
+<!--     <div class="table_hide" style="width:55px;" id="table_4" onclick="sele_show(4)">浜旈櫟闀�/div> -->
+<!--     <div class="table_hide" style="width:55px;" id="table_5" onclick="sele_show(5)">瀹滄矡闀�/div> -->
+<!--     <div class="table_hide" style="width:55px;" id="table_6" onclick="sele_show(6)">闊╁簞闀�/div> -->
+<!--     <div class="table_hide" style="width:55px;" id="table_7" onclick="sele_show(7)">鐧借惀闀�/div> -->
+<!--     <div class="table_hide" style="width:55px;" id="table_8" onclick="sele_show(8)">鍙よ搐闀�/div> -->
+<!--     <div class="table_hide" style="width:55px;" id="table_9" onclick="sele_show(9)">鐡﹀矖涔�/div> -->
+<!--     <div class="table_hide" style="width:55px;" id="table_10" onclick="sele_show(10)">浼忛亾闀�/div> -->
+</div>
+<script type="text/javascript">
+	var t_aaa027 = "";
+		
+	$(function () {
+		initAreaTab();                
+    });
+    
+    function initAreaTab(){
+		$.ajax({
+	        url: basePath + "api/tmsyj/getAreaTabList",
+	        type: "post",
+	        dataType: 'json',
+	        data: { aaa001: "SYSAAA027" },
+	        success: function(result){ 
+            	if(result.code == '0'){
+		            $.each(result.rows, function (index, item) {
+		            	//鍔ㄦ�鍒濆鍖栫粺绛瑰尯tab鍒楄〃
+		            	var html = "";
+		            	html += " <div class=\"table_hide2\" style=\"width:80px;\" id=\"" + IsNull(item.aaa027) + "\" >" + IsNull(item.aaa129) + "</div> ";	                
+		            	$('#tableshow').append(html);
+		            });
+					$("#tableshow div").bind("click",function() {
+						$("#tableshow div").eq($(this).index()).addClass("table_show2").siblings().removeClass("table_show2");
+						$("#tableshow div").eq($(this).index()).removeClass("table_hide2").siblings().addClass("table_hide2");
+						sele_show($(this).attr("id"));
+				    });
+		            //榛樿閫変腑绗竴椤�
+		            $("#tableshow div").eq(0).addClass("table_show2").siblings().removeClass("table_show2");
+					$("#tableshow div").eq(0).removeClass("table_hide2").siblings().addClass("table_hide2");
+		            sele_show(result.rows[0].aaa027);
+				}else{
+					alert(result.msg);	
+				}
+	        }
+	    });	
+	}
+	
+	function sele_show(aaa027) {    
+//	    t_aaa027 = aaa027;
+		t_aaa027 = aaa027.replace(/0*$/, "");
+        getZfajList(1, 5,t_aaa027);
+	}	
+</script>

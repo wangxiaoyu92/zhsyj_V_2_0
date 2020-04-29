@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery Validation Engine 表单验证中文版 在线演示 &raquo; 较好体验的中文表单 - 前端开发仓库</title>
+<link rel="stylesheet" href="css/validationEngine.jquery.css">
+<link rel="stylesheet" href="css/template.css">
+<style>
+.wrap{width:1000px;margin:0 auto;}
+.wrap:after{visibility:hidden;display:block;font-size:0;content:"";clear:both;height:0;}
+
+fieldset{margin-bottom:20px;}
+
+.user_form{zoom:1;}
+.user_form:after{visibility:hidden;display:block;font-size:0;content:" ";clear:both;height:0;}
+.user_form dt{float:left;padding:5px;clear:left;text-align:right;}
+.user_form dd{float:left;padding:5px;*float:none;}
+.user_form dt{width:80px;line-height:24px;}
+.user_form dd{width:300px;}
+.user_form label{display:inline;margin-bottom:0;}
+.user_form select,
+.user_form .text-input{display:inline-block;margin-bottom:0;vertical-align:top;}
+.user_form .text-input{width:200px;}
+.user_form .formErrorContent{padding-left:10px;line-height:24px;}
+</style>
+<script src="js/jquery-1.7.2.min.js"></script>
+<script src="js/jquery.validationEngine-zh_CN.js"></script>
+<script src="js/jquery.validationEngine.min.js"></script>
+<script>
+
+$.validationEngineLanguage.allRules.ajaxVerify={
+	"url": "phpajax/ajaxValidateVerify.php",
+	"extraData": "name=eric",
+	"alertTextOk": "<strong style='color:#090;'>√<strong>",
+	"alertText": "<strong>×</strong>",
+	"alertTextLoad": ""
+};
+
+jQuery(document).ready(function(){
+	// binds form submission and fields to the validation engine
+	jQuery("#user_form").validationEngine({ 
+		scroll:false,
+		//binded:false,
+		//showArrow:false,
+		promptPosition:"centerRight",
+		maxErrorsPerField:1,
+		showOneMessage:true,
+		addPromptClass:"formError-noArrow formError-text",
+		custom_error_messages:{
+			"#pwd":{
+				"minSize":{
+					"message":"* 密码不得少于 6 位，建议使用英文与数字组合"
+				}
+			}
+		}
+	});
+});
+</script>
+</head>
+<body>
+<div class="wrap">
+	<h1>jQuery Validation Engine 表单验证中文版 在线演示<em>v2.6.2</em></h1>
+	<div id="side" class="side"></div>
+	<div class="main">
+		<h2>较好体验的中文表单</h2>
+		<div class="intro">
+			<p>示例中经过样式调整，以及使用部分参数来提高用户体验。</p>
+		</div>
+		<form id="user_form" class="user_form formular" method="post">
+			<fieldset>
+				<legend>账号资料</legend>
+				<dl class="form_add">
+					<dt>用户名</dt>
+					<dd><input class="text-input validate[required]" type="text"></dd>
+					<dt>密码</dt>
+					<dd><input class="text-input validate[required,minSize[6],maxSize[20]]" type="password" id="pwd"></dd>
+					<dt>确认密码</dt>
+					<dd><input class="text-input validate[condRequired[pwd],equals[pwd]]" type="password"></dd>
+				</dl>
+			</fieldset>
+			
+			<fieldset>
+				<legend>个人信息</legend>
+				<dl class="form_add">
+					<dt>姓名</dt>
+					<dd><input class="text-input validate[required,custom[chinese],minSize[2]]" type="text" id="name"></dd>
+					<dt>出生日期</dt>
+					<dd><input class="text-input validate[required,custom[date]]" type="text"></dd>
+					<dt>手机号码</dt>
+					<dd><input class="text-input validate[required,custom[phone]]" type="text"></dd>
+					<dt>身份证号码</dt>
+					<dd><input class="text-input validate[required,custom[chinaId]]" type="text"></dd>
+					<dt>身份证号码zjf</dt>
+					<dd><input class="text-input validate[required,minSize[15],maxSize[18],custom[IdCard]]" type="text"></dd>
+					<dt>QQ</dt>
+					<dd><input class="text-input validate[required,custom[qq]]" type="text"></dd>
+					<dt>E-mail</dt>
+					<dd><input class="text-input validate[required,custom[email]]" type="text"></dd>
+					<dt>网站/博客</dt>
+					<dd><input class="text-input validate[required,custom[url]]" type="text"></dd>
+				</dl>
+			</fieldset>
+			
+			<fieldset>
+				<legend>收件人信息</legend>
+				<dl class="form_add">
+					<dt>所在地</dt>
+					<dd>
+						<select class="validate[required]">
+							<option value="">请选择</option>
+							<option value="option1">国内</option>
+							<option value="option2">国外</option>
+						</select>
+					</dd>
+					<dt>街道地址</dt>
+					<dd><input class="text-input validate[required,minSize[10]]" type="text"></dd>
+					<dt>邮编</dt>
+					<dd><input class="text-input validate[required,custom[chinaZip]]" type="text"></dd>
+				</dl>
+			</fieldset>
+			
+			<fieldset>
+				<legend>其他</legend>
+				<dl class="form_add">
+					<dt>验证码</dt>
+					<dd><input class="text-input validate[required,ajax[ajaxVerify]]" type="text" style="width:100px;" data-prompt-position="centerRight:100,0"> <img src="img/verify.jpg" width="90" height="26"></dd>
+					<dt></dt>
+					<dd><input class="radio validate[required]" type="checkbox" id="agree" name="agree" data-prompt-position="centerRight:80,0"> <label for="agree">同意用户协议</label></dd>
+				</dl>
+			</fieldset>
+			
+			<input class="submit" type="submit" value="验证 & 提交表单">
+			
+		</form>
+	</div>
+</div>
+</body>
+</html>

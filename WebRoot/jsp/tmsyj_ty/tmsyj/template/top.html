@@ -1,0 +1,80 @@
+
+<div id="head" style="margin-top:10px;">
+	<div class="top">
+		<div class="logo">
+			<a href="#"><img alt="智慧食药监logo" src="images/logo-zhsyj.png"
+				title="智慧食药监logo" align="absmiddle" id="top_logo"> </a>
+		</div>
+		<div class="search" style="display: none;">
+			<form id="form1" method="get">
+				<span>站内搜索</span> <span> <input type="text"
+					id="t_commc" name="commc" class="inputs"
+					placeholder="请输入企业名称"> <input type="button" id="search"
+					class="btns" value="搜 索" onclick="searchEnterprise()"> </span>
+			</form>
+		</div>
+		<div style="position:fixed;z-index:100;right:5px;top:5px;display: none;">
+			<img alt="智慧食药监-公众版APP下载" style="width:100px;height:100px;" src="images/qrcode.png" id="app_gz">
+		</div>
+		<div style="position:fixed;z-index:100;right:110px;top:5px;display: none;">
+			<img alt="智慧食药监-企业版APP下载" style="width:100px;height:100px;" src="images/qrcode.png" id="app_qy">
+		</div>
+	</div>
+</div>
+<script type="text/javascript">	
+	$(function() {
+		//下拉菜单
+		$("#nav li").hover(function() {
+			$(this).find("div").show();
+		}, function() {
+			$(this).find("div").hide();
+		});
+		
+		initTopLogo();
+	});
+	//搜索企业
+	function searchEnterprise() {	
+		var url = "enterprise_list.jsp?commc=" + $("#t_commc").val();
+		linkToSelf(url);
+	}
+	
+	function initTopLogo(){
+		$.ajax({
+	        url: basePath + "api/tmsyj/getAa01List",
+	        type: "post",
+	        dataType: 'json',
+	        data: { aaa001: "SYSAAA027" },
+	        success: function(result){ 
+            	if(result.code == '0'){
+		            $.each(result.rows, function (index, item) {
+		            	var sysaaa027 = item.aaa005;		                
+	                    if (sysaaa027 == "410523000000") {//汤阴县
+	                        $("#top_logo").attr("src",basePath + "jsp/tmsyj/tmsyj/images/logo-zhsyj-tangyin.png");
+	                        $("#app_gz").attr("src",basePath + "app/appdownpic/app-gz-tangyin.png");
+	                        $("#app_qy").attr("src",basePath + "app/appdownpic/app-qy-tangyin.png");
+	                    } else if (sysaaa027 == "411700000000") {//驻马店
+	                        $("#top_logo").attr("src",basePath + "jsp/tmsyj/tmsyj/images/logo-zhsyj-zhumadian.png");
+	                        $("#app_gz").attr("src",basePath + "app/appdownpic/app-gz-zhumadian.png");
+	                        $("#app_qy").attr("src",basePath + "app/appdownpic/app-qy-zhumadian.png");
+	                    } else if (sysaaa027 == "411400000000") {//商丘
+	                        $("#top_logo").attr("src",basePath + "jsp/tmsyj/tmsyj/images/logo-zhsyj-shangqiu.png");
+	                        $("#app_gz").attr("src",basePath + "app/appdownpic/app-gz-shangqiu.png");
+	                        $("#app_qy").attr("src",basePath + "app/appdownpic/app-qy-shangqiu.png");
+	                    } else if (sysaaa027 == "411282000000") {//灵宝
+	                        $("#top_logo").attr("src",basePath + "jsp/tmsyj/tmsyj/images/logo-zhsyj-lingbao.png");
+	                        $("#app_gz").attr("src",basePath + "app/appdownpic/app-gz-lingbao.png");
+	                        $("#app_qy").attr("src",basePath + "app/appdownpic/app-qy-lingbao.png");
+	                    } else if (sysaaa027 == "410482000000") {//汝州
+	                        $("#top_logo").attr("src",basePath + "jsp/tmsyj/tmsyj/images/logo-zhsyj-ruzhou.png");
+	                        $("#app_gz").attr("src",basePath + "app/appdownpic/app-gz-ruzhou.png");
+	                        $("#app_qy").attr("src",basePath + "app/appdownpic/app-qy-ruzhou.png");
+	                    }					                
+		            });
+				}else{
+					alert(result.msg);	
+				}
+	        }
+	    });	
+	}	
+</script>
+

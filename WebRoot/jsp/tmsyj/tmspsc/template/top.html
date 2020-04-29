@@ -1,0 +1,148 @@
+
+<div id="head" style="margin-top:10px;">
+	<div class="top">
+		<div class="logo">
+			<a href="#"><img alt="智慧食药监logo" src="images/logo-tmspsc.png"
+				title="智慧食药监logo" align="absmiddle" id="top_logo"> </a>
+		</div>
+		<div class="search">
+			<form id="form1" method="get">
+				<span>站内搜索</span> <span> <input type="text"
+					id="t_commc" name="commc" class="inputs"
+					placeholder="请输入企业名称"> <input type="button" id="search"
+					class="btns" value="搜 索" onclick="searchEnterprise()"> </span>
+			</form>
+		</div>
+	</div>
+</div>
+<!--导航-->
+<div id="nav" class="layout">
+	<ul>
+		<li><a href="javascript:linkToSelf(basePath + 'index_zhsyj_ty.jsp');">网站首页</a>
+			<div></div>
+		</li>
+		<li><a href="javascript:void(0);">生产企业地图</a>
+			<div style="display: none;">
+				<a href="javascript:linkToSelf('map.jsp?comdalei=101101&currlocation=企业地图>>食品生产企业');">食品生产企业</a>
+				<a href="javascript:linkToSelf('map.jsp?comdalei=101102&currlocation=企业地图>>小作坊');">小作坊</a>
+				<a href="javascript:linkToSelf('map.jsp?comdalei=101103&currlocation=企业地图>>原料生产基地');">原料生产基地</a>
+				<a href="javascript:linkToSelf('map.jsp?comdalei=102101&currlocation=企业地图>>药品生产企业');">药品生产企业</a>
+				<a href="javascript:linkToSelf('map.jsp?comdalei=103101&currlocation=企业地图>>化妆品生产企业');">化妆品生产企业</a>
+				<a href="javascript:linkToSelf('map.jsp?comdalei=104101&currlocation=企业地图>>保健品生产企业');">保健品生产企业</a>
+				<a href="javascript:linkToSelf('map.jsp?comdalei=105101&currlocation=企业地图>>医疗器械生产企业');">医疗器械生产企业</a>
+			</div>
+		</li>
+		<li><a href="javascript:void(0);">生产企业</a>
+			<div style="display: none;">
+				<a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=101101&currlocation=食品生产企业');">食品生产企业</a>
+				<a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=101102&currlocation=小作坊');">小作坊</a>
+				<a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=101103&currlocation=原料生产基地');">原料生产基地</a>
+				<a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=102101&currlocation=药品生产企业');">药品生产企业</a>
+				<a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=103101&currlocation=化妆品生产企业');">化妆品生产企业</a>
+				<a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=104101&currlocation=保健品生产企业');">保健品生产企业</a>
+				<a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=105101&currlocation=医疗器械生产企业');">医疗器械生产企业</a>
+			</div>
+		</li>
+<!-- 		<li><a href="javascript:void(0);">小作坊</a> -->
+<!-- 			<div style="display: none;"> -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=1');">乳及乳制品</a>  -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=2');">脂肪、油及制品</a> -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=3');">冷冻饮品</a>  -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=4');">水果、蔬菜、坚果</a> -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=5');">可可、巧克力、糖果</a>  -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=6');">粮食及其制品</a> -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=7');">焙烤食品</a>  -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=8');">肉及肉制品</a> -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=9');">水产及其制品</a>  -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=10');">蛋及蛋制品</a> -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=11');">甜味料(含蜂蜜)</a>  -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=12');">调味品</a> -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=13');">特殊膳食用食品</a>  -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=14');">饮料类</a> -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=15');">酒类</a>  -->
+<!-- 				<a href="javascript:linkToSelf(' smallWorkShopList.html?smallWorkshopType=16');">其他类</a> -->
+<!-- 			</div> -->
+<!-- 		</li> -->
+<!-- 		<li><a href="javascript:void(0);">信息公开</a> -->
+<!-- 			<div style="display: none;"> -->
+<!-- 				<a href="javascript:linkToSelf('punish_list.html?code=QTJD&currlocation=信息公开>>日常监督检查');">日常监督检查</a>  -->
+<!-- 				<a href="javascript:linkToSelf('punish_list.html?code=ZXJC&currlocation=信息公开>>专项检查情况');">专项检查情况</a>  -->
+<!-- 				<a href="javascript:linkToSelf('punish_list.html?code=JDCJ&currlocation=信息公开>>监督抽检情况');">监督抽检情况</a>  -->
+<!-- 				<a href="javascript:linkToSelf('punish_list.html?code=XZCF&currlocation=信息公开>>行政处罚情况');">行政处罚情况</a>  -->
+<!-- 				<a href="javascript:linkToSelf('news_list.html?code=FLFG&currlocation=信息公开>>监管责任');">监管责任</a> -->
+<!-- 				<a href="javascript:linkToSelf('news_list.html?code=FLFG&currlocation=信息公开>>企业承诺书');">企业承诺书</a> -->
+<!-- 			</div> -->
+<!-- 		</li>		 -->
+<!-- 		<li><a href="javascript:void(0);">双责任清单</a>  -->
+<!-- 			<div style="display: none;">  -->
+<!-- 				<a href="javascript:linkToSelf('zrqd.html?tp=1&currlocation=双责任清单>>企业主体责任清单');">企业主体责任清单</a>  -->
+<!-- 				<a href="javascript:linkToSelf('zrqd.html?tp=2&currlocation=双责任清单>>执法监管人员责任清单');">执法人员责任清单</a>  -->
+<!-- 			</div>  -->
+<!-- 		</li> -->
+<!-- 		<li><a href="javascript:void(0);">企业红黑榜</a>  -->
+<!-- 			<div style="display: none;">  -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list2.jsp?currlocation=企业名录>>优秀名录');">红榜名单</a>  -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list2.jsp?currlocation=企业名录>>异常名录');">黑榜名单</a>  -->
+<!-- 			</div>  -->
+<!-- 		</li> -->
+<!-- 		<li><a href="javascript:void(0);">案例警示</a>  -->
+<!-- 			<div style="display: none;">  -->
+<!-- 				<a href="javascript:linkToSelf('news_list2.html?code=ALJS01&currlocation=案例警示>>典型案例');">典型案例</a>  -->
+<!-- 				<a href="javascript:linkToSelf('news_list2.html?code=ALJS02&currlocation=案例警示>>消费警示');">消费警示</a>  -->
+<!-- 			</div>  -->
+<!-- 		</li>   -->
+	</ul>
+</div>
+<div style="width:80%;min-width:1030px;margin: 5px auto 5px auto;">
+    <!-- 广告图片 -->
+    <div id="advertising">
+        <img src="images/tmspsc.jpg" style="width: 100%;height: 100%;"/>
+    </div>
+</div>
+<script type="text/javascript">	
+	$(function() {
+		//下拉菜单
+		$("#nav li").hover(function() {
+			$(this).find("div").show();
+		}, function() {
+			$(this).find("div").hide();
+		});
+		
+		//initTopLogo();
+	});
+	//搜索企业
+	function searchEnterprise() {	
+		var url = "enterprise_list.jsp?commc=" + $("#t_commc").val();
+		linkToSelf(url);
+	}
+	
+	function initTopLogo(){
+		$.ajax({
+	        url: basePath + "api/tmsyj/getAa01List",
+	        type: "post",
+	        dataType: 'json',
+	        data: { aaa001: "SYSAAA027" },
+	        success: function(result){ 
+            	if(result.code == '0'){
+		            $.each(result.rows, function (index, item) {
+		            	var sysaaa027 = item.aaa005;		                
+	                    if (sysaaa027 == "410523000000") {//汤阴县
+	                        $("#top_logo").attr("src","images/logo-tmspsc-tangyin.png");
+	                    } else if (sysaaa027 == "411700000000") {//驻马店
+	                        $("#top_logo").attr("src","images/logo-tmspsc-zhumadian.png");
+	                    } else if (sysaaa027 == "411400000000") {//商丘
+	                        $("#top_logo").attr("src","images/logo-tmspsc-shangqiu.png");
+	                    } else if (sysaaa027 == "411282000000") {//灵宝
+	                        $("#top_logo").attr("src","images/logo-tmspsc-lingbao.png");
+	                    } else if (sysaaa027 == "410482000000") {//汝州
+	                        $("#top_logo").attr("src","images/logo-tmspsc-ruzhou.png");
+	                    }					                
+		            });
+				}else{
+					alert(result.msg);	
+				}
+	        }
+	    });	
+	}	
+</script>
+

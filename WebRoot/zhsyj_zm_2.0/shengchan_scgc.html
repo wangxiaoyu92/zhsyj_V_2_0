@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>企业生产过程透明</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <style type="text/css">
+        button {
+            width: 70px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="middle" style="height: auto">
+        <div class="bt_sc">
+            <b style="line-height: 40px">视频监控</b>
+        </div>
+
+        <div id="spaqy">
+            <ul id="sp_content"></ul>
+            <div style="clear: left"></div>
+        </div>
+        <div id="page" style="width: 100%;text-align:center;"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<div id="foot"></div>
+<script>
+    $('#top').load("muban_top.html");
+    $('#foot').load("muban_foot.html");
+    var pageNum = 1, pageSize = 30, pageSum = 0;
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, comid = '';
+    var comdalei = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            comid = list[i].split('=')[1];
+        }
+        if ("comdalei" == name) {
+            comdalei = list[i].split('=')[1];
+        }
+    }
+
+    window.onload = function () {
+        data();
+    };
+
+    //查询列表
+    function data() {
+        $.ajax({
+            url: pathname + "/api/tmsyj/getJkyList",
+            type: "post",
+            dataType: 'json',
+            data: {page: pageNum, rows: pageSize, jkqybh: comid, jklx: '1'},
+            success: function (result) {
+                if (result.code == '0') {
+                    page(pageNum, pageSize, result.total, '#2d286b');
+                    $('#sp_content').empty();
+                    if (result.total > 0) {
+                        $.each(result.rows, function (index, item) {
+                            var html = "";
+                            if (index != result.rows.length - 1) {
+                                html += "<li style=\"border-bottom:1px #999 dotted;height:auto;width: 100%;\">";
+                            } else {
+                                html += "<li style=\"border-bottom:1px #00a0ea solid;height:auto;width: 100%;text-align:left;\">";
+                            }
+                            html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                            html += " <tr>";
+                            html += " 	<td rowspan=\"3\" width=\"140px\" style=\"padding-right:15px;\">";
+                            html += "   	<a href='#' onclick=\"show_video(\'" + IsNull(item.ocxId) + "\',\'" + IsNull(item.camId) + "\')\" \"><img src=\"images/webcamera.jpg\" style=\"height:120px;width:160px;\" /></a>";
+                            html += "   </td>";
+                            html += "   <td><a href='#' onclick=\"show_video(\'" + IsNull(item.ocxId) + "\',\'" + IsNull(item.camId) + "\')\"  style=\"font-size:17px;color: #0000F0;text-decoration:none;font-weight:bold;\" >" + IsNull(item.camName) + "</a></td>";
+                            html += " </tr>";
+                            html += " <tr>";
+                            html += "   <td  style=\"font-size:14px;\">企业名称：" + IsNull(item.camOrgName) + "</td>";
+                            html += " </tr>";
+                            html += " <tr>";
+                            if (item.camState == '1') {
+                                html += " <td  style=\"font-size:14px;\">在线状态：<span class=\"shop_camera\"><img class=\"shop_camera\" src=\"images/camera-on.png\"></span></td>";
+                            } else {
+                                html += " <td  style=\"font-size:14px;\">在线状态：<span class=\"shop_camera\"><img class=\"shop_camera\" src=\"images/camera-off.png\"></span></td>";
+                            }
+                            html += " </tr>";
+                            html += "</table>";
+                            html += "</li>";
+                            $('#sp_content').append(html);
+                        });
+                    } else {
+                        var html = "";
+                        html += "<li style=\"border-bottom:1px #00a0ea solid;height:auto;width: 100%;\">";
+                        html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                        html += " <tr>";
+                        html += "     <td rowspan=\"5\" width=\"140px\" style=\"padding-right:15px;\">";
+                        html += "         <img src=\"images/kong.jpg\" style=\"height:120px;width:160px;\" />";
+                        html += "     </td>";
+                        html += "     <td  style=\"font-size:14px;\">未获取到监控源【监控摄像头不在线或监控服务器出现问题】，请联系系统管理员！</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "</table>";
+                        html += "</li>";
+                        $('#sp_content').append(html);
+                    }
+                } else {
+                    alert(result.msg);
+                }
+            }
+        })
+        ;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20110221">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="jcsbid"/>
+<O>
+<![CDATA[1]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[FRDemo]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select jcsbid,jcsbbh,jcsbjbrxm,jcsbjbrsjh,
+getAa10_aaa103('JCSBJCLX',jcsbjclx) jcsbjclx,
+getAa10_aaa103('JCSBJCRS',jcsbjcrs) jcsbjcrs,
+getAa10_aaa103('JCSBYLLY',jcsbylly) jcsbylly,
+getAa10_aaa103('JCSBCSLY',jcsbcsly) jcsbcsly,
+jcsbjcdd,jcsbjdzb,jcsbwdzb,jcsbjcsj1,jcsbjcsj2,jcsbjcsj3,
+aab301, comshengdm,comshengmc,comshidm,comshimc,comxiandm,comxianmc,
+comxiangdm,comxiangmc,comcundm,comcunmc,
+(select username from Sysuser where userid = a.aae011) as aae011,
+to_char(aae036,'yyyy-mm-dd') aae036,aae013
+from Jcsb a
+where 1=1   
+and  a.jcsbid = '${jcsbid}']]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0" footerHeight="0">
+<PaperSetting>
+<Margin top="986400" left="2743200" bottom="986400" right="2743200"/>
+</PaperSetting>
+</ReportSettings>
+<ElementCase class="com.fr.report.SingleBlock">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,685800,685800,1600200,1714500,1485900,1447800,1447800,1714500,1752600,876300,1562100,1524000,1752600,1371600,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[1943100,800100,4419600,2895600,2019300,3276600,3048000,2590800,1066800,2514600,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="10" rs="3" s="0">
+<O>
+<![CDATA[商丘市农村集体聚餐备案登记表]]></O>
+<Expand/>
+</C>
+<C c="0" r="3" s="1">
+<O>
+<![CDATA[编号：]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" cs="2" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="jcsbbh"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="comxianmc"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="3" s="4">
+<O>
+<![CDATA[县(区)]]></O>
+<Expand/>
+</C>
+<C c="5" r="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="comxiangmc"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="3" s="4">
+<O>
+<![CDATA[乡镇(街道)]]></O>
+<Expand/>
+</C>
+<C c="7" r="3" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="comcunmc"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="9" r="3" s="4">
+<O>
+<![CDATA[村(社区)]]></O>
+<Expand/>
+</C>
+<C c="0" r="4" s="5">
+<O>
+<![CDATA[举办人姓名 ]]></O>
+<Expand/>
+</C>
+<C c="1" r="4" cs="2" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="jcsbjbrxm"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="4" s="5">
+<O>
+<![CDATA[电话]]></O>
+<Expand/>
+</C>
+<C c="4" r="4" cs="2" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="jcsbjbrsjh"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="4" s="5">
+<O>
+<![CDATA[聚餐类型]]></O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="4" cs="3" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="jcsbjclx"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="5" rs="2" s="5">
+<O>
+<![CDATA[聚餐地点]]></O>
+<Expand/>
+</C>
+<C c="1" r="5" cs="5" rs="2" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="aab301"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="5" rs="3" s="5">
+<O>
+<![CDATA[聚餐时间]]></O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="5" cs="3" s="6">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="jcsbjcsj1"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="6" cs="3" s="6">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="jcsbjcsj2"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="7" s="5">
+<O>
+<![CDATA[聚餐人数]]></O>
+<Expand/>
+</C>
+<C c="1" r="7" cs="5" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="jcsbjcrs"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="7" r="7" cs="3" s="6">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="jcsbjcsj3"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="8" s="5">
+<O>
+<![CDATA[原料来源]]></O>
+<Expand/>
+</C>
+<C c="1" r="8" cs="9" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="jcsbylly"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="9" s="5">
+<O>
+<![CDATA[厨师来源]]></O>
+<Expand/>
+</C>
+<C c="1" r="9" cs="9" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="jcsbcsly"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="10" cs="10" s="7">
+<O>
+<![CDATA[以下由受理部门填写]]></O>
+<Expand/>
+</C>
+<C c="0" r="11" s="5">
+<O>
+<![CDATA[指导单位]]></O>
+<Expand/>
+</C>
+<C c="1" r="11" cs="5" s="8">
+<Expand/>
+</C>
+<C c="6" r="11" s="5">
+<O>
+<![CDATA[指导单位]]></O>
+<Expand/>
+</C>
+<C c="7" r="11" cs="3" s="8">
+<Expand/>
+</C>
+<C c="0" r="12" s="6">
+<O>
+<![CDATA[聚餐情况汇总]]></O>
+<Expand/>
+</C>
+<C c="1" r="12" cs="9" s="8">
+<Expand/>
+</C>
+<C c="0" r="13" cs="10">
+<O>
+<![CDATA[备注：1、该表由受理人员填写，每餐次的菜单作为附件。2、根据分类指导原则，需乡镇（街道）、县食品药品监管局指导的，应及时将此表报至乡镇（街道）、县食品药品监管局。]]></O>
+<Expand/>
+</C>
+<C c="0" r="14" cs="2" s="4">
+<O>
+<![CDATA[备案日期:]]></O>
+<Expand/>
+</C>
+<C c="2" r="14" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="aae036"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="14" s="4">
+<Expand/>
+</C>
+<C c="4" r="14" s="4">
+<Expand/>
+</C>
+<C c="5" r="14" s="4">
+<Expand/>
+</C>
+<C c="6" r="14" s="4">
+<O>
+<![CDATA[登记人员：]]></O>
+<Expand/>
+</C>
+<C c="7" r="14" cs="3" s="9">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="aae011"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+</CellElementList>
+</ElementCase>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="false" delayPlaying="true" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="黑体" style="0" size="136"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="88" underline="1"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4">
+<FRFont name="SimSun" style="0" size="88" underline="1"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+	<!-- 正式库链接 -->
+	<!-- 
+	<Resource name="jdbc/core2" 
+				auth="Container" 
+				type="javax.sql.DataSource" 
+				driverClassName="oracle.jdbc.driver.OracleDriver" 
+				url="jdbc:oracle:thin:@(DESCRIPTION=(ADDRESS_LIST=(ADDRESS=(PROTOCOL=TCP)(HOST = 10.127.0.7)(PORT = 1521)))(CONNECT_DATA=(SERVER=DEDICATED)(SERVICE_NAME=orclhd)))" 
+				username="sicp3" 
+				password="ke637" 
+				maxActive="80" 
+				maxIdle="10" 
+				maxWait="10000"/>	
+ -->				
+
+	<Resource name="jdbc/core2" 
+				auth="Container" 
+				type="javax.sql.DataSource" 
+				driverClassName="oracle.jdbc.driver.OracleDriver" 
+				url="jdbc:oracle:thin:@127.0.01:1521:syjzhptrz171120" 
+				username="root" 
+				password="123456" 
+				maxActive="80" 
+				maxIdle="10" 
+				maxWait="10000"/>	
+				
+</Context>

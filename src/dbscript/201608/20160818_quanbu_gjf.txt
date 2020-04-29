@@ -1,0 +1,394 @@
+CREATE TABLE syjzhpt.sysuserarea (
+  sysuserareaid VARCHAR(32)  NOT NULL COMMENT '操作员有权操作的地区ID',
+  userid VARCHAR(32) DEFAULT NULL COMMENT '操作员ID',
+  aaa027 VARCHAR(12) DEFAULT NULL COMMENT '操作员有权操作的统筹区',
+  PRIMARY KEY (sysuserareaid)
+)
+ENGINE = INNODB
+COMMENT = '操作员有权操作的地区';
+
+
+CREATE TABLE syjzhpt.sysuseraae (
+  sysuseraaeid VARCHAR(32) NOT NULL COMMENT '操作员有权操作的大类ID',
+  userid VARCHAR(32) DEFAULT NULL COMMENT '操作员ID',
+  aae140 VARCHAR(32) DEFAULT NULL COMMENT '四品一械大类',
+  PRIMARY KEY (sysuseraaeid)
+)
+ENGINE = INNODB
+COMMENT = '操作员有权操作的四品一械大类';
+
+
+CREATE TABLE syjzhpt.sysuserorg (
+  sysuserorgid VARCHAR(32) NOT NULL COMMENT '操作员有权操作的机构ID',
+  userid VARCHAR(32) DEFAULT NULL COMMENT '操作员ID',
+  orgid VARCHAR(32) DEFAULT NULL COMMENT '机构ID',
+  PRIMARY KEY (sysuserorgid)
+)
+ENGINE = INNODB
+COMMENT = '操作员有权操作的机构';
+
+
+delete from aa10 WHERE aaa100 = 'AAE140' and aaa102 not in ('100','200','300','400','500');
+
+CREATE OR REPLACE VIEW viewaae140 as
+SELECT * FROM aa10 a WHERE a.AAA100='AAE140';
+
+ALTER TABLE aa13
+  ADD INDEX IDX_aa13_AAE383 (AAE383);
+
+--
+ALTER TABLE aa13
+  ADD INDEX IDX_aa13_AAA148 (AAA148);
+
+
+
+INSERT INTO syjzhpt.aa01(AAA001, AAA002, AAA005, AAA104, AAA105, AAZ499, AAA027) VALUES
+('AAA027GRANTLEVEL', '用户授权时行政区划授权级别', '3', '1', NULL, '201608170001', NULL);
+
+INSERT INTO syjzhpt.aa01(AAA001, AAA002, AAA005, AAA104, AAA105, AAZ499, AAA027) VALUES
+('UseAaa027Grant', '启用行政区划限制', '1', '1','0、不限制', '20160818001', NULL);
+INSERT INTO syjzhpt.aa01(AAA001, AAA002, AAA005, AAA104, AAA105, AAZ499, AAA027) VALUES
+('UseAae140Grant', '启用四品一械大类限制', '1', '1', '0、不限制', '20160818002', NULL);
+INSERT INTO syjzhpt.aa01(AAA001, AAA002, AAA005, AAA104, AAA105, AAZ499, AAA027) VALUES
+('UseUserOrgGrant', '启用机构限制', '1', '1', '0、不限制', '20160818003', NULL);
+
+
+ALTER TABLE zfajdj
+  CHANGE COLUMN AAA027 aaa027 VARCHAR(12) DEFAULT NULL COMMENT '统筹区编码',
+  ADD COLUMN userid VARCHAR(32) DEFAULT NULL COMMENT '操作员ID' AFTER orgid;
+
+
+--获取机构编码函数
+CREATE DEFINER = 'root'@'%'
+FUNCTION syjzhpt.fun_getOrgCode(prm_parentOrgCode varchar(32),prm_parentOrgId varchar(32))
+  RETURNS varchar(40) CHARSET utf8
+BEGIN
+    declare v_maxOrgCode VARCHAR(20); 
+    DECLARE v_len int;
+    DECLARE v_three varchar(3);
+    SET v_len=LENGTH(prm_parentOrgCode)+1;
+    
+    SELECT IfNULL(MAX(SUBSTRING(orgcode,v_len)),'0')+1
+    INTO  v_maxOrgCode
+    FROM sysorg 
+    WHERE parent=prm_parentOrgId;
+    #WHERE orgcode LIKE CONCAT(prm_parentOrgCode,'%');
+    
+
+    set v_three =RIGHT(CONCAT('000',v_maxOrgCode),3);
+    IF v_three='000' THEN
+      set v_three='001';
+    end IF;
+
+
+    RETURN CONCAT(prm_parentOrgCode,v_three);
+
+END
+
+
+
+CREATE DEFINER = 'root'@'%'
+PROCEDURE syjzhpt.prc_处理orgcode(
+  out prm_AppCode  int,
+  out prm_ErrorMsg VARCHAR(500)
+)
+begin
+label_pro:begin
+  DECLARE done INT DEFAULT 0;  
+  DECLARE v_parentorgcode1 VARCHAR(50); 
+  DECLARE v_parentorgcode2 VARCHAR(50); 
+  DECLARE v_parentorgcode3 VARCHAR(50); 
+  DECLARE v_parentorgcode4 VARCHAR(50); 
+  DECLARE v_parentorgcode5 VARCHAR(50); 
+  DECLARE v_parentorgcode6 VARCHAR(50); 
+  DECLARE v_parentorgcode7 VARCHAR(50); 
+  DECLARE v_parentorgcode8 VARCHAR(50);
+            
+  DECLARE v_count1 int;   
+  DECLARE v_count2 int;
+  DECLARE v_count3 int;   
+  DECLARE v_count4 int;   
+  DECLARE v_count5 int;
+  DECLARE v_count6 int;  
+  DECLARE v_count7 int;   
+                                               
+                     
+  declare v_qparent1 varchar(50);          
+
+  declare v_orgid1 varchar(50);
+  declare v_parent1 varchar(50);
+  declare v_orgcode1 varchar(50);
+
+  declare v_orgid2 varchar(50);
+  declare v_parent2 varchar(50);
+  declare v_orgcode2 varchar(50);
+
+  declare v_orgid3 varchar(50);
+  declare v_parent3 varchar(50);
+  declare v_orgcode3 varchar(50);
+
+  declare v_orgid4 varchar(50);
+  declare v_parent4 varchar(50);
+  declare v_orgcode4 varchar(50);
+
+  declare v_orgid5 varchar(50);
+  declare v_parent5 varchar(50);
+  declare v_orgcode5 varchar(50);
+
+  declare v_orgid6 varchar(50);
+  declare v_parent6 varchar(50);
+  declare v_orgcode6 varchar(50);
+
+  declare v_orgid7 varchar(50);
+  declare v_parent7 varchar(50);
+  declare v_orgcode7 varchar(50);
+
+
+  declare cur1 cursor for  
+  SELECT orgid,parent,orgcode 
+  from sysorg bc
+  where bc.PARENT=v_qparent1;    
+
+  declare cur2 cursor for  
+  SELECT orgid,parent,orgcode 
+  from sysorg bc
+  where bc.PARENT=v_orgid1; 
+
+  declare cur3 cursor for  
+  SELECT orgid,parent,orgcode 
+  from sysorg bc
+  where bc.PARENT=v_orgid2; 
+
+  declare cur4 cursor for  
+  SELECT orgid,parent,orgcode 
+  from sysorg bc
+  where bc.PARENT=v_orgid3; 
+
+  declare cur5 cursor for  
+  SELECT orgid,parent,orgcode 
+  from sysorg bc
+  where bc.PARENT=v_orgid4; 
+
+  declare cur6 cursor for  
+  SELECT orgid,parent,orgcode 
+  from sysorg bc
+  where bc.PARENT=v_orgid5; 
+
+  declare cur7 cursor for  
+  SELECT orgid,parent,orgcode 
+  from sysorg bc
+  where bc.PARENT=v_orgid6; 
+
+
+                                                      
+  declare continue handler for not found set done=1;
+  declare exit handler for sqlexception   #not found,sqlwarning,
+  begin
+    SELECT 'ERROR';
+    set prm_AppCode=-1;
+    set prm_ErrorMsg='过程出错了';
+    rollback;
+    #leave label_pro;
+  end;
+  set @@autocommit= 0;
+  set prm_AppCode:=0;
+  set prm_ErrorMsg:='成功';
+
+  UPDATE sysorg set orgcode='410'
+    WHERE orgid='410000000000';
+
+  SET v_qparent1='410000000000';  
+  SET v_parentorgcode1='410';     
+                                
+
+  SET done=-1;
+  set v_count1=0;
+  open cur1;
+  myloop1:loop
+  fetch cur1
+  into 
+   v_orgid1,
+   v_parent1,
+   v_orgcode1;   
+   set v_count1=v_count1+1; 
+
+    if done=1 then
+      leave myloop1;
+    end if; 
+   set v_parentorgcode2=CONCAT(v_parentorgcode1,RIGHT(CONCAT('000',v_count1),3)); 
+   UPDATE sysorg  set orgcode=v_parentorgcode2
+   WHERE orgid=v_orgid1;
+      #2begin
+      set v_count2=0;
+      open cur2;
+      myloop2:loop
+      fetch cur2
+      into 
+       v_orgid2,
+       v_parent2,
+       v_orgcode2;   
+       set v_count2=v_count2+1; 
+                 
+        if done=1 then
+          leave myloop2;
+        end if; 
+       set v_parentorgcode3=CONCAT(v_parentorgcode2,RIGHT(CONCAT('000',v_count2),3)); 
+       UPDATE sysorg  set orgcode=v_parentorgcode3
+       WHERE orgid=v_orgid2;
+    
+          #3begin
+          set v_count3=0;
+          open cur3;
+          myloop3:loop
+          fetch cur3
+          into 
+           v_orgid3,
+           v_parent3,
+           v_orgcode3; 
+           set v_count3=v_count3+1;            
+            
+            if done=1 then
+              leave myloop3;
+            end if; 
+           set v_parentorgcode4=CONCAT(v_parentorgcode3,RIGHT(CONCAT('000',v_count3),3)); 
+           UPDATE sysorg  set orgcode=v_parentorgcode4
+           WHERE orgid=v_orgid3;
+        
+              #4begin
+              set v_count4=0;
+              open cur4;
+              myloop4:loop
+              fetch cur4
+              into 
+               v_orgid4,
+               v_parent4,
+               v_orgcode4; 
+               set v_count4=v_count4+1;            
+                
+                if done=1 then
+                  leave myloop4;
+                end if; 
+               set v_parentorgcode5=CONCAT(v_parentorgcode4,RIGHT(CONCAT('000',v_count4),3)); 
+               UPDATE sysorg  set orgcode=v_parentorgcode5
+               WHERE orgid=v_orgid4;
+            
+                  #5begin
+                  set v_count5=0;
+                  open cur5;
+                  myloop5:loop
+                  fetch cur5
+                  into 
+                   v_orgid5,
+                   v_parent5,
+                   v_orgcode5;
+                   set v_count5=v_count5+1;             
+                    
+                    if done=1 then
+                      leave myloop5;
+                    end if; 
+                   set v_parentorgcode6=CONCAT(v_parentorgcode5,RIGHT(CONCAT('000',v_count5),3)); 
+                   UPDATE sysorg  set orgcode=v_parentorgcode6
+                   WHERE orgid=v_orgid5;
+                
+                      #6begin
+                      set v_count6=0;
+                      open cur6;
+                      myloop6:loop
+                      fetch cur6
+                      into 
+                       v_orgid6,
+                       v_parent6,
+                       v_orgcode6; 
+                       set v_count6=v_count6+1;             
+                        
+                        if done=1 then
+                          leave myloop6;
+                        end if; 
+                       set v_parentorgcode7=CONCAT(v_parentorgcode6,RIGHT(CONCAT('000',v_count6),3)); 
+                       UPDATE sysorg  set orgcode=v_parentorgcode7
+                       WHERE orgid=v_orgid6;
+                    
+                          #7begin
+                          open cur7;
+                          myloop7:loop
+                          fetch cur7
+                          into 
+                           v_orgid7,
+                           v_parent7,
+                           v_orgcode7;   
+                            
+                            if done=1 then
+                              leave myloop7;
+                            end if; 
+                           set v_parentorgcode8=fun_getOrgCode(v_parentorgcode7,v_parent7);
+                           UPDATE sysorg  set orgcode=v_parentorgcode8
+                           WHERE orgid=v_orgid7;
+                        
+                                
+                          end loop myloop7;
+                          close cur7;    
+                          #7end                         
+                         COMMIT;
+                        SET done=0;       
+                      end loop myloop6;
+                      close cur6;    
+                      #6end                      
+                      COMMIT;
+                    SET done=0;       
+                  end loop myloop5;
+                  close cur5;    
+                  #5end                    
+                  COMMIT;
+                SET done=0;       
+              end loop myloop4;
+              close cur4;    
+              #4end            
+              COMMIT;
+            SET done=0;       
+          end loop myloop3;
+          close cur3;    
+          #3end
+          COMMIT;
+      
+        SET done=0;       
+      end loop myloop2;
+      close cur2;    
+      #2end
+       COMMIT;
+    SET done=0;       
+  end loop myloop1;
+  close cur1;
+
+  COMMIT;
+       
+end;
+end
+
+
+
+--------------
+业务表启用权限增加字段约定
+aaa027 varchar(12) 地区编码
+aae140 varchar(5) 四品一械大类
+userid varchar(32) 经办人id
+orgid   varchar(32) 机构id
+aae011 varchar(20) 经办人
+aae036 datetime 经办时间
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

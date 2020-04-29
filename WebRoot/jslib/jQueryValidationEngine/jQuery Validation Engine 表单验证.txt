@@ -1,0 +1,8 @@
+jQuery Validation Engine 表单验证
+http://code.ciaoca.com/jquery/validation_engine/
+
+功能强大的 jQuery 表单验证插件，适用于日常的 E-mail、电话号码、网址等验证及 Ajax 验证，除自身拥有丰富的验证规则外，还可以添加自定义的验证规则。
+
+兼容 IE 6+, Chrome, Firefox, Safari, Opera 10+
+版本：·jQuery v1.7+·jQuery Validation Engine v2.6.2注意事项：·相对 2.2.4 的版本也有较大改动，插件升级请检查原程序历史版本：·Validation Engine v2.2.4 中文文档相对 2.2.4 版本的一些区别：
+·部分参数功能发生变化；·输入控件可以不写 id 属性；·参数 onSuccess 和 onFailure 改为只在表单提交时触发；·验证规则 past[date]（过去） 与 future[date]（未来） 对调；·API 接口验证控件均使用 "validate"，移除 "validateField"；·API 接口隐藏提示均使用 "hide" 移除 "hidePrompt"，保留 "hideAll"。Ciaoca 中文增强版：·根据中文字体优化样式·增加多款验证样式·增加针对中文的验证规则·移除无用的验证规则示例·完善对 IE8 以下浏览器的支持（错误：对象不支持“indexOf”属性或方法）

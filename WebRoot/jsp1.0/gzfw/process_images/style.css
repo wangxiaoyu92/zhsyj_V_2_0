@@ -1,0 +1,176 @@
+
+p {
+	margin: 0px; padding: 0px;
+}
+ul {
+	margin: 0px; padding: 0px;
+}
+li {
+	margin: 0px; padding: 0px;
+}
+dl {
+	margin: 0px; padding: 0px;
+}
+dt {
+	margin: 0px; padding: 0px;
+}
+dd {
+	margin: 0px; padding: 0px;
+}
+h1 {
+	margin: 0px; padding: 0px;
+}
+table {
+	margin: 0px; padding: 0px;
+}
+h2 {
+	margin: 0px; padding: 0px;
+}
+li {
+	list-style-type: none;
+}
+ol {
+	list-style: none;
+}
+ul {
+	list-style: none;
+}
+input {
+	font-size: 100%; vertical-align: middle;
+}
+img {
+	border: 0px currentColor; border-image: none; vertical-align: top;
+}
+em {
+	font-style: normal;
+}
+i {
+	font-style: normal;
+}
+ul {
+	list-style: none;
+}
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+hr {
+	border-width: 1px 0px 1px medium; border-style: dashed none; border-color: rgb(45, 47, 52) currentColor rgb(71, 73, 84); height: 0px;
+}
+a {
+	color: rgb(102, 102, 102); text-decoration: none;
+}
+a:hover {
+	color: rgb(255, 102, 0); text-decoration: underline;
+}
+.clearfix {
+	
+}
+.clearfix::before {
+	display: table; content: "";
+}
+.clearfix::after {
+	display: table; content: "";
+}
+.clearfix::after {
+	clear: both;
+}
+.content {
+	margin: 0px auto; width: 1000px; position: relative;
+}
+.content {
+	background: #fff;padding: 50px 0px; width: 100%; min-height: 720px;
+}
+.content .wrapper {
+	/*background: url("release-bg.png") no-repeat right top; margin: 0px auto; width: 960px; position: relative;*/
+}
+.content .light {
+	background: url("light-top.png") no-repeat top; left: 55px; top: -50px; width: 152px; height: 191px; position: absolute;
+}
+.content .light i {
+	background: url("light.png") no-repeat top; top: 0px; width: 100%; height: 100%; position: absolute;
+}
+.content .line-left {
+	left: 0px; top: 15px; width: 70px; position: absolute;
+}
+.content .line-right {
+	top: 15px; width: 460px; right: 0px; position: absolute;
+}
+.content .main {/*½ø¶ÈÊúÏß*/
+	background: url("line-bg.png") repeat-y 249px 0px;
+}
+.content .main .title {
+	background: url("clock.png") no-repeat left top; left: 230px; top: 0px; color: rgb(88, 166, 251); 
+	line-height: 40px; padding-left: 67px; font-size: 24px; position: absolute;
+}
+.content .main .year {
+	position: relative; z-index: 100;
+}
+.content .main .year h2 {
+	width: 170px; height: 40px; text-align: right; line-height: 40px; padding-right: 30px; font-size: 24px;
+}
+.content .main .year h2 a {
+	color: rgb(88, 166, 251);
+}
+.content .main .year h2 i {
+	border-width: 6px; border-style: solid; border-color: rgb(89, 167, 251) transparent transparent; transform-origin: 6px 3px; transition:0.5s; left: 190px; top: -20px; width: 0px; height: 0px; display: block; position: relative; -webkit-transition: .5s; -moz-transition: .5s; -o-transition: .5s; -webkit-transform-origin: 6px 3px; -moz-transform-origin: 6px 3px; -o-transform-origin: 6px 3px;
+}
+.content .main .year .list {
+	margin: 10px 0px; transition:height 1s cubic-bezier(0.025, 0.025, 0, 1.115), opacity 1s; overflow: hidden; position: relative; -webkit-transition: height 1s cubic-bezier(0.025, 0.025, 0.000, 1.115), opacity 1s; -moz-transition: height 1s cubic-bezier(0.025, 0.025, 0.000, 1.115), opacity 1s; -o-transition: height 1s cubic-bezier(0.025, 0.025, 0.000, 1.115), opacity 1s;
+}
+.content .main .year .list ul {
+	bottom: 0px;
+}
+.content .main .year .list ul li {
+	background: url("circle.png") no-repeat 235px 31px; padding: 30px 0px; color: rgb(161, 164, 184);
+}
+.content .main .year .list ul li.highlight {
+	background-image: url("circle-h.png");
+}
+.content .main .year .list ul li.inactive {
+	background-image: url("circle-inactive.png");
+}
+.cls {
+	-ms-zoom: 1;
+}
+.cls::after {
+	height: 0px; clear: both; display: block; visibility: hidden; content: ".";
+}
+.content .main .year .list ul li.highlight .date {
+	color: rgb(236, 106, 19);
+}
+.content .main .year .list ul li.highlight .intro {
+	color: rgb(236, 106, 19);
+}
+.content .main .year .list ul li.inactive .date {
+	color: rgb(128, 138, 135);
+}
+.content .main .year .list ul li.inactive .intro {
+	color: rgb(128, 138, 135);
+}
+.content .main .year .list ul li .date {
+	width: 200px; text-align: right; line-height: 24px; clear: left; float: left; display: block;
+}
+.content .main .year .list ul li .version {
+	width: 200px; text-align: right; line-height: 24px; clear: left; float: left; display: block;
+}
+.content .main .year .list ul li .date {
+	color: rgb(190, 193, 213); line-height: 32px; font-size: 18px;
+}
+.content .main .year .list ul li .intro {
+	width: 400px; line-height: 24px; margin-left: 100px; float: left; display: block;
+}
+.content .main .year .list ul li .more {
+	width: 400px; line-height: 24px; margin-left: 100px; float: left; display: block;
+}
+.content .main .year .list ul li .intro {
+	color: rgb(99, 208, 41); line-height: 32px; font-size: 18px;
+}
+.content :first-child.wrapper .main .close.year h2 i {
+	transform: rotate(-90deg); -webkit-transform: rotate(-90deg); -moz-transform: rotate(-90deg); -o-transform: rotate(-90deg);
+}
+.content :first-child.wrapper .main .close.year .list {
+	height: 0px !important; opacity: 0;
+}

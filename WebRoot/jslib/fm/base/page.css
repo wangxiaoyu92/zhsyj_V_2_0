@@ -1,0 +1,100 @@
+/*����tabͨ������*/
+#lib_Tab1_sx{width:992px; overflow:hidden; margin-top:32px}
+.lib_tabborder_sx{}
+.lib_Menubox_sx {position:relative; width:216px; height:240px;}
+.lib_Menubox_sx ul{position:absolute; top:45px; left:5px; margin-left:10px; height:25px; text-align:left; text-indent:1em;}
+.lib_Menubox_sx li{display:block;cursor:pointer;width:195px;color:#404040; height:33px;line-height:33px; background:url(../images/nav_bg.jpg) no-repeat 0 -33px;}
+.lib_Menubox_sx li:hover{font-weight:bold;}
+.lib_Menubox_sx li.hover{ background:url(../images/nav_bg.jpg) no-repeat; width:195px;color:#fff;height:33px;line-height:33px; font-weight:bold; }
+.lib_Contentbox_sx{padding:13px 0 94px; margin-left:40px; width:730px;}
+.lib_Contentbox_sx p{text-align:justify; font-size:14px;}
+/*������������б�*/
+ul.tableList li{height:86px;}
+.pr18{padding-right:20px;}
+.w558{width:558px;}
+.pr26{padding-right:26px;}
+.pr44{padding-right:44px;}
+.pb8{padding-bottom:8px;}
+#f12{font-size:12px;}
+.pt3{padding-top:3px;}
+.pt20{padding-top:20px;}
+.mb15{margin-bottom:15px;}
+.pb15{padding-bottom:15px;}
+.pl3{padding-left:3px;}
+.pl5{padding-left:5px;}
+.pl15{padding-left:15px;}
+.pr15{padding-right:15px;}
+.pl50{padding-left:50px;}
+.ml45{margin-left:45px;}
+.mt15{margin-top:15px;}
+/*������ҳ*/
+.result ul{background:url(../images/result_bg.png) no-repeat; width:983px; height:430px; margin-bottom:40px; padding:60px 0 0 296px;}
+.result_con{width:573px; line-height:38px;}
+.result_err{background:url(../images/result_err.png) no-repeat 265px 0; height:62px; line-height:62px; margin:60px 0 0 138px;}
+/*������ѯҳ*/
+.consult{background:url(../images/consult_bg.png) no-repeat; width:982px; height:430px; margin-bottom:40px; padding:40px 0 0 280px;}
+.text01{background:url(../images/text01_bg.jpg) no-repeat; width:242px; padding:7px 0;border:none; margin-bottom:12px; text-indent:8px;}
+.text02{background:url(../images/text02_bg.jpg) no-repeat; width:553px; height:133px; border:1px solid #ccc; left:70px; top:5px; text-indent:8px; padding-top:8px; text-align:justify;}
+.consult label{height:28px; line-height:28px;} 
+.icon_pa{left:626px; top:126px;} 
+.but_submit{background:url(../images/button-submit.png) no-repeat; width:87px; height:38px; border:none; left:220px; top:160px;}
+.but_reset{background:url(../images/button-reset.png) no-repeat; width:87px; height:38px; border:none; left:338px; top:160px;}
+/*����ҳ*/
+.icon03{background:url(../images/icon03.png) no-repeat 0 14px; text-indent:1em; border-bottom:1px dotted #ababab; height:30px; line-height:30px;}
+.stick a{color:#ce171f; font-weight:bold;}
+/*flash*/
+.flash_home{background:url(../images/flash_home_bg.jpg) repeat-x; height:366px;}
+.flash_download{background:url(../images/flash_download_bg.jpg) repeat-x; height:504px;}
+/*��ҳ�ǵ���*/
+#Scroll{background:url(../images/roll_bg.gif) repeat-x;}
+#ScrollMe{height:36px; line-height:36px; width:992px; background:url(../images/scroll_bg.png) no-repeat 0 10px;}
+#ScrollMe p{text-align:left; text-indent:7em;}
+.home_button{background:url(../images/home_bg.gif) repeat-x; height:167px;}
+.icon04{background:url(../images/icon04.gif) no-repeat 0 5px; padding-left:10px;}
+/*�ֻ�ͻ����ֲ�ͼ*/
+#focus {width:730px; height:334px; overflow:hidden; position:relative; margin-bottom:30px;}
+#focus ul {height:380px; position:absolute;}
+#focus ul li {float:left; width:730px; height:334px; overflow:hidden; position:relative; background:#5581b2;}
+#focus ul li div {position:absolute; overflow:hidden;}
+#focus .btnBg {position:absolute; width:730px; height:34px; left:0; bottom:0; background:#e4e4e4;}
+#focus .btn {position:absolute; width:730px; height:20px;right:0; bottom:0; text-align:center; line-height:20px;}
+#focus .btn span.on {background:#fff;}
+#focus .good{right:0px; top:0px;}
+#focus .good_con{width:285px; margin:25px; color:#fff;}
+#focus .good_con p{font-size:12px;}
+.icon05{background:url(../images/icon05.gif) no-repeat 20px 7px; padding-left:30px; color:#d0ebff;}
+/*
+.screen,.screen a img,.screen div,.screen img,#flipshow .screen .child{border:none;margin:0;padding:0}.screen{background-color:#fff;overflow:hidden;text-align:center}.flipper{text-align:center}#flipshow .linklist16 li{padding-top:2px;line-height:1em}#flipshow .linklist16 li.first{line-height:1em}.flipper ul li.first{float:left;text-align:left}.flipper a{visibility:hidden}.flipper li.first a{display:block; height:100px; width:45px;}.flipper li.last a{display:block; height:100px; width:45px;}.photolistset{margin:auto;text-align:left}.photolistset .photo,.photolistset .list{display:inline;float:left;width:46%}*>html .photolistset .list{width:110px}* html>body .photolistset .list{width:46%}.photolistset .list h4{color:#07519a;font-size:110%;margin-bottom:2px}.photolistset .list{margin:6px 0 6px 6px}
+.mt15{margin-top:15px;}
+.flipper ul li{display:block;line-height:1.5em; height:100px; width:45px;}
+.flipper ul li.first{top:-250px; background:url(../images/sprite_01.png) no-repeat; height:100px; width:45;}
+.flipper ul li.last{top:-250px; right:0; background:url(../images/sprite_02.png) no-repeat; height:100px; width:45;}
+#flipslides{height:450px; padding-bottom:5px;}
+.linkedimg img{border:1px solid #dbdbdb; margin-right:2px;}
+#chan_flipper{border:1px solid #d5d5d5;}
+*/
+/*��Ʒ��ͼ�ֲ�*/
+.soft_img{border:1px solid #d0d0d0; padding:0px 4px 15px;}
+.blk_18 {OVERFLOW: hidden; WIDTH: 720px; ZOOM: 1;}
+.blk_18 .pcont {FLOAT: left; OVERFLOW: hidden; WIDTH: 720px;}
+.blk_18 .ScrCont {
+WIDTH: 32766px; ZOOM: 1
+}
+#List1_1 img{margin-right:5px; border:1px solid #dbdbdb;}
+.blk_18 #List1_1 {
+FLOAT: left
+}
+.blk_18 .LeftBotton {BACKGROUND:url(../images/sprite_01.png) no-repeat; left:0px; top:130px; position:absolute;WIDTH: 45px; HEIGHT: 100px}
+.blk_18 .RightBotton {BACKGROUND: url(../images/sprite_02.png) no-repeat; right:0px; top:130px; position:absolute;WIDTH: 45px; HEIGHT: 100px}
+.blk_18 .pl IMG {
+DISPLAY: block;}
+.blk_18 .pl {
+WIDTH: 114px; LINE-HEIGHT: 24px; BORDER-BOTTOM: #f3f3f3 1px solid; TEXT-ALIGN: center; TEXT-DECORATION: underline
+}
+.commu_cont3 {
+MARGIN: 9px 7px 7px; LINE-HEIGHT: 150%
+}
+.commu_cont3 UL {
+WIDTH: 188px
+}
+

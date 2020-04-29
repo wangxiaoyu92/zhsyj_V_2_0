@@ -1,0 +1,8 @@
+ALTER TABLE  `jyjccydj`   
+  CHANGE `countcy` `countcy` VARCHAR(100) NULL   COMMENT '抽样数量';
+  
+  --   文书  行政处罚决定书  添加违法行为选项 轻微 、一般、 严重 、特别严重 四个等级--------
+insert into `aa10` (`AAA100`, `AAA102`, `AAA103`, `AAE030`, `AAE031`, `AAZ093`, `AAZ094`, `AAA104`, `AAA101`, `AAA105`) values('WFXWDC','2','一般','199405',NULL,'2016122021123256458987544',NULL,NULL,NULL,NULL);
+insert into `aa10` (`AAA100`, `AAA102`, `AAA103`, `AAE030`, `AAE031`, `AAZ093`, `AAZ094`, `AAA104`, `AAA101`, `AAA105`) values('WFXWDC','3','严重','199405',NULL,'2016122021145465646966985',NULL,NULL,NULL,NULL);
+insert into `aa10` (`AAA100`, `AAA102`, `AAA103`, `AAE030`, `AAE031`, `AAZ093`, `AAZ094`, `AAA104`, `AAA101`, `AAA105`) values('WFXWDC','4','特别严重',NULL,NULL,'2016122021146146424968248',NULL,NULL,NULL,NULL);
+  

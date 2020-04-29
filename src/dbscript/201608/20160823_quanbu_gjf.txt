@@ -1,0 +1,22 @@
+1:更改上个脚本的视图
+CREATE OR REPLACE 
+	DEFINER = 'root'@'localhost'
+VIEW syjzhpt.viewaae140
+AS
+	SELECT
+	  `a`.`AAA100` AS `AAA100`,
+	  `a`.`AAA102` AS `AAA102`,
+	  `a`.`AAA103` AS `AAA103`,
+	  `a`.`AAE030` AS `AAE030`,
+	  `a`.`AAE031` AS `AAE031`,
+	  `a`.`AAZ093` AS `AAZ093`,
+	  `a`.`AAZ094` AS `AAZ094`,
+	  `a`.`AAA104` AS `AAA104`,
+	  `a`.`AAA101` AS `AAA101`,
+	  `a`.`AAA105` AS `AAA105`
+	FROM `aa10` `a`
+	WHERE (`a`.`AAA100` = 'COMDALEI')
+	  ORDER BY aaa104,aaa102;
+
+ALTER TABLE pcompany
+  ADD COLUMN orgid VARCHAR(32) DEFAULT NULL COMMENT '机构ID' AFTER comrcjdglry;

@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>流通检测结果透明</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style type="text/css">
+        button {
+            width: 70px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="middle" style="height: auto">
+        <div class="bt_cy" id="ncp">
+            <b style="line-height: 40px">快检记录</b>
+        </div>
+        <div class="bt_cy3" id="ybz">
+            <b style="line-height: 40px">检测报告</b>
+        </div>
+
+        <div id="syncp">
+            <table id="content_syncp" class="liebiao" style="width:100%;margin-top: 20px;border-collapse:collapse;">
+                <thead style="font-weight:bold;">
+                <tr>
+                    <td>商户名称</td>
+                    <td>所属市场名称</td>
+                    <td>检测食品名称</td>
+                    <td>检测项目</td>
+                    <td>检测值</td>
+                    <td>标准值</td>
+                    <td>检测结果</td>
+                    <td>检测机构</td>
+                    <td>检测人</td>
+                    <td>检测时间</td>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="ybzsp" style="display: none">
+            <ul id="content_bg" style="text-align: center"></ul>
+        </div>
+        <div id="page" class="page_btn" style="width: 100%;text-align:center;"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<div id="foot"></div>
+<!--弹窗-->
+<div class="new-shadow">
+    <div class="shadow-box" style="width: 1200px;height: 600px">
+        <div class="shadow-title">
+            检验检测信息
+        </div>
+        <iframe src="" style="height: 500px"></iframe>
+
+        <img src="images/cancle.png" width="38" height="38"/>
+    </div>
+</div>
+<script>
+    $('#top').load("muban_top.html");
+    $('#foot').load("muban_foot.html");
+    var pageNum = 1, pageSize = 30, pageSum = 0;
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, comid = '';
+    var comdalei = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            comid = list[i].split('=')[1];
+        }
+        if ("comdalei" == name) {
+            comdalei = list[i].split('=')[1];
+        }
+    }
+    var jcypgl = '10101,10103,10102', id = 'content_syncp';
+    window.onload=function(){
+       data();
+    };
+    $(function () {
+        $("#ncp").bind("mouseover", function () {
+            $('#syncp').show();
+            $('#ybzsp').hide();
+            $("#ncp").attr('class', 'bt_cy');
+            $("#ybz").attr('class', 'bt_cy3');
+            jcypgl = '10101,10103,10102';
+            id = 'content_syncp';
+            pageNum=1;
+            data();
+        });
+        $("#ybz").bind("mouseover", function () {
+            $('#syncp').hide();
+            $('#ybzsp').show();
+            $("#ncp").attr('class', 'bt_cy3');
+            $("#ybz").attr('class', 'bt_cy');
+            jcypgl = '';
+            pageNum=1;
+            data();
+        });
+    });
+
+    //检测报告
+    function spsycx(trace) {
+        var url = encodeURI(trace);
+        //显示
+        $(".new-shadow").show();
+        $('.shadow-box iframe').attr('src', url);
+    }
+    //隐藏
+    $(".shadow-box img").click(function () {
+        $(".new-shadow").hide();
+
+    });
+
+    //查询列表
+    function data() {
+        $.ajax({
+//            url: pathname + "/api/tmsyj/getSpxxtmList",
+            url: pathname + "/api/tmsyj/getJyjcjgList",
+            type: "post",
+            dataType: 'json',
+            data: {page: pageNum, rows: pageSize, comid: comid},
+            success: function (result) {
+                if (result.code == '0') {
+                    $('#' + id + ' tbody').empty();
+                    page(pageSize, pageNum, result.total, '#AF2727');
+                    if (jcypgl === '10101,10103,10102') {
+                        if (result.total > 0) {
+                            $.each(result.rows, function (index, item) {
+                                var html = "";
+                                debugger;
+                                html += "<tr>";
+                                html += "<td>" + IsNull(item.hviewjgztmc) + "</td>";
+                                html += "<td>" + IsNull(item.hviewjgztmc) + "</td>";
+                                html += "<td>" + IsNull(item.jcypmc) + "</td>";
+                                html += "<td>" + IsNull(item.jcxmmc) + "</td>";
+                                html += "<td>" + IsNull(item.jcz) + "</td>";
+                                html += "<td>" + IsNull(item.bzz) + "</td>";
+                                html += "<td>" + IsNull(item.jyjcjlmc) + "</td>";
+                                html += "<td>" + IsNull(item.jcorgmc) + "</td>";
+                                html += "<td>" + IsNull(item.aae011) + "</td>";
+                                html += "<td>" + IsNull(item.jyjcrq).split(" ")[0] + "</td>";
+                                html += "</tr>";
+                                $('#' + id + ' tbody').append(html);
+                            });
+                        }
+                    } else if (jcypgl === '') {
+                        $.ajax({
+                            url: pathname + "/api/tmsyj/getJcbgList",
+                            type: "post",
+                            dataType: 'json',
+                            data: {page: pageNum, rows: pageSize, hviewjgztid: comid},
+                            success: function (result) {
+                                if (result.code == '0') {
+                                    page(pageSize, pageNum, result.total, '#2d286b');
+                                    $('#content_bg').empty();
+                                    $.each(result.rows, function (index, item) {
+                                        var html = "";
+                                        var g_img = "";
+                                        var g_txt = "";
+                                        var h_img = "";
+                                        var h_txt = "";
+                                        if (index != result.rows.length - 1) {
+                                            html += "<li style=\"border-bottom:1px #999 dotted;height:auto;width: 100%;\">";
+                                        } else {
+                                            html += "<li style=\"border-bottom:1px #00a0ea solid;height:auto;width: 100%;\">";
+                                        }
+                                        html += "<img src=\"" + checkImg(item.fjpath) + "\" style=\"height:1200px;width:800px;\" />";
+                                        html += "</li>";
+                                        $('#content_bg').append(html);
+                                    });
+                                    if (result.total <= 0) {
+                                        var html = "";
+                                        html += "<li style=\"border-bottom:1px #00a0ea solid;height:auto;width: 100%\">";
+                                        html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                                        html += " <tr>";
+                                        html += "     <td rowspan=\"5\" width=\"140px\" style=\"padding-right:15px;\">";
+                                        html += "         <img src=\"images/kong.jpg\" style=\"height:120px;width:160px;\" />";
+                                        html += "     </td>";
+                                        html += "     <td  style=\"font-size:14px;\">没有查询到符合条件的记录，如有疑问请联系系统管理员！</td>";
+                                        html += " </tr>";
+                                        html += " <tr>";
+                                        html += "</table>";
+                                        html += "</li>";
+                                        $('#content_bg').append(html);
+                                    }
+                                } else {
+                                    alert(result.msg);
+                                }
+                            }
+                        });
+                    }
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

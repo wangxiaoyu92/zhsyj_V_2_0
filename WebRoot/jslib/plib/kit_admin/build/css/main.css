@@ -1,0 +1,85 @@
+.head-con {
+    color: #ffffff;
+    background-color: #009688;
+    text-align: left;
+    font-size: 14px;
+    border-radius: 4px;
+    border-bottom:0px;
+    position: relative;
+}
+
+body {
+    background: #F1F2F7;
+    overflow-x: hidden;
+    padding: 0px;
+    font-size: 12px;
+}
+.larry-grid{
+    display:block;
+    width: calc(100% - 30px);
+	width: -moz-calc(100%- 30px);
+	width: -webkit-calc(100%- 30px);
+    height: auto;
+    margin: 0 auto;
+    /*padding: 15px;*/
+    background: #F1F2F7;
+    border-radius: 5px;
+}
+.larry-personal {
+    margin: 0 auto;
+    border-radius: 3px;
+    padding-bottom: 0px;
+    border: none;
+}
+
+header.larry-personal-tit {
+    width: 100%;
+    height: 50px;
+    border-bottom: 1px solid #EEEFF1;
+    padding: 0 20px;
+    padding-left: 30px;
+}
+
+header.larry-personal-tit span {
+    line-height: 50px;
+    font-size: 14px;
+    color: #858585;
+    font-weight: 300;
+}
+
+.larry-personal-body {
+    padding: 20px;
+}
+
+.larry-separate {
+    background: #F2F2F2;
+    width: 100%;
+    height: 10px;
+}
+
+/*闻闻列表*/
+.item_con {
+    height: 150px;
+    line-height: 30px;
+    overflow: hidden;
+    padding: 10px 15px 0;
+}
+ul.list{
+    margin: 0;
+    padding: 0;
+}
+.item_con ul li {
+    overflow: hidden;
+    font-size:16px;
+    height: 30px;
+    line-height: 30px;
+    background: url(../images/article_icon.gif) left center no-repeat;
+    padding-left: 15px;
+    border-bottom: 1px dotted #f1f1f1;
+}
+.item_con ul li span {
+    float: right;
+}
+ul li{
+    list-style: none;
+}

@@ -1,0 +1,238 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>餐饮厨房加工透明</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style type="text/css">
+        #content th {
+            border: 2px solid #DDDDDD;
+
+        }
+
+        #content td {
+            border: 2px solid #DDDDDD;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="middle">
+        <div id="zm" class="bt_cy">
+            <b style="line-height: 40px">透明厨房</b>
+        </div>
+        <div id="aq" class="bt_cy3">
+            <b style="line-height: 40px">餐饮具洗消记录</b>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+
+        <div id="zzzm">
+            <ul id="sp_content"></ul>
+        </div>
+        <div id="spaqy" style="display: none">
+            <table id="content" style="width:100%;margin-top: 20px;border-collapse:collapse;">
+                <thead style="font-weight:bold;">
+                <tr>
+                    <th rowspan="2" style="vertical-align:central;text-align: center; font-size:14px;">洗消日期</th>
+                    <th rowspan="2" style="vertical-align:central;text-align: center; font-size:14px;">餐具名称</th>
+                    <th colspan="2" style="vertical-align:central;text-align: center;font-size:14px; ">消毒内容</th>
+                    <th colspan="2" style="vertical-align:central;text-align: center;font-size:14px;">消毒时间</th>
+                    <th rowspan="2" style="vertical-align:central;text-align: center;font-size:14px; ">操作人</th>
+                </tr>
+                <tr>
+                    <th style="vertical-align:central;text-align: center;font-size:14px; ">消毒方式</th>
+                    <th style="vertical-align:central;text-align: center;font-size:14px; ">温/浓渡</th>
+                    <th style="vertical-align:central;text-align: center; font-size:14px;">起始</th>
+                    <th style="vertical-align:central;text-align: center;font-size:14px;">结束</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div id="page" class="page_btn" style="width: 100%;text-align:center;clear: left"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<div id="foot"></div>
+<!--弹窗-->
+<div class="new-tmcf" id="new-tmcf">
+    <div class="tmcf-box">
+        <div class="tmcf-title">
+        </div>
+        <iframe id="tmcf_box_ifreame"src="" width="auto" height="auto"></iframe>
+        <img src="images/cancle.png" id="closeTmcf" width="38" height="38"/>
+    </div>
+</div>
+
+<script>
+    $('#top').load("muban_top.html");
+    $('#foot').load("muban_foot.html");
+    var pageNum = 1, pageSize = 10, pageSum = 0;
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, comid = '';
+    var comdalei = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            comid = list[i].split('=')[1];
+        }
+        if ("comdalei" == name) {
+            comdalei = list[i].split('=')[1];
+        }
+    }
+    var ym = 'zzzm';
+    $(function () {
+        $("#zm").bind("mouseover", function () {
+            $('#zzzm').show();
+            $('#spaqy').hide();
+            $("#zm").attr('class', 'bt_cy');
+            $("#aq").attr('class', 'bt_cy3');
+            ym = 'zzzm';
+            pageNum=1;
+            data();
+        });
+        $("#aq").bind("mouseover", function () {
+            $('#zzzm').hide();
+            $('#spaqy').show();
+            $("#zm").attr('class', 'bt_cy3');
+            $("#aq").attr('class', 'bt_cy');
+            ym = 'spaqy';
+            pageNum=1;
+            data();
+        });
+    });
+
+    window.onload = function () {
+        data();
+        getJkyList();
+    };
+    function data() {
+        if (ym === 'zzzm') {
+            getJkyList();
+        }
+        if (ym === 'spaqy') {
+            cjxxList();
+        }
+    }
+    function getJkyList() {
+        $.ajax({
+            url: pathname + "/api/tmsyj/getJkyList",
+            type: "post",
+            dataType: 'json',
+            data: {page: pageNum, rows: pageSize, jkqybh: comid, jklx: '1'},
+            success: function (result) {
+                if (result.code == '0') {
+                    $('#sp_content').empty();
+                    page(pageSize, pageNum, result.total, '#B02828');
+                    if (result.total > 0) {
+                        $.each(result.rows, function (index, item) {
+                            var html = "";
+                            if (index != result.rows.length - 1) {
+                                html += "<li style=\"border-bottom:1px #999 dotted;height:auto;width: 100%;\">";
+                            } else {
+                                html += "<li style=\"border-bottom:1px #00a0ea solid;height:auto;width: 100%;text-align:left;\">";
+                            }
+                            html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                            html += " <tr>";
+                            html += " 	<td rowspan=\"3\" width=\"140px\" style=\"padding-right:15px;\">";
+                            html += "   	<a href='#' onclick=\"show_video(\'" + IsNull(item.ocxId) + "\',\'" + IsNull(item.camId) + "\',\'" + IsNull(item.camOrgName) + "\',\'" + IsNull(item.camName) + "\')\" \"><img src=\"images/webcamera.jpg\" style=\"height:120px;width:160px;\" /></a>";
+                            html += "   </td>";
+                            html += "   <td><a href='#' onclick=\"show_video(\'" + IsNull(item.ocxId) + "\',\'" + IsNull(item.camId) + "\',\'" + IsNull(item.camOrgName) + "\',\'" + IsNull(item.camName) + "\')\"  style=\"font-size:17px;color: #0000F0;text-decoration:none;font-weight:bold;\" >" + IsNull(item.camName) + "</a></td>";
+                            html += " </tr>";
+                            html += " <tr>";
+                            html += "   <td  style=\"font-size:14px;\">企业名称：" + IsNull(item.camOrgName) + "</td>";
+                            html += " </tr>";
+                            html += " <tr>";
+                            if (item.camState == '1') {
+                                html += " <td  style=\"font-size:14px;\">在线状态：<span class=\"shop_camera\"><img class=\"shop_camera\" src=\"images/camera-on.png\"></span></td>";
+                            } else {
+                                html += " <td  style=\"font-size:14px;\">在线状态：<span class=\"shop_camera\"><img class=\"shop_camera\" src=\"images/camera-off.png\"></span></td>";
+                            }
+                            html += " </tr>";
+                            html += "</table>";
+                            html += "</li>";
+                            $('#sp_content').append(html);
+                        });
+                    } else {
+                        var html = "";
+                        html += "<li style=\"border-bottom:1px #00a0ea solid;height:auto;width: 100%;\">";
+                        html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                        html += " <tr>";
+                        html += "     <td rowspan=\"5\" width=\"140px\" style=\"padding-right:15px;\">";
+                        html += "         <img src=\"images/kong.jpg\" style=\"height:120px;width:160px;\" />";
+                        html += "     </td>";
+                        html += "     <td  style=\"font-size:14px;\">未获取到监控源【监控摄像头不在线或监控服务器出现问题】，请联系系统管理员！</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "</table>";
+                        html += "</li>";
+                        $('#sp_content').append(html);
+                    }
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+    //视频监控
+    $("#closeTmcf").click(function () {
+        $("#new-tmcf").hide();
+        $('#tmcf_box_ifreame').attr('src', "");
+        $('.tmcf-title').empty();
+    });
+    //视频监控
+    function show_video(jkybh,jkid,camOrgName,camName) {
+        $('.tmcf-title').html(camOrgName+">"+camName);
+        $("#new-tmcf").show();
+        $('#tmcf_box_ifreame').attr('src', "canyin_tmcf.html?jkybh=" + jkybh + "&jkid=" + jkid);
+    }
+
+    function cjxxList() {
+        $.ajax({
+            url: pathname + "/api/tmcy/getCyjxxjlList",
+            type: "post",
+            dataType: 'json',
+            data: {page: pageNum, rows: pageSize, comid: comid},
+            success: function (result) {
+                if (result.code == '0') {
+                    page(pageSize, pageNum, result.total, '#B32D2E');
+                    $('#content tbody').empty();
+                    $.each(result.rows, function (index, item) {
+                        var html = "";
+                        html += "<tr>";
+                        html += "<td>" + (item.aae036).split(" ")[0] + "</td>";
+                        html += "<td>" + item.cjmc + "</td>";
+                        html += "<td>" + item.xdfsmc + "</td>";
+                        html += "<td>" + item.wnd + "</td>";
+                        html += "<td>" + (item.xdkssj).split(" ")[1] + "</td>";
+                        html += "<td>" + (item.xdjssj).split(" ")[1] + "</td>";
+                        html += "<td>" + item.aae011 + "</td>";
+                        html += "</tr>";
+                        $('#content tbody').append(html);
+                    });
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

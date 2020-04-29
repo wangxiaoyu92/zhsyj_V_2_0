@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>生产执法监管透明</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style type="text/css">
+        button {
+            width: 70px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="middle">
+
+        <table id="content" class="liebiao"
+               style="border-collapse:collapse;font-size:14px;width: 100%;margin-bottom: 20px">
+            <tr>
+                <td rowspan='4' align="center" valign="middle" style="height:150px;width:120px;">
+                    <img id="icon1" src="images/kong.jpg" style="height:150px;width:120px;">
+                </td>
+                <td id="fzr1">负责人：</td>
+                <td rowspan='4' align="center" valign="middle" style="height:150px;width:120px;">
+                    <img id="icon2" src="images/kong.jpg" style="height:150px;width:120px;">
+                </td>
+                <td id="fzr2">负责人：</td>
+            </tr>
+            <tr>
+                <td id="lxfs1">联系方式：</td>
+                <td id="lxfs2">联系方式：</td>
+            </tr>
+            <tr>
+                <td id="zw1">职位：</td>
+                <td id="zw2">职位：</td>
+            </tr>
+            <tr>
+                <td id="zfzh1">执法证号：</td>
+                <td id="zfzh2">执法证号：</td>
+            </tr>
+        </table>
+        <div class="bt_sc">
+            <b style="line-height: 40px">日常检查</b>
+        </div>
+        <div style="clear: left">
+            <ul id="rcjc_content"></ul>
+            <div style="clear: left"></div>
+            <div id="page" class="page_btn" style="width: 100%;text-align:center;clear: left"></div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+
+<div id="foot"></div>
+
+<script>
+    $('#top').load("muban_top.html");
+    $('#foot').load("muban_foot.html");
+    var pageNum = 1, pageSize = 30, pageSum = 0;
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, comid = '';
+    var comdalei = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            comid = list[i].split('=')[1];
+        }
+        if ("comdalei" == name) {
+            comdalei = list[i].split('=')[1];
+        }
+    }
+
+    window.onload = function () {
+        data();
+        getPcompanyRcjdglryList();
+    };
+
+    function getPcompanyRcjdglryList(page, pageSize) {
+        $.ajax({
+            url: pathname + "/api/tmsyj/getPcompanyRcjdglryList",
+            type: "post",
+            dataType: 'json',
+            data: {comid: comid},
+            success: function (result) {
+                if (result.code == '0') {
+                    if (result.total == '1') {
+                        $('#icon1').attr('src', checkImg(result.rows[0].icon));
+                        $('#fzr1').html('负责人：' + IsNull(result.rows[0].description));
+                        $('#zw1').html('职务：' + IsNull(result.rows[0].zfryzw));
+                        $('#lxfs1').html('联系方式：' +IsNull( result.rows[0].mobile));
+                        $('#zfzh1').html('执法证号：' + IsNull(result.rows[0].zfryzjhm));
+                    }
+                    if (result.total == '2') {
+                        $('#icon1').attr('src', checkImg(result.rows[0].icon));
+                        $('#fzr1').html('负责人：' + IsNull(result.rows[0].description));
+                        $('#zw1').html('职务：' + IsNull(result.rows[0].zfryzw));
+                        $('#lxfs1').html('联系方式：' + IsNull(result.rows[0].mobile));
+                        $('#zfzh1').html('执法证号：' +IsNull( result.rows[0].zfryzjhm));
+                        $('#icon2').attr('src', checkImg(result.rows[1].icon));
+                        $('#fzr2').html('负责人：' + IsNull(result.rows[1].description));
+                        $('#zw2').html('职务：' + IsNull(result.rows[1].zfryzw));
+                        $('#lxfs2').html('联系方式：' +IsNull( result.rows[1].mobile));
+                        $('#zfzh2').html('执法证号：' +IsNull( result.rows[1].zfryzjhm));
+                    }
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+
+    //查询列表
+    function data() {
+        $.ajax({
+            url: pathname + "/api/tmsyj/getJdjcResultList",
+            type: "post",
+            dataType: 'json',
+            data: {page: pageNum, rows: pageSize, comid: comid},
+            success: function (result) {
+                if (result.code == '0') {
+                    page(pageSize, pageNum, result.total, '#2D286B');
+                    $('#rcjc_content').empty();
+                    $.each(result.rows, function (index, item) {
+                        var html = "";
+                        if (index != result.rows.length - 1) {
+                            html += "<li style=\"border-bottom:1px #999 dotted;width: 100%;\">";
+                        } else {
+                            html += "<li style=\"border-bottom:1px #00a0ea solid;width: 100%;\">";
+                        }
+                        html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                        html += " <tr>";
+                        html += "   <td><a href=\"javascript:linkToBack('api/tmsyj/getJdjcResultDetail?comid=" + IsNull(item.comid) + "&commc=" + IsNull(item.commc) + "&resultid=" + IsNull(item.resultid) + "');\" style=\"font-size:14px;color:#0000F0;text-decoration:none;font-weight:bold;\">检查计划：" + IsNull(item.plantitle) + "</a></td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "   <td  style=\"font-size:14px;\">检查人员：" + IsNull(item.operateperson) + "</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "   <td  style=\"font-size:14px;\">检查日期：" + IsNull(item.resultdate) + "</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "   <td  style=\"font-size:14px;\">检查结果编号：" + IsNull(item.resultid) + "</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "   <td><a href=\"javascript:linkToSelf('fujianchakan.html?comid=" + IsNull(item.comid) + "&commc=" + IsNull(item.commc) + "&resultid=" + IsNull(item.resultid) + "&plantitle=" + IsNull(item.plantitle) + "&operateperson=" + IsNull(item.operateperson) + "&resultdate=" + IsNull(item.resultdate) + "',"+comdalei+");\" style=\"font-size:14px;color:#0000F0;text-decoration:none;font-weight:bold;\">查看附件</a></td>";
+                        html += " </tr>";
+                        html += "</table>";
+                        html += "</li>";
+                        $('#rcjc_content').append(html);
+//                        $('.clear').css('clear','left');
+                    });
+                    if (result.total <= 0) {
+                        var html = "";
+                        html += "<li style=\"border-bottom:1px #00a0ea solid;height:auto;width: 100%\">";
+                        html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                        html += " <tr>";
+                        html += "     <td rowspan=\"5\" width=\"140px\" style=\"padding-right:15px;\">";
+                        html += "         <img src=\"images/kong.jpg\" style=\"height:120px;width:160px;\" />";
+                        html += "     </td>";
+                        html += "     <td  style=\"font-size:14px;\">没有查询到符合条件的记录，如有疑问请联系系统管理员！</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "</table>";
+                        html += "</li>";
+                        $('#rcjc_content').append(html);
+//                        $('#rcjc_content').css('clear','left');
+//                        $('.clear').css('clear','left');
+
+                    }
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

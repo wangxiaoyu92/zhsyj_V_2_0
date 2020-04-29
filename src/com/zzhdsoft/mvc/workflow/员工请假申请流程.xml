@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkflowProcess>
+  <Activities>
+    <Activitie id="1" type="START_NODE" name="员工请假" xCoordinate="22" yCoordinate="39" width="80" height="30"></Activitie>
+    <Activitie id="2" type="NODE" name="项目经理审批" xCoordinate="159" yCoordinate="48" width="100" height="31"></Activitie>
+    <Activitie id="3" type="FORK_NODE" name="部门经理审批" xCoordinate="311" yCoordinate="46" width="100" height="32"></Activitie>
+    <Activitie id="4" type="NODE" name="1部经理审批" xCoordinate="503" yCoordinate="30" width="80" height="30"></Activitie>
+    <Activitie id="5" type="NODE" name="2部经理审批" xCoordinate="499" yCoordinate="107" width="80" height="30"></Activitie>
+    <Activitie id="6" type="JOIN_NODE" name="总经理审批" xCoordinate="660" yCoordinate="65" width="80" height="30"></Activitie>
+    <Activitie id="7" type="END_NODE" name="结束" xCoordinate="647" yCoordinate="161" width="80" height="30"></Activitie>
+  </Activities>
+  <Transitions>
+    <Transition id="8" name="请假发起" from="1" to="2"></Transition>
+    <Transition id="9" name="提交申请" from="2" to="3"></Transition>
+    <Transition id="10" name="" from="3" to="4"></Transition>
+    <Transition id="11" name="" from="3" to="5"></Transition>
+    <Transition id="12" name="" from="4" to="6"></Transition>
+    <Transition id="13" name="" from="5" to="6"></Transition>
+    <Transition id="14" name="" from="6" to="7"></Transition>
+  </Transitions>
+</WorkflowProcess>
+

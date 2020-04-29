@@ -1,0 +1,68 @@
+-- 试卷管理菜单叶子
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017022417234950953874120', '/exam/paper/paperManagerIndex', '试卷管理', '2017020815164120256001955', 1, '1', NULL, NULL, NULL, NULL, NULL, '1', 'paperManagerIndex', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+-- 预览试卷按钮
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017022417293700343071661', '/exam/paper/showPaperInfo', '预览试卷', '2017022417234950953874120', 1, '2', NULL, NULL, NULL, NULL, NULL, '1', 'showPaperInfo', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+-- 添加试卷按钮
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017022417301083496279710', '/exam/paper/addPaper', '添加试卷', '2017022417234950953874120', 1, '2', NULL, NULL, NULL, NULL, NULL, '1', 'addPaper', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+-- 编辑试卷按钮
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017022417304737917646273', '/exam/paper/editPaper', '编辑试卷', '2017022417234950953874120', 1, '2', NULL, NULL, NULL, NULL, NULL, '1', 'editPaper', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+-- 删除试卷按钮
+INSERT INTO syjzhpt.sysfunction(FUNCTIONID, LOCATION, TITLE, PARENT, ORDERNO, TYPE, DESCRIPTION, LOG, OWNER, ACTIVE, FUNCTIONCODE, VISIBLE, BIZID, ROLBIZCLASS, IMAGEURL, EXPANDEDIMAGEURL, AAA102, CAE005, ROLBIZABLE, TARGET, SYSTEMCODE) VALUES
+('2017022417312129879007038', '/exam/paper/delPaper', '删除试卷', '2017022417234950953874120', 1, '2', NULL, NULL, NULL, NULL, NULL, '1', 'delPaper', NULL, NULL, NULL, NULL, NULL, NULL, '', '');
+
+-- 试卷信息表
+CREATE TABLE syjzhpt.ots_papers_info (
+  paper_info_id varchar(32) NOT NULL COMMENT '试卷ID',
+  paper_info_state tinyint(3) UNSIGNED NOT NULL COMMENT '试卷状态,0=禁用,1=启用',
+  paper_info_pass float NOT NULL COMMENT '及格分数',
+  paper_info_name text NOT NULL COMMENT '试卷名称',
+  aae013 text DEFAULT NULL COMMENT '备注',
+  aae011 varchar(32) DEFAULT NULL COMMENT '经办人',
+  aae036 datetime DEFAULT NULL COMMENT '经办时间',
+  PRIMARY KEY (paper_info_id)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 16384
+CHARACTER SET utf8
+COLLATE utf8_general_ci
+COMMENT = '试卷信息表';
+
+-- 试卷题型对应表
+CREATE TABLE syjzhpt.ots_paper_qsn_type (
+  paper_info_id varchar(32) NOT NULL COMMENT '试卷ID',
+  qsn_point float NOT NULL COMMENT '每类试题分值',
+  qsn_type varchar(20) NOT NULL COMMENT '试题类型',
+  qsn_type_title varchar(1000) DEFAULT NULL COMMENT '试题名称',
+  qsn_type_position int(10) NOT NULL COMMENT '试题所处试卷位置',
+  aae011 varchar(32) DEFAULT NULL COMMENT '经办人',
+  aae036 datetime DEFAULT NULL COMMENT '经办时间',
+  PRIMARY KEY (paper_info_id, qsn_type, qsn_type_position)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 5461
+CHARACTER SET utf8
+COLLATE utf8_general_ci
+COMMENT = '试卷题型对应表';
+
+-- 试卷内容表
+CREATE TABLE syjzhpt.ots_paper_content (
+  paper_info_id varchar(32) NOT NULL COMMENT '试卷ID',
+  qsn_info_id varchar(32) NOT NULL COMMENT '试题ID',
+  qsn_type_position int(10) NOT NULL COMMENT '试题大题题型所处试卷位置',
+  qsn_info_position int(10) NOT NULL DEFAULT 0 COMMENT '试题所处大题位置',
+  qsn_info_point float NOT NULL COMMENT '试题分值',
+  qsn_info_type varchar(20) NOT NULL COMMENT '试题类型',
+  aae011 varchar(32) DEFAULT NULL COMMENT '经办人',
+  aae036 datetime DEFAULT NULL COMMENT '经办时间',
+  PRIMARY KEY (paper_info_id, qsn_info_id),
+  INDEX FK_Reference_2 (qsn_info_id)
+)
+ENGINE = INNODB
+AVG_ROW_LENGTH = 4096
+CHARACTER SET utf8
+COLLATE utf8_general_ci
+COMMENT = '试卷内容表';

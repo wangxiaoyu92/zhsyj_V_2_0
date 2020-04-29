@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>餐饮食品留样透明</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style type="text/css">
+        button {
+            width: 70px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="middle" style="height: auto">
+        <div class="bt_cy" id="ly">
+            <b style="line-height: 40px">食品留样</b>
+        </div>
+        <div class="bt_cy3" id="cp" style="display: none">
+            <b style="line-height: 40px">一周菜谱</b>
+        </div>
+
+        <div id="sply">
+            <div style="clear: left"></div>
+            <div id="noweek_sply" style="display:none;text-align:center;margin-top:20px;">本周还未上传食品留样信息</div>
+            <ul id="content"></ul>
+            <div style="clear: left"></div>
+        </div>
+        <div id="yzcp" style="display: none">
+            <table id="content_ybzsp" class="liebiao" style="width:100%;margin-top: 20px;border-collapse:collapse;">
+                <tr>
+                    <td colspan="8" style="text-align:center;"><p style="text-align:center;" id="datess"></p></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;font-weight:bold;">餐次\星期</td>
+                    <td style="text-align:center;font-weight:bold;">周一</td>
+                    <td style="text-align:center;font-weight:bold;">周二</td>
+                    <td style="text-align:center;font-weight:bold;">周三</td>
+                    <td style="text-align:center;font-weight:bold;">周四</td>
+                    <td style="text-align:center;font-weight:bold;">周五</td>
+                    <td style="text-align:center;font-weight:bold;">周六</td>
+                    <td style="text-align:center;font-weight:bold;">周日</td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;font-weight:bold;">早餐</td>
+                    <td><p style="text-align:center;" id="bf1"></p></td>
+                    <td><p style="text-align:center;" id="bf2"></p></td>
+                    <td><p style="text-align:center;" id="bf3"></p></td>
+                    <td><p style="text-align:center;" id="bf4"></p></td>
+                    <td><p style="text-align:center;" id="bf5"></p></td>
+                    <td><p style="text-align:center;" id="bf6"></p></td>
+                    <td><p style="text-align:center;" id="bf7"></p></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;font-weight:bold;">中餐</td>
+                    <td><p style="text-align:center;" id="lc1"></p></td>
+                    <td><p style="text-align:center;" id="lc2"></p></td>
+                    <td><p style="text-align:center;" id="lc3"></p></td>
+                    <td><p style="text-align:center;" id="lc4"></p></td>
+                    <td><p style="text-align:center;" id="lc5"></p></td>
+                    <td><p style="text-align:center;" id="lc6"></p></td>
+                    <td><p style="text-align:center;" id="lc7"></p></td>
+                </tr>
+                <tr>
+                    <td style="text-align:center;font-weight:bold;">晚餐</td>
+                    <td><p style="text-align:center;" id="dn1"></p></td>
+                    <td><p style="text-align:center;" id="dn2"></p></td>
+                    <td><p style="text-align:center;" id="dn3"></p></td>
+                    <td><p style="text-align:center;" id="dn4"></p></td>
+                    <td><p style="text-align:center;" id="dn5"></p></td>
+                    <td><p style="text-align:center;" id="dn6"></p></td>
+                    <td><p style="text-align:center;" id="dn7"></p></td>
+                </tr>
+            </table>
+        </div>
+        <div style="clear: left"></div>
+        <div id="page" class="page_btn" style="width: 100%;text-align:center;"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+
+<div id="foot"></div>
+<!--弹窗-->
+<div class="new-shadow">
+    <div class="shadow-box" style="width: 1200px;height: 600px">
+        <div class="shadow-title">
+            检验检测信息
+        </div>
+        <iframe src="" style="height: 500px"></iframe>
+
+        <img src="images/cancle.png" width="38" height="38"/>
+    </div>
+</div>
+<script>
+    $('#top').load("muban_top.html");
+    $('#foot').load("muban_foot.html");
+    var pageNum = 1, pageSize = 10, pageSum = 0;
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, comid = '';
+    var comdalei = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            comid = list[i].split('=')[1];
+        }
+        if ("comdalei" == name) {
+            comdalei = list[i].split('=')[1];
+        }
+    }
+    var jcypgl = '10101,10103', id = 'content_syncp';
+    window.onload = function () {
+        data();
+        getYzcpList();
+    };
+    $(function () {
+        if (comdalei === '101201') {
+            $('#cp').removeAttr('style');
+        }
+        $("#ly").bind("mouseover", function () {
+            $('#sply').show();
+            $('#yzcp').hide();
+            $("#ly").attr('class', 'bt_cy');
+            $("#cp").attr('class', 'bt_cy3');
+            $('#page').show();
+        });
+        $("#cp").bind("mouseover", function () {
+            $('#sply').hide();
+            $('#yzcp').show();
+            $("#ly").attr('class', 'bt_cy3');
+            $("#cp").attr('class', 'bt_cy');
+            $('#page').hide();
+        });
+
+    });
+
+    //检测报告
+    function spsycx(trace) {
+        var url = encodeURI(trace);
+        //显示
+        $(".new-shadow").show();
+        $('.shadow-box iframe').attr('src', url);
+    }
+    //隐藏
+    $(".shadow-box img").click(function () {
+        $(".new-shadow").hide();
+
+    });
+
+    function data() {
+        $.ajax({
+            url: pathname + "/api/tmcy/getSplyList",
+            type: "post",
+            dataType: 'json',
+            data: {page: pageNum, rows: pageSize, comid: comid},
+            success: function (result) {
+                if (result.code == '0') {
+                    console.log(result)
+                    if (result.total > 0) {
+                        page(pageSize, pageNum, result.total, '#AF2727');
+                        $('#noweek_sply').hide();
+                        $('#content').empty();
+                        $.each(result.rows, function (index, item) {
+                            var html = "";
+                            if (index != result.rows.length - 1) {
+                                html += "<li style=\"border-bottom:1px #999999 dotted;height:135px;width: 100%\">";
+                            } else {
+                                html += "<li style=\"border-bottom:1px #00a0ea solid;height:135px;width: 100%\">";
+                            }
+                            html += " <table width=\"100%\"  style=\"text-align:left;\">";
+                            html += "  <tr>";
+                            html += "      <td rowspan=\"5\" width=\"140px\"  style=\"padding-right:15px;\">";
+                            html += "         <a href=\"javascript:linkToSelf('canyin_splygs.html?hsplyid=" + IsNull(item.hsplyid) + "&splysj=" + IsNull(item.splysj) + "&splyry=" + IsNull(item.splyry) + "&splypz=" + IsNull(item.splypz) + "&jccc=" + IsNull(item.jcccmc) + "&commc=" + IsNull(item.commc) + "',101202);\"><img rel=\"" + checkImg(item.icon) + "\" src=\"" + checkImg(item.icon) + "\" style=\"height:120px;width:160px;\"/></a>";
+                            html += "      </td>";
+                            html += "      <td  height=\"30px\"><a  href=\"javascript:linkToSelf('canyin_splygs.html?hsplyid=" + IsNull(item.hsplyid) + "&splysj=" + IsNull(item.splysj) + "&splyry=" + IsNull(item.splyry) + "&splypz=" + IsNull(item.splypz) + "&jccc=" + IsNull(item.jcccmc) + "&commc=" + IsNull(item.commc) + "',101202);\" style=\"font-size:17px;color:#0000F0;text-decoration:none;font-weight:bold;\" >" + IsNull(item.jcccmc) + "</a></td>";
+                            html += " </tr>";
+                            html += " <tr>";
+                            html += "   <td  style=\"font-size:14px;vertical-align:top;\">留样名称：" + IsNull(item.splypz) + "</td>";
+                            html += " </tr>";
+                            html += " <tr>";
+                            html += "   <td  style=\"font-size:14px;vertical-align:top;height:22px;\">留样日期：" + IsNull((item.splysj)).split(" ")[0] + "</td>";
+                            html += " </tr>";
+                            html += " <tr>";
+                            html += "   <td  style=\"font-size:14px;vertical-align:top;\">留样时间：" + IsNull((item.splysj)).split(" ")[1] + "</td>";
+                            html += " </tr>";
+                            html += " <tr>";
+                            html += "   <td  style=\"font-size:14px;vertical-align:top;\">留样人：" + IsNull(item.splyry) + "</td>";
+                            html += " </tr>";
+                            html += "</table>";
+                            html += "</li>";
+                            $('#content').append(html);
+                        });
+                    } else {
+                        $('#noweek_sply').show();
+                    }
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+
+    //查询列表
+    function getYzcpList() {
+        $.ajax({
+            url: pathname + "/api/tmcy/getYzcpList",
+            type: "post",
+            dataType: 'json',
+            data: {comid: comid},
+            success: function (result) {
+                if (result.code == '0') {
+                    if (result.total > 0) {
+                        $('#noweek_yzcp').hide();
+                        $.each(result.rows, function (index, item) {
+                            $("#bf1").html(item.bf1);
+                            $("#bf2").html(item.bf2);
+                            $("#bf3").html(item.bf3);
+                            $("#bf4").html(item.bf4);
+                            $("#bf5").html(item.bf5);
+                            $("#bf6").html(item.bf6);
+                            $("#bf7").html(item.bf7);
+                            $("#lc1").html(item.lc1);
+                            $("#lc2").html(item.lc2);
+                            $("#lc3").html(item.lc3);
+                            $("#lc4").html(item.lc4);
+                            $("#lc5").html(item.lc5);
+                            $("#lc6").html(item.lc6);
+                            $("#lc7").html(item.lc7);
+                            $("#dn1").html(item.dn1);
+                            $("#dn2").html(item.dn2);
+                            $("#dn3").html(item.dn3);
+                            $("#dn4").html(item.dn4);
+                            $("#dn5").html(item.dn5);
+                            $("#dn6").html(item.dn6);
+                            $("#dn7").html(item.dn7);
+                        });
+                    } else {
+                        $('#noweek_yzcp').show();
+                    }
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

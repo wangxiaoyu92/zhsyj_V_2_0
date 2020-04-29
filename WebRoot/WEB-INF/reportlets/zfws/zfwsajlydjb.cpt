@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20110221">
+<TableDataMap>
+<TableData name="ds_zfwsajlydjb" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="zfwslydjid"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[FRDemo]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select a.*,'abc' as ajdjajlystr
+from zfwsajlydjb a
+where zfwslydjid=${zfwslydjid}]]></Query>
+</TableData>
+<TableData name="ds_ajdjajly" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[FRDemo]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select a.aaa102,a.aaa103 
+from aa10 a
+where a.aaa100='AJDJAJLY';]]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,723900,152400,723900,990600,723900,152400,38100,723900,723900,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="9" rs="2" s="0">
+<O>
+<![CDATA[食品药品行政处罚文书]]></O>
+<Expand/>
+</C>
+<C c="9" r="0">
+<Expand/>
+</C>
+<C c="10" r="0">
+<Expand/>
+</C>
+<C c="11" r="0">
+<Expand/>
+</C>
+<C c="12" r="0">
+<Expand/>
+</C>
+<C c="9" r="1">
+<Expand/>
+</C>
+<C c="10" r="1">
+<Expand/>
+</C>
+<C c="11" r="1">
+<Expand/>
+</C>
+<C c="12" r="1">
+<Expand/>
+</C>
+<C c="0" r="2" cs="9" rs="3" s="1">
+<O>
+<![CDATA[案件来源登记表]]></O>
+<Expand/>
+</C>
+<C c="9" r="2">
+<Expand/>
+</C>
+<C c="10" r="2">
+<Expand/>
+</C>
+<C c="11" r="2">
+<Expand/>
+</C>
+<C c="12" r="2">
+<Expand/>
+</C>
+<C c="9" r="3">
+<Expand/>
+</C>
+<C c="10" r="3">
+<Expand/>
+</C>
+<C c="11" r="3">
+<Expand/>
+</C>
+<C c="12" r="3">
+<Expand/>
+</C>
+<C c="9" r="4">
+<Expand/>
+</C>
+<C c="10" r="4">
+<Expand/>
+</C>
+<C c="11" r="4">
+<Expand/>
+</C>
+<C c="12" r="4">
+<Expand/>
+</C>
+<C c="0" r="5" cs="9" rs="2" s="2">
+<O>
+<![CDATA[（××）食药监×案源〔年份〕×号]]></O>
+<Expand/>
+</C>
+<C c="0" r="7" cs="9" s="3">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+</C>
+<C c="0" r="8" rs="2">
+<O>
+<![CDATA[案件来源：]]></O>
+<Expand/>
+</C>
+<C c="1" r="8" cs="8" rs="2">
+<O>
+<![CDATA[]]></O>
+<Widget class="com.fr.report.web.ui.CheckBoxGroup">
+<WidgetName name="ajdjajly"/>
+<WidgetAttr/>
+<Dictionary class="com.fr.data.impl.TableDataDictionary">
+<FormulaDictAttr ki="0" vi="1"/>
+<TableDataDictAttr>
+<TableData class="com.fr.data.impl.NameTableData">
+<Name>
+<![CDATA[ds_ajdjajly]]></Name>
+</TableData>
+</TableDataDictAttr>
+</Dictionary>
+<ChooseAll/>
+</Widget>
+<Expand/>
+</C>
+<C c="0" r="10" rs="2" s="4">
+<O>
+<![CDATA[当事人：]]></O>
+<Expand/>
+</C>
+<C c="1" r="10" cs="8" rs="2" s="5">
+<O t="DSColumn">
+<Attributes dsName="ds_zfwsajlydjb" columnName="wslydsr"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Expand/>
+</C>
+<C c="1" r="12" cs="2" rs="2">
+<O t="DSColumn">
+<Attributes dsName="ds_zfwsajlydjb" columnName="ajdjajly"/>
+<Condition class="com.fr.data.condition.ListCondition"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Result>
+<![CDATA[$$$]]></Result>
+<Parameters/>
+</O>
+<Widget class="com.fr.report.web.ui.CheckBoxGroup">
+<WidgetName name="ajdjajly"/>
+<WidgetAttr/>
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="a"/>
+<Dict key="2" value="b"/>
+</CustomDictAttr>
+</Dictionary>
+</Widget>
+<Expand/>
+</C>
+<C c="4" r="12">
+<Expand/>
+</C>
+<C c="3" r="13">
+<O>
+<![CDATA[fff]]></O>
+<Expand/>
+</C>
+<C c="1" r="15" cs="2" rs="3">
+<Widget class="com.fr.report.web.ui.RadioGroup">
+<WidgetName name="www"/>
+<WidgetAttr/>
+<Dictionary class="com.fr.data.impl.CustomDictionary">
+<CustomDictAttr>
+<Dict key="1" value="a"/>
+<Dict key="2" value="b"/>
+</CustomDictAttr>
+</Dictionary>
+</Widget>
+<Expand/>
+</C>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="0">
+<PaperSetting>
+<Margin top="986400" left="2743200" bottom="986400" right="2743200"/>
+</PaperSetting>
+</ReportSettings>
+</ReportAttrSet>
+</Report>
+<ReportParameterAttr>
+<Attributes showWindow="true" delayPlaying="true" windowPosition="1" align="1"/>
+<PWTitle>
+<![CDATA[参数]]></PWTitle>
+<ParameterUI class="com.fr.report.parameter.CustomParameterUI">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[381000,876300,381000,876300,381000,723900,723900,723900,723900,723900,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[3048000,5334000,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="1" s="6">
+<O>
+<![CDATA[zfwslydjid:]]></O>
+</C>
+<C c="1" r="1">
+<O>
+<![CDATA[]]></O>
+<Widget class="com.fr.report.web.ui.TextEditor">
+<WidgetName name="zfwslydjid"/>
+<WidgetAttr/>
+<TextAttr/>
+</Widget>
+</C>
+<C c="1" r="3" s="6">
+<Widget class="com.fr.report.web.ui.impl.form.FormSubmitButton">
+<WidgetAttr/>
+<Text>
+<![CDATA[查询]]></Text>
+<Hotkeys>
+<![CDATA[enter]]></Hotkeys>
+</Widget>
+</C>
+<C c="0" r="4"/>
+</CellElementList>
+<ReportAttrSet>
+<ReportSettings headerHeight="0" footerHeight="0">
+<PaperSetting/>
+</ReportSettings>
+</ReportAttrSet>
+</ParameterUI>
+</ReportParameterAttr>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="黑体" style="1" size="128"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="176"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4">
+<FRFont name="SimSun" style="0" size="80"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="5"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="84"/>
+<Background name="NullBackground"/>
+<Border>
+<Bottom style="1"/>
+</Border>
+</Style>
+<Style horizontal_alignment="4">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

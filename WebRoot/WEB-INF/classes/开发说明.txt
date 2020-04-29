@@ -1,0 +1,263 @@
+----**********************开发约定(必读)************************-----
+类包结构约定如下：com.askj.子系统.dto/entity/ioc/module/service
+
+1、所有的业务模块类，写入对应子系统下的module文件夹，如：
+   com.askj.zfba.module	                     执法办案子系统
+
+2、 所有的业务服务类，写入对应子系统下的service文件夹，如：
+   com.askj.zfba.service	          执法办案子系统 
+
+3、所有的数据库表实体类，写入对应子系统下的entity文件夹，如：
+   com.askj.zfba.entity        执法办案子系统
+
+4、所有的DTO数据传输对象，写入对应子系统下的dto文件夹，如：
+   com.askj.zfba.dto           执法办案子系统
+      
+5、所有的ioc配置(ioc配置文件名按业务子系统命名：ioc-zfba.js)，写入对应子系统下的ioc文件夹，如：
+   com.askj.zfba.ioc           执法办案子系统
+ 
+6、所有的业务模块类要继承BaseModule，所有业务服务类要继承BaseService。 
+
+7、数据库通用查询工具包，调用DbUtils.DataQuery方法，包括查询语句和执行存储过程；
+	DbUtils.getDataList()的中文名称：获取数据列表（不分页）
+	DbUtils.getDataList()的中文名称：获取数据列表(支持分页)
+	DbUtils.DataQuery()的中文名称：内网数据库查询接口（不分页）
+	DbUtils.DataQuery()的中文名称：内网数据库查询接口（支持分页）
+
+8、数据库表创建规则（表名用拼音字母或首字母缩写；表名可以含下划线，表字段 不能含下划线，表名、表字段必须加注释，表主键统一用varchar(32)；）
+    JAVA后台手工创建varchar类型主键：调用DbUtils.getSequenceStr()生成表主键
+
+
+----****开发备注****----
+1、如何得到Session
+HttpSession session = org.nutz.mvc.Mvcs.getHttpSession();
+还可以通过module的方法里声明requert参数，然后得到session。
+
+2、如何直接得到MainModule里声明过的IOC容器
+DataServiceImpl ids = Mvcs.ctx.getDefaultIoc().get(DataServiceImpl.class);
+
+3、jsp页面获得下拉框代码的方法
+<script type="text/javascript">
+	//获取下拉框列表数据源：TYPE为aa10的aaa100的值
+	var code2 = <%=SysmanageUtil.getAa10toJsonArray("TYPE")%>;
+</script>
+
+4、jsp页面格式化grid的下拉框代码字段方法
+formatter : function(value,row,index){
+	return sy.formatGridCode(code2,value);
+}
+
+5、jsp页面中用到按钮图标可以在这里选取：http://127.0.0.1:8080/syjzhpt/style/icons.jsp
+
+6、jsp页面中的easyui按钮统一添加data属性：btn_作为前缀，后台方法名作为后缀（实现按钮级权限控制）
+<td><a href="javascript:void(0)" class="easyui-linkbutton" data="btn_delFj"
+	iconCls="icon-no" plain="true" onclick="delFj()">删除附件</a>
+</td>
+
+  
+8、获取登录用户方法 ： SysmanageUtil.getSysuser()
+        获取用户数据权限：String aaa027 = SysmanageUtil.getSysuser().getAaa027();
+        获取用户机构ID：Long orgid = SysmanageUtil.getSysuser().getOrgid();
+
+9、查询方法里参数用到aaa027的地方统一做如下处理：
+	// 通用处理统筹区编码(手机端接口使用本方法时必须传人aaa027,且aaa027不能为空。)
+	String aaa027 = SysmanageUtil.getSysuserAaa027(dto.getAaa027());
+	dto.setAaa027(aaa027);
+
+	查询条件写法：(aaa027 like :aaa027)
+
+9、后台业务module类的增、删、改方法，统一使用 SysmanageUtil.execAjaxResult(业务service类.方法名)进行包装返回，如：
+	/**
+	 * 
+	 * addCs的中文名称：新增厨师
+	 * 
+	 * addCs的概要说明：
+	 * 
+	 * @param dto
+	 * @return Written by : zjf
+	 * 
+	 */
+	@At
+	@Ok("json")
+	public Object addCs(HttpServletRequest request, @Param("..") CsDTO dto) {
+		return SysmanageUtil.execAjaxResult(csglService.addCs(request, dto));
+	}
+
+10、后台业务service类的增、删、改方法，统一按下面格式定义。
+	/**
+	 * 
+	 * addCs的中文名称：新增厨师
+	 * 
+	 * addCs的概要说明：
+	 * 
+	 * @param dto
+	 * @return Written by : zjf
+	 * 
+	 */
+	public String addCs(HttpServletRequest request, CsDTO dto) {
+		try {
+			String flag;
+			flag = isExistsCs(dto);
+			if (flag != null) {
+				return flag;
+			}
+
+			addCsImp(request, dto);
+		} catch (Exception e) {
+			return Lang.wrapThrow(e).getMessage();
+		}
+		return null;
+	}
+	
+	@Aop( { "trans" })
+	public void addCsImp(HttpServletRequest request, CsDTO dto)
+			throws Exception {
+		Timestamp startTime = SysmanageUtil.currentTime();
+		String aaa027 = SysmanageUtil.getSysuser().getAaa027();
+		Long orgid = SysmanageUtil.getSysuser().getOrgid();
+
+		Cs cs = new Cs();
+		BeanHelper.copyProperties(dto, cs);
+		cs.setCsid(DbUtils.getSequenceStr());
+		cs.setCsbh(DbUtils.getOneValue(dao, "select getCsbh() from dual"));
+		cs.setAae011(SysmanageUtil.getSysuser().getUsername());
+		cs.setAae036(startTime);
+		dao.insert(cs);
+
+		//可预知的异常信息按下面格式抛出
+		throw new BusinessException("入参聚餐申报ID不能为空！");
+		
+		Timestamp endTime = SysmanageUtil.currentTime();
+		SysmanageUtil.writeSysoperatelog(request, startTime, endTime);
+	}
+	
+10、后台查询方法（需要返回数据的）业务，统一使用 SysmanageUtil.execAjaxResult(map,object)进行包装返回，如：	
+	/**
+	 * 
+	 * queryCsDTO的中文名称：查询厨师DTO
+	 * 
+	 * queryCsDTO的概要说明：
+	 * 
+	 * @param request
+	 * @param dto
+	 * @param pd
+	 * @return Written by : zjf
+	 * @throws Exception
+	 * 
+	 */
+	@At
+	@Ok("json")
+	public Object queryCsDTO(HttpServletRequest request,
+			@Param("..") CsDTO dto, @Param("..") PagesDto pd) throws Exception {
+		Map map = new HashMap();
+		try {		
+			CsDTO csDTO = null;
+			if (ls != null && ls.size() > 0) {
+				csDTO = (CsDTO) ls.get(0);
+			}
+			map.put("data", csDTO);
+			return SysmanageUtil.execAjaxResult(map, null);//无异常信息返回
+		} catch (Exception e) {
+			return SysmanageUtil.execAjaxResult(map, e);//异常返回
+		}
+	}
+
+
+10、维护下拉框参数方法（自动生成AA09,AA10参数表记录）
+call PRC_INSERTCODE('CLLX','车辆类型','1','1','厢式','199405',null,@P_CODE,@P_MSG); 
+call PRC_INSERTCODE('CLLX','车辆类型','1','2','高栏','199405',null,@P_CODE,@P_MSG);
+call PRC_INSERTCODE('CLLX','车辆类型','1','3','罐车','199405',null,@P_CODE,@P_MSG);
+call PRC_INSERTCODE('CLLX','车辆类型','1','4','平板','199405',null,@P_CODE,@P_MSG);
+
+11、生成系统操作日志
+Timestamp startTime = SysmanageUtil.currentTime();
+Timestamp endTime = SysmanageUtil.currentTime();
+SysmanageUtil.writeSysoperatelog(request, startTime, endTime);
+
+
+----------------------------------------------------------------------------------------
+手机接口统一编写规则：
+1.返回DTO对象【map中用key=“data”标识】
+	/**
+	 * 
+	 * getAa01toJSON的中文名称：查询系统参数表AA01
+	 * 
+	 * getAa01toJSON的概要说明：
+	 * 
+	 * @param aaa001
+	 * @return Written by : zjf
+	 * 
+	 */
+	@At
+	@Ok("json")
+	public Object getAa01toJSON(String aaa001) {
+		Map map = new HashMap();
+		try {
+			Aa01 aa01 = null;
+			aa01 = SysmanageUtil.getAa01(aaa001);
+			if (aa01 != null) {
+				map.put("data", aa01);
+			} else {
+				throw new BusinessException("获取系统参数表数据【" + aaa001 + "】失败！");
+			}
+			return SysmanageUtil.execAjaxResult(map, null);
+		} catch (Exception e) {
+			return SysmanageUtil.execAjaxResult(map, e);
+		}
+	}
+
+2.返回数据集合【map中用key=“rows”,“total”标识】
+	/**
+	 * 
+	 * querySysorgZTreeAsync的中文名称：按Ztree插件格式构造机构树
+	 * 
+	 * querySysorgZTreeAsync的概要说明：异步加载（传入父节点ID）
+	 * 
+	 * @param dto
+	 * @return
+	 * @throws Exception
+	 *             Written by : zjf
+	 * 
+	 */
+	@At
+	@Ok("json")
+	public Object querySysorgZTreeAsync(HttpServletRequest request) throws Exception {
+		try {
+			List sysorgList = (List) sysorgService.querySysorgZTreeAsync(request);
+			Map m = new HashMap();
+			m.put("rows", sysorgList);
+			m.put("total", sysorgList.size());
+
+			return SysmanageUtil.execAjaxResult(m, null);
+		} catch (Exception e) {
+			return SysmanageUtil.execAjaxResult(null, e);
+		}
+	}
+
+3.返回数据集合【map中用key=“rows”,“total”标识】
+
+	/**
+	 * 
+	 * queryCompany的中文名称：查询所有企业信息
+	 * 
+	 * queryCompany的概要说明：
+	 * 
+	 * @param request
+	 * @param dto
+	 * @param pd
+	 * @return
+	 * @throws Exception
+	 *             Written by : zjf
+	 * 
+	 */
+	@At
+	@Ok("json")
+	public Object queryCompany(HttpServletRequest request, @Param("..") PcompanyDTO dto, @Param("..") PagesDto pd) throws Exception {
+		Map map = new HashMap();
+		try {
+			map = sjbService.queryCompany(request, dto, pd);
+			return SysmanageUtil.execAjaxResult(map, null);
+		} catch (Exception e) {
+			return SysmanageUtil.execAjaxResult(map, e);
+		}
+	}

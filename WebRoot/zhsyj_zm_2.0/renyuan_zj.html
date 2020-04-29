@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>安全员详情</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style>
+        #table {
+            background-color: #F5F5F5;
+            border: 1px #D1D1D1 solid;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="middle" style="height: auto">
+        <h3 style="font-weight:bold;font-size:20px;margin-top:5px;text-align:center;" id="title1"></h3>
+        <pre style="font-size:13px;margin-top:5px;padding-top:5px;text-align:left;" id="summary"></pre>
+        <div>
+            <table width="100%" align="center" style="padding: 20px">
+                <tr>
+                    <td style="text-align:center">
+                        <img id="jkzm" style="width:316px; height:222px;"
+                             rel="images/kong.jpg" src="images/kong.jpg"
+                             class="jqzoom"/></br></br>健康证明
+                    </td>
+                    <td style="text-align:center">
+                        <img id="pxhgz" style="width:316px; height:222px;"
+                             rel="images/kong.jpg" src="images/kong.jpg"
+                             class="jqzoom"/></br></br>食品安全培训合格证
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="foot"></div>
+<div class="img-shadow">
+    <div class="img-box" style="padding: 0px;text-align: center" >
+        <div id="yl">
+            <img>
+        </div>
+        <div class="img-gb" style='background-image: url("images/cancle.png");width: 38px; height: 38px;'></div>
+    </div>
+</div>
+<script>
+    $('#top').load("muban_top.html");
+    $('#foot').load("muban_foot.html");
+    var pageNum = 1, pageSize = 10, pageSum = 0;
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, ryid = '', ryxm = '', ryzwgw = '', rylxdh = '', ryzt = '';
+    var comdalei = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("ryid" == name) {
+            ryid = list[i].split('=')[1];
+        }
+        if ("ryxm" == name) {
+            ryxm = list[i].split('=')[1];
+        }
+        if ("ryzwgw" == name) {
+            ryzwgw = list[i].split('=')[1];
+        }
+        if ("rylxdh" == name) {
+            rylxdh = list[i].split('=')[1];
+        }
+        if ("ryzt" == name) {
+            ryzt = list[i].split('=')[1];
+        }
+    }
+    window.onload = function () {
+        getFjList(pageNum, pageSize);
+    };
+
+    function getFjList(page, pageSize) {
+        $.ajax({
+            url: pathname + "/api/tmsyj/getFjList",
+            type: "post",
+            dataType: 'json',
+            data: {fjwid: ryid, fjtype: '5,6'},
+            success: function (result) {
+                if (result.code == '0') {
+                    $('#title1').append(ryxm);
+                    var html = "";
+                    html += "<table id='table' width=90% align='center' style=\"font-size:14px;line-height:35px\">";
+                    html += "<tr>";
+                    html += "<td width=100 style='text-align:right'>职务：</td>";
+                    html += "<td>" + ryzwgw + "</td>";
+                    html += "<td width=100 style='text-align:right'>联系方式：</td>";
+                    html += "<td>" + rylxdh + "</td>";
+                    html += "<td style='text-align:right'>在职状态：</td>";
+                    html += "<td>" + ryzt + "</td>";
+                    html += "</tr>";
+                    html += "</table>";
+                    $('#summary').append(html);
+                    $.each(result.rows, function (index, item) {
+                        var fjpath = checkImg(item.fjpath);
+                        if (item.fjtype == "5") {
+                            $('#jkzm').attr('src', fjpath);
+                            $('#jkzm').attr('rel', fjpath);
+                            $('#jkzm').attr('onclick', "showPic('"+fjpath+"')");
+                        }
+                        if (item.fjtype == "6") {
+                            $('#pxhgz').attr('src', fjpath);
+                            $('#pxhgz').attr('rel', fjpath);
+                            $('#pxhgz').attr('onclick', "showPic('"+fjpath+"')");
+                        }
+                    });
+//                        $(".jqzoom").imagezoom();
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+    //图片预览
+    function showPic(url) {
+        $(".img-shadow").show();
+        $('#yl').find('img').attr('style', 'width: 780px;height: 488px ;');
+        $('#yl').find('img').attr('src', url);
+    }
+
+    //预览
+    $(".img-gb").click(function () {
+        $(".img-shadow").hide()
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20110221">
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0" footerHeight="0">
+<PaperSetting/>
+</ReportSettings>
+<ElementCase class="com.fr.report.SingleBlock">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,723900,723900,1257300,723900,990600,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[2743200,2743200,2743200,2743200,2743200,2743200,2514600,38100,3771900,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="9" rs="3" s="0">
+<O>
+<![CDATA[商丘市农村集体聚餐食品安全承诺书]]></O>
+<Expand/>
+</C>
+<C c="0" r="3" cs="9" s="1">
+<O>
+<![CDATA[      为确保农村集体聚餐人员的餐饮食品安全，根据《食品安全法》等相]]></O>
+<Expand/>
+</C>
+<C c="0" r="4" cs="9">
+<O>
+<![CDATA[关法律法规，农村集体聚餐举办者和承办厨师作出如下承诺：]]></O>
+<Expand/>
+</C>
+<C c="0" r="5" cs="9">
+<O>
+<![CDATA[1.承办厨师持有效健康合格证明和餐饮食品安全知识培训合格证上]]></O>
+<Expand/>
+</C>
+</CellElementList>
+</ElementCase>
+</Report>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="104"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

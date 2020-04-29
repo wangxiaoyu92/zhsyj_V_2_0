@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DatasourceManager xmlVersion="20110221">
+<ConnectionMap>
+<Connection name="FRDemo" class="com.fr.data.impl.JDBCDatabaseConnection">
+<DatabaseAttr/>
+<JDBCDatabaseAttr url="jdbc:mysql://192.168.0.80:3306/syjzhpt" driver="com.mysql.jdbc.Driver" user="root" password="___0022007c0039003b005100e3" encryptPassword="true">
+<DBCPAttr maxActive="150"/>
+</JDBCDatabaseAttr>
+</Connection>
+</ConnectionMap>
+<TableDataMap>
+<TableData name="server" class="com.fr.data.impl.DBTableData">
+<Parameters/>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[FRDemo]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[SELECT * FROM sysuser]]></Query>
+</TableData>
+</TableDataMap>
+</DatasourceManager>

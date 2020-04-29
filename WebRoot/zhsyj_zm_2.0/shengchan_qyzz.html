@@ -1,0 +1,190 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>生产企业资质透明</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="middle">
+        <div id="zm" class="bt_sc">
+            <b style="line-height: 40px">资质证明</b>
+        </div>
+        <div id="aq" class="bt_sc3">
+            <b style="line-height: 40px">食品安全员</b>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+
+        <div id="zzzm">
+            <img id="xkz" src="images/kong.jpg" style="width: 350px;height: 250px;float: left;margin-left: 30px">
+            <img id="yyzz" src="images/kong.jpg" style="width: 350px;height: 250px;float: left;margin-left: 30px">
+            <img id="t3" src="images/kong.jpg" style="width: 350px;height: 250px;float: left;margin-left: 30px">
+        </div>
+        <div id="spaqy" style="display: none">
+            <table id="content" style="width:100%;margin-top: 20px;border-collapse:collapse;">
+                <thead style="font-weight:bold;border-bottom:1px #999999 solid;">
+                <tr>
+                    <td></td>
+                    <td>姓名</td>
+                    <td>职务</td>
+                    <td>联系方式</td>
+                    <td>在职状态</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <div id="page" class="page_btn" style="width: 100%;text-align:center;clear: left"></div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<div class="img-shadow">
+    <div class="img-box" style="padding: 0px;text-align: center" >
+        <div id="yl">
+            <img>
+        </div>
+        <div class="img-gb" style='background-image: url("images/cancle.png");width: 38px; height: 38px;'></div>
+    </div>
+</div>
+
+
+<div id="foot"></div>
+<script>
+    $('#top').load("muban_top.html");
+    $('#foot').load("muban_foot.html");
+    var pageNum = 1, pageSize = 10, pageSum = 0;
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, comid = '', commc = '';
+    var comdalei = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            comid = list[i].split('=')[1];
+        }
+        if ("comdalei" == name) {
+            comdalei = list[i].split('=')[1];
+        }
+        if ("commc" == name) {
+            commc = list[i].split('=')[1];
+        }
+    }
+
+    $(function () {
+        $("#zm").bind("mouseover", function () {
+            $('#zzzm').show();
+            $('#spaqy').hide();
+            $("#zm").attr('class', 'bt_sc');
+            $("#aq").attr('class', 'bt_sc3');
+        });
+        $("#aq").bind("mouseover", function () {
+            $('#zzzm').hide();
+            $('#spaqy').show();
+            $("#zm").attr('class', 'bt_sc3');
+            $("#aq").attr('class', 'bt_sc');
+        })
+
+    });
+
+    window.onload = function () {
+        getPcompanyXkzFjList();
+        getPcomryList();
+    };
+
+    function getPcompanyXkzFjList() {
+        $.ajax({
+            url: pathname + "/api/tmsyj/getPcompanyXkzFjList",
+            type: "post",
+            dataType: 'json',
+            data: {comid: comid, comxkzlx: '1,3,4'},
+            success: function (result) {
+                if (result.code == '0') {
+                    $.each(result.rows, function (index, item) {
+                        var img = checkImg(item.fjpath);
+                        if (item.comxkzlx == "1") {
+                            $('#yyzz').attr('src', img);
+                            $('#yyzz').attr('rel', img);
+                            $('#yyzz').attr('onclick', "showPic('"+img+"')");
+                        }
+                        if (item.comxkzlx == "3") {
+                            $('#xkz').attr('src', img);
+                            $('#xkz').attr('rel', img);
+                            $('#xkz').attr('onclick', "showPic('"+img+"')");
+                        }
+                        if (item.comxkzlx == "4") {
+                            $('#t3').attr('src', img);
+                            $('#t3').attr('rel', img);
+                            $('#t3').attr('onclick', "showPic('"+img+"')");
+                        }
+                    });
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+
+
+    //图片预览
+    function showPic(url) {
+        $(".img-shadow").show();
+        $('#yl').find('img').attr('style', 'width: 780px;height: 488px ;');
+        $('#yl').find('img').attr('src', url);
+    }
+
+    //预览
+    $(".img-gb").click(function () {
+        $(".img-shadow").hide()
+    });
+
+    function getPcomryList() {
+        $.ajax({
+            url: pathname + "/api/tmsyj/getPcomryList",
+            type: "post",
+            dataType: 'json',
+            data: {page: pageNum, rows: pageSize, comid: comid, rysfspaqgly: '1', rysfjdgsry: '1'},
+            success: function (result) {
+                if (result.code == '0') {
+                    page(pageSize, pageNum, result.total, '#0A8044');
+                    $('#content tbody').empty();
+                    $.each(result.rows, function (index, item) {
+                        var html = "";
+                        if (index != result.rows.length - 1) {
+                            html += "<tr style='border-bottom:1px #999999 dotted;height:40px;'>";
+                        } else {
+                            html += "<tr style='border-bottom:1px #00A0EA solid;height:40px;'>";
+                        }
+                        html += "<td><img src='images/person.png' width='16px' height='16px'></td>"
+                        html += "<td>" + IsNull(item.ryxm) + "</td>";
+                        html += "<td>" + IsNull(item.ryzwgwmc) + "</td>";
+                        html += "<td>" + IsNull(item.rylxdh) + "</td>";
+                        html += "<td>" + IsNull("在职") + "</td>";
+                        html += "<td><a href=\"javascript:linkToSelf('renyuan_zj.html?ryid=" + IsNull(item.ryid) + "&ryxm=" + IsNull(item.ryxm) + "&commc=" + commc + "&ryzwgw=" + IsNull(item.ryzwgwmc) + "&rylxdh=" + IsNull(item.rylxdh) + "&ryzt=" + IsNull('在职') + "','101401');\" style=\"background: #4fb9f1;color: #fff;padding: 5px 5px;border-radius: 6px;font-size:11pt;text-decoration:none;\">查看证件</a></td>";
+                        html += "</tr>";
+                        $('#content tbody').append(html);
+                    });
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>用户注册</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+
+</head>
+
+<body>
+
+<!------------banner------------->
+<div id="top"></div>
+
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="zhuce">
+        <p class="zhucetit">用户注册</p>
+
+        <form id="form" onsubmit="return myreg()">
+            <ul>
+                <li class="name">
+                    <p class="name fl"><span>*</span>登录账号(建议字母或数字)：</p>
+                    <input class="fl" type="text" name="username" id="username"/>
+
+                    <p class="fl tishi">* 用户名不能为空</p>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>真实姓名：</p>
+                    <input class="fl" type="text" name="description" id="description"/>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>登录密码：</p>
+                    <input class="fl" type="password" id="passwd" name="passwd"/>
+                    <ul class="mimaqiangdu fl">
+                        <li class="huise" style="display: none"></li>
+                        <li class="hongse" style="display: none"></li>
+                        <li class="huangse" style="display: none"></li>
+                        <li class="lvse" style="display: none"></li>
+                    </ul>
+                    <ul class="mimaqiangdu02 fl">
+                        <li class="huise" style="display: none "></li>
+                        <li class="hongse">弱</li>
+                        <li class="huangse">中</li>
+                        <li class="lvse">强</li>
+                    </ul>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>确认密码：</p>
+                    <input class="fl" type="password" name="repasswd" id="repasswd"/>
+
+                    <div class="clear"></div>
+                </li>
+                <div class="clear"></div>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>所属统筹区：</p>
+                    <input class="tongchouqu fl" name="aaa027name" type="text" id="aaa027name"/>
+                    <input name="aaa027" id="aaa027" type="hidden"/>
+
+                    <div class="clear"></div>
+                </li>
+                <div class="clear"></div>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>联系电话：</p>
+                    <input class="fl" type="text" name="mobile" id="mobile"/>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>联系地址：</p>
+                    <input class="fl" type="text" name="userlxdz" id="userlxdz"/>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>电子邮箱Email(找回密码用到)：</p>
+                    <input class="fl" type="text" name="useremail" id="useremail"/>
+
+                    <div class="clear"></div>
+                </li>
+                <li class="zhanghao">
+                    <p class="name fl"><span>*</span>单位名称：</p>
+                    <input class="fl" type="text" name="userdwmc" id="userdwmc"/>
+
+                    <div class="clear"></div>
+                </li>
+                <div class="clear"></div>
+            </ul>
+            <div class="anniu" style="text-align: center">
+                <input type="submit" value="立即注册"/>
+                <input type="reset" value="清空重置" id="reset"/>
+                <!--<a href="javascript:history.go(-1)"><input type="button" value="返回" id="fh"/></a>-->
+                <input type="button" value="忘记密码" id="wjmm"/>
+            </div>
+        </form>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+<div id="foot"></div>
+
+<div class="tcs-shadow">
+    <div class="tcs-box">
+        <div class="shadow-title">选择统筹区</div>
+        <!--统筹树容器-->
+        <iframe src="http://localhost/zhsyj_layui/jsp/pub/pub/selectAaa027_easyui.jsp?aaa027flag=0&opkind=comreg"
+                width="400px" height="300px"></iframe>
+        <img src="images/cancle.png" width="38" height="38"/>
+    </div>
+</div>
+<script>
+    $("#top").load("muban_top.html");
+    $("#foot").load("muban_foot.html");
+    //统筹区隐藏
+    $(".tcs-box img").click(function () {
+        $(".tcs-shadow").hide();
+    });
+
+    //统筹区显示
+    $(".tongchouqu").click(function () {
+        $(".tcs-shadow").show();
+    });
+
+    //密码强度
+    $('#passwd').keyup(function () {
+        var strongRegex = new RegExp("^(?=.{8,})(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*\\W).*$", "g");
+        var mediumRegex = new RegExp("^(?=.{7,})(((?=.*[A-Z])(?=.*[a-z]))|((?=.*[A-Z])(?=.*[0-9]))|((?=.*[a-z])(?=.*[0-9]))).*$", "g");
+        var enoughRegex = new RegExp("(?=.{6,}).*", "g");
+
+        if (false == enoughRegex.test($(this).val())) {
+            $('.huise').removeAttr('style');
+            $('.hongse').attr('style', 'display: none');
+            $('.huangse').attr('style', 'display: none');
+            $('.lvse').attr('style', 'display: none');
+            //密码小于六位的时候，密码强度图片都为灰色
+        }
+        else if (strongRegex.test($(this).val())) {
+            $('.huise').removeAttr('style');
+            $('.hongse').removeAttr('style');
+            $('.huangse').removeAttr('style');
+            $('.lvse').removeAttr('style');
+            //密码为八位及以上并且字母数字特殊字符三项都包括,强度最强
+        }
+        else if (mediumRegex.test($(this).val())) {
+            $('.huise').removeAttr('style');
+            $('.hongse').removeAttr('style');
+            $('.huangse').removeAttr('style');
+            $('.lvse').attr('style', 'display: none');
+            //密码为七位及以上并且字母、数字、特殊字符三项中有两项，强度是中等
+        }
+        else {
+            $('.huise').removeAttr('style', 'display: none');
+            $('.hongse').removeAttr('style');
+            $('.huangse').attr('style', 'display: none');
+            $('.lvse').attr('style', 'display: none');
+            //如果密码为6为及以下，就算字母、数字、特殊字符三项都包括，强度也是弱的
+        }
+        return true;
+    });
+
+    $('#wjmm').click(function () {
+        linkToSelf('mima.html');
+    })
+    // 保存
+    function myreg() {
+        var url = pathname + '/pub/pub/saveNetuserReg';
+        var loginurl = pathname + '/index.jsp';
+
+        if (!$('#username').val()) {
+            alert('登录账号不能为空');
+            return false;
+        }
+        if (!$('#passwd').val()) {
+            alert('登录密码不能为空');
+            return false;
+        }
+        if (!$('#aaa027').val()) {
+            alert('所属统筹区不能为空');
+            return false;
+        }
+        if (!$('#mobile').val()) {
+            alert('联系电话不能为空');
+            return false;
+        }
+        if (!$('#userlxdz').val()) {
+            alert('联系地址不能为空');
+            return false;
+        }
+        if (!$('#useremail').val()) {
+            alert('电子邮箱不能为空');
+            return false;
+        }
+        if (!$('#userdwmc').val()) {
+            alert('单位名称不能为空');
+            return false;
+        }
+        if (!$('#description').val()) {
+            alert('真实姓名不能为空');
+            return false;
+        }
+        if ($('#passwd').val() != $('#repasswd').val()) {
+            alert('密码不一致');
+            return false;
+        }
+
+        $.ajax({
+            url: url,
+            type: "post",
+            dataType: 'json',
+            data: $('#form').serialize(),
+            success: function (result) {
+                if (result.code == '0') {
+                    alert('注册成功');
+                    linkToSelf('/index.jsp');
+//                    $('#reset').click();
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+        return false;
+    }
+
+
+</script>
+</body>
+</html>

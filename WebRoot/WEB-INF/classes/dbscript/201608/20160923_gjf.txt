@@ -1,0 +1,7 @@
+ALTER TABLE zfajdj
+  ADD COLUMN userid VARCHAR(32) DEFAULT NULL COMMENT '操作员ID' AFTER orgid,
+  ADD COLUMN comdalei VARCHAR(10) DEFAULT NULL COMMENT '企业大类，权限控制用' AFTER userid;
+ALTER TABLE pcompany
+  ADD COLUMN orgid VARCHAR(32) DEFAULT NULL COMMENT '机构id' AFTER comrcjdglry;
+
+UPDATE pfjcs p SET p.fjcssfdx='1'  WHERE p.FJCSDMZ='ZFAJZFWS38';

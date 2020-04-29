@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>企业网络地图</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+
+    <script src="../jsp/tmsyj/tmcsc/js/jquery-1.12.0.min.js"></script>
+    <link rel="stylesheet" href="../jslib/map/css/style.css" type="text/css">
+    <script src="http://webapi.amap.com/maps?v=1.4.6&key=242ac779e3b541ba8bcf5990601e3768"></script>
+    <script src="../jslib/map/Trank.js" type="text/javascript"></script>
+    <script src="../jslib/map/MapService.js" type="text/javascript"></script>
+    <script src="../jslib/map/mapUil.js" type="text/javascript"></script>
+    <script src="../jslib/map/markSettings.js" type="text/javascript"></script>
+    <script language="javascript" type="text/javascript">
+        var zxdjdzb = '113.985934';
+        var zxdwdzb = '34.724774';
+        var zxdcity = '中牟县';
+        var jdzb = "";
+        var wdzb = "";
+        var address = "";
+        function initMap() {
+            mapInit("mapContainer", zxdjdzb, zxdwdzb, 11);
+            addBeiJing(zxdcity);
+            mapObj.clearMap();  // 清除地图覆盖物
+        }
+    </script>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="fenbu">
+        <!--地图容器-->
+        <div id="mapContainer" style="width:99%;height:90%;border:#00A1EA solid 1px;margin:10px">
+            &nbsp;
+        </div>
+    </div>
+</div>
+
+
+<div id="foot"></div>
+<script type="text/javascript">
+    $("#top").load("muban_top.html");
+    $("#foot").load("muban_foot.html");
+</script>
+
+<script type="text/javascript">
+    var basePath = pathname;
+    var t_comid, t_commc, t_comdalei, t_comxiaolei;
+    var tantiao = "0";
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name;
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            t_comid = list[i].split('=')[1];
+        }
+        if ("commc" == name) {
+            t_commc = list[i].split('=')[1];
+        }
+        if ("comdalei" == name) {
+            t_comdalei = list[i].split('=')[1];
+        }
+        if ("comxiaolei" == name) {
+            t_comxiaolei = list[i].split('=')[1];
+        }
+    }
+    window.onload=function(){
+        initMap();
+        getPcompanyList();
+    };
+
+    function getPcompanyList() {
+        $.ajax({
+            url: basePath + "/api/tmsyj/getPcompanyList",
+            type: "post",
+            dataType: 'json',
+            data: {comid: t_comid, commc: t_commc, comdalei: t_comdalei, comxiaolei: t_comxiaolei, comspjkbz: ''},
+            success: function (result) {
+                if (result.code == '0') {
+                    $('#sp').html(result.total);
+                    if (result.total > 0) {
+                        var mydata = result.rows;
+
+                        initialize(mydata);
+                    }
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+
+    //地图初始化时，在地图上添加一个marker标记,鼠标点击marker可弹出自定义的信息窗体
+    function initialize(mydata) {
+        //mapObj.clearMap();  // 清除地图覆盖物
+        // 向地图添加标注点
+        for (var i = 0; i < mydata.length; i++) {
+            var lng = mydata[i].comjdzb;
+            var lat = mydata[i].comwdzb;
+            var address = mydata[i].comdz;
+            var commc = mydata[i].commc;
+            var comid = mydata[i].comid;
+            var combxbz = mydata[i].combxbz;
+            var comspjkbz = mydata[i].comspjkbz;
+            var comhhbbz = mydata[i].comhhbbz;
+            var comdalei = mydata[i].comdalei;
+            var title = "地图定位";
+            var content = [];
+            content.push("企业名称：" + commc);
+            content.push("企业地址：" + address);
+            var icon = '';
+            if (comhhbbz == '2') {
+                icon =pathname +"/jsp/tmsyj/tmcsc/images/frame/heidw.png";
+            } else if (comhhbbz == '1') {
+                icon = pathname +"/jsp/tmsyj/tmcsc/images/frame/hongdw.png";
+            } else {
+                icon = pathname +"/jsp/tmsyj/tmcsc/images/marker_red.png";
+            }
+            if (lng > 0 && lat > 0) {
+                if (tantiao == 1 && mydata.length == 1) {
+                    addMarker_tantiao(lng, lat, address, title, commc, icon);
+                } else {
+                    addMarker_tantiao_no(lng, lat, address, title, commc, icon);
+                }
+            }
+            //addMarker_infowindow(lng,lat,address,title,content,icon,flag);
+        }
+        mapObj.setFitView();
+    }
+
+    //搜索企业
+    function searchEnterprise() {
+        mapObj.clearMap();  // 清除地图覆盖物
+        addBeiJing(zxdcity);
+        t_commc = $("#t_commc").val();
+        tantiao = '1';
+        getPcompanyList();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+
+<div id="head" style="margin-top:10px;">
+	<div class="top">
+		<div class="logo">
+			<a href="#"><img alt="智慧食药监logo" src="images/logo-tmcy.png"
+				title="智慧食药监logo" align="absmiddle" id="top_logo"> </a>
+		</div>
+		<div class="search">
+			<form id="form1" method="get">
+				<span>站内搜索</span> <span> <input type="text"
+					id="t_commc" name="commc" class="inputs"
+					placeholder="请输入企业名称"> <input type="button" id="search"
+					class="btns" value="搜 索" onclick="searchEnterprise()"> </span>
+			</form>
+		</div>
+	</div>
+</div>
+<!--导航-->
+<div id="nav" class="layout">
+	<ul>
+		<li><a href="javascript:linkToSelf(basePath + 'index_zhsyj_ty.jsp');">网站首页</a>
+			<div></div>
+		</li>
+		<li><a href="javascript:void(0);">美食地图</a>
+			<div style="display: none;">
+				<a href="javascript:linkToSelf('map.jsp?comdalei=101201&currlocation=美食地图>>学校食堂');">学校食堂</a>
+				<a href="javascript:linkToSelf('map.jsp?comdalei=101202&currlocation=美食地图>>社会餐饮');">社会餐饮</a>
+				<!--<a href="javascript:linkToSelf('map.jsp?comdalei=101204&currlocation=美食地图>>农村集体聚餐');">农村集体聚餐</a> -->
+				<a href="javascript:linkToSelf('map.jsp?comdalei=101205&currlocation=美食地图>>网络餐饮');">网络餐饮</a>
+			</div>
+		</li>
+		<li><a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=101201&currlocation=学校食堂');">学校食堂</a>
+			<div style="display: none;">
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120101&currlocation=单位食堂>>托幼机构食堂');">托幼机构食堂</a> -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120102&currlocation=单位食堂>>学校食堂');">学校食堂</a> -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120103&currlocation=单位食堂>>中等职业学校食堂');">中等职业学校食堂</a> -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120104&currlocation=单位食堂>>高等院校食堂');">高等院校食堂</a> -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120105&currlocation=单位食堂>>机关企事业单位食堂');">机关企事业单位食堂</a> -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120106&currlocation=单位食堂>>养老机构食堂');">养老机构食堂</a> -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120107&currlocation=单位食堂>>建筑工地食堂');">建筑工地食堂</a> -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120108&currlocation=单位食堂>>其他单位食堂');">其他单位食堂</a> -->
+			</div>
+		</li>
+		<li><a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=101202&currlocation=社会餐饮');">社会餐饮</a>
+			<div style="display: none;">
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120201&currlocation=餐馆>>特大型餐馆');">特大型餐馆</a> -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120202&currlocation=餐馆>>大型餐馆');">大型餐馆</a> -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120203&currlocation=餐馆>>中型餐馆');">中型餐馆</a> -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list.jsp?comxiaolei=10120204&currlocation=餐馆>>小型餐馆');">小型餐馆</a> -->
+			</div>
+		</li>
+		<!--<li><a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=101204&currlocation=农村集体聚餐');">农村集体聚餐</a>-->
+			<!--<div></div>-->
+		<!--</li>-->
+		<li><a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=101205&currlocation=网络餐饮');">网络餐饮</a>
+			<div></div>
+		</li>
+<!-- 		<li><a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=101206&currlocation=小吃店');">小吃店</a> -->
+<!-- 			<div></div> -->
+<!-- 		</li> -->
+<!-- 		<li><a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=101207&currlocation=饮品店');">饮品店</a> -->
+<!-- 			<div></div> -->
+<!-- 		</li> -->
+<!-- 		<li><a href="javascript:linkToSelf('enterprise_list.jsp?comdalei=101203&currlocation=食品摊贩');">食品摊贩</a> -->
+<!-- 			<div></div> -->
+<!-- 		</li> -->
+<!-- 		<li><a href="javascript:void(0);">信息公开</a> -->
+<!-- 			<div style="display: none;"> -->
+<!-- 				<a href="javascript:linkToSelf('punish_list.html?code=QTJD&currlocation=信息公开>>日常监督检查');">日常监督检查</a>  -->
+<!-- 				<a href="javascript:linkToSelf('punish_list.html?code=ZXJC&currlocation=信息公开>>专项检查情况');">专项检查情况</a>  -->
+<!-- 				<a href="javascript:linkToSelf('punish_list.html?code=JDCJ&currlocation=信息公开>>监督抽检情况');">监督抽检情况</a>  -->
+<!-- 				<a href="javascript:linkToSelf('punish_list.html?code=XZCF&currlocation=信息公开>>行政处罚情况');">行政处罚情况</a>  -->
+<!-- 				<a href="javascript:linkToSelf('news_list.html?code=FLFG&currlocation=信息公开>>监管责任');">监管责任</a> -->
+<!-- 			</div> -->
+<!-- 		</li>	 -->
+<!-- 		<li><a href="javascript:void(0);">双责任清单</a>  -->
+<!-- 			<div style="display: none;">  -->
+<!-- 				<a href="javascript:linkToSelf('zrqd.html?tp=1&currlocation=双责任清单>>企业主体责任清单');">企业主体责任清单</a>  -->
+<!-- 				<a href="javascript:linkToSelf('zrqd.html?tp=2&currlocation=双责任清单>>执法监管人员责任清单');">执法人员责任清单</a>  -->
+<!-- 			</div>  -->
+<!-- 		</li> -->
+<!-- 		<li><a href="javascript:void(0);">企业红黑榜</a>  -->
+<!-- 			<div style="display: none;">  -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list2.jsp?currlocation=企业名录>>优秀名录');">红榜名单</a>  -->
+<!-- 				<a href="javascript:linkToSelf('enterprise_list2.jsp?currlocation=企业名录>>异常名录');">黑榜名单</a>  -->
+<!-- 			</div>  -->
+<!-- 		</li> -->
+<!-- 		<li><a href="javascript:void(0);">案例警示</a>  -->
+<!-- 			<div style="display: none;">  -->
+<!-- 				<a href="javascript:linkToSelf('news_list2.html?code=ALJS01&currlocation=案例警示>>典型案例');">典型案例</a>  -->
+<!-- 				<a href="javascript:linkToSelf('news_list2.html?code=ALJS02&currlocation=案例警示>>消费警示');">消费警示</a>  -->
+<!-- 			</div>  -->
+<!-- 		</li>   -->
+	</ul>
+</div>
+<div style="width:80%;min-width:1030px;margin: 5px auto 5px auto;">
+    <!-- 广告图片 -->
+    <div id="advertising">
+        <img src="images/tmcy.jpg" style="width: 100%;height: 100%;"/>
+    </div>
+</div>
+<script type="text/javascript">	
+	$(function() {
+		//下拉菜单
+		$("#nav li").hover(function() {
+			$(this).find("div").show();
+		}, function() {
+			$(this).find("div").hide();
+		});
+		
+		initTopLogo();
+	});
+	//搜索企业
+	function searchEnterprise() {	
+		var url = "enterprise_list.jsp?commc=" + $("#t_commc").val();
+		linkToSelf(url);
+	}
+	
+	function initTopLogo(){
+		$.ajax({
+	        url: basePath + "api/tmsyj/getAa01List",
+	        type: "post",
+	        dataType: 'json',
+	        data: { aaa001: "SYSAAA027" },
+	        success: function(result){ 
+            	if(result.code == '0'){
+		            $.each(result.rows, function (index, item) {
+		            	var sysaaa027 = item.aaa005;		                
+	                    if (sysaaa027 == "410523000000") {//汤阴县
+	                        $("#top_logo").attr("src","images/logo-tmcy-tangyin.png");
+	                    } else if (sysaaa027 == "411700000000") {//驻马店
+	                        $("#top_logo").attr("src","images/logo-tmcy-zhumadian.png");
+	                    } else if (sysaaa027 == "411400000000") {//商丘
+	                        $("#top_logo").attr("src","images/logo-tmcy-shangqiu.png");
+	                    } else if (sysaaa027 == "411282000000") {//灵宝
+	                        $("#top_logo").attr("src","images/logo-tmcy-lingbao.png");
+	                    } else if (sysaaa027 == "410482000000") {//汝州
+	                        $("#top_logo").attr("src","images/logo-tmcy-ruzhou.png");
+	                    }					                
+		            });
+				}else{
+					alert(result.msg);	
+				}
+	        }
+	    });	
+	}	
+</script>
+

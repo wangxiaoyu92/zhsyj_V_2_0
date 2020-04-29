@@ -1,0 +1,87 @@
+.grouphead{background:#DAEEF5;font-weight:bold;color:#444;font-size:22px;color:blue; text-align:left;height: 30px;vertical-align: center}
+.duihaokuang{
+  height: 8px
+}
+.prowcolor{
+  background-color: #EDEBEB; 
+  font-size:15pt;
+  text-align: center;
+  margin:0px;
+}
+.zfwsbackgroundcolor{
+  background-color: #BADFAD;  
+}
+.myReadOnlyColor{
+	background-color: #edede6; 
+}
+.myred {
+	color: red;
+}
+.zfwstextReadonly{
+	background-color: #edede6;  
+	font-size:10pt;
+}
+.zfwsInputtextReadonly{
+	border:none;
+    font-size:10pt;
+    color:#333;
+    width:298px;
+    border:0px;
+    margin-right:10px;
+    vertical-align:middle;
+    color:#000;
+    background:#ECFDF6;
+}
+
+.zfwsInputtextReadonly2{
+    font-size:10pt;
+    color:#333;
+    width:298px;
+    border-radius:3px;
+    border:1px solid #ccc;
+    box-shadow:0 1px 5px #f2f2f2 inset;
+    margin-right:10px;
+    vertical-align:middle;
+    color:#000;
+    background:#ECFDF6;
+}
+
+.input_readonly{
+	border-top: 1px solid #6699cc;
+	border-bottom: 1px solid #6699cc;
+	border-left: 1px solid #6699cc;
+	border-right: 1px solid #6699cc;
+	background-color:#ededed;
+	text-decoration: none;
+	vertical-align: bottom;
+	background-position: bottom;
+	font-size:12px;	
+}
+
+.groupbox
+{
+	padding:0px 5px 0px 5px;
+	width:100%;
+	border-top:1px solid #ff9900;
+	border-bottom:0px;
+	border-left:0px;
+	border-right:0px;
+	font-size:12px;
+}
+.groupboxshrink
+{
+	padding:0px 5px 0px 5px;
+	width:100%;
+	border-top:1px solid #ff9900;
+	border-bottom:0px;
+	border-left:0px;
+	border-right:0px;
+	font-size:12px;
+}
+.groupboxtitle
+{
+	padding:0px 5px 0px 5px;
+	font-size:12px;
+	border:0px;
+	background-color:white;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title></title>
+<script src="./js/jquery-1.12.0.min.js"></script>
+<script src="./js/layer.js"></script>
+<link href="./css/layer.css" rel="stylesheet">
+<script type="text/javascript">	
+	function areaTemplate(sqfqcode){
+		parent.window.open("scxq2.html");
+		parent.window.open("http://222.184.79.76:8080/ecp/index/findJyhListByAreaCode.do?scfqcode="+scfqcode+"&comid="+parent.$("#comid").val());
+	}
+</script>
+</head>
+<body>
+	<div
+		style="width:650px;height:400px;overflow:hidden;border:1px solid Olive;"
+		id="csctu">
+		<img src="images/scfq.jpg" border="0" usemap="#Map"
+			style="width:100%;height:100%;">
+		<map name="Map">
+			<area shape="rect" coords="497,296,537,419" href="javascript:areaTemplate('ZICHAN')">
+			<area shape="rect" coords="162,334,338,379" href="javascript:areaTemplate('SHU3')">
+			<area shape="rect" coords="166,402,338,446" href="javascript:areaTemplate('SHU4')">
+			<area shape="rect" coords="162,261,340,302" href="javascript:areaTemplate('SHU2')">
+			<area shape="rect" coords="162,192,339,235" href="javascript:areaTemplate('SHU1')">
+			<area shape="rect" coords="163,121,341,165" href="javascript:areaTemplate('ROU2')">
+			<area shape="rect" coords="162,49,340,91" href="javascript:areaTemplate('ROU1')">
+			<area shape="rect" coords="55,45,112,129" href="javascript:areaTemplate('TUZAI')">
+			<area shape="rect" coords="53,152,110,399" href="javascript:areaTemplate('SHUICHAN')">
+			<area shape="rect" coords="398,50,439,121" href="javascript:areaTemplate('GANHUO')">
+			<area shape="rect" coords="399,135,438,180" href="javascript:areaTemplate('SHUIGUO1')">
+			<area shape="rect" coords="397,192,435,240" href="javascript:areaTemplate('SHUIGUO2')">
+			<area shape="rect" coords="398,258,437,324" href="javascript:areaTemplate('HECAI')">
+			<area shape="rect" coords="399,339,437,408" href="javascript:areaTemplate('SHUSHI')">
+			<area shape="rect" coords="493,154,539,287" href="javascript:areaTemplate('DOUZHIPIN')">
+			<area shape="rect" coords="496,48,538,141" href="javascript:areaTemplate('QITA')">
+		</map>
+	</div>
+</body>
+</html>

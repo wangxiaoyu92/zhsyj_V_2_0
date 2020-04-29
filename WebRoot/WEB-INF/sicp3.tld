@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN" "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.2</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>xart</short-name>
+	<uri>http://xart.bjlbs.com.cn/tags/tags-xart</uri>
+	<description><![CDATA[
+		<p>标签库，包括html小标签</p>
+		<p>更新日期：2014-05-05</p>
+	]]></description>
+
+	<tag>
+		<name>groupbox</name>
+		<tag-class>com.lbs.leaf.ui.taglib.html.GroupBoxTag</tag-class>
+		<body-content>jsp</body-content>
+		<description>
+		<![CDATA[
+			<p>用于信息的分类显示</p>
+		]]>
+		</description>
+		<attribute>
+			<name>title</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				<p>分组标题</p>
+			]]>
+			</description>
+		</attribute>
+		<!-- zcl add.是否初始显示内容 .布尔值 -->
+		<attribute>
+			<name>display</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				<p>分组的标题显示，内容是否显示。display值为：block,none</p>
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>id</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				<p>分组的id</p>
+			]]>
+			</description>
+		</attribute>
+		<attribute>
+			<name>contentId</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+			<description>
+			<![CDATA[
+				<p>分组内容的ID</p>
+			]]>
+			</description>
+		</attribute>
+	</tag>
+	
+	<tag>
+		<name>errors</name>
+		<tag-class>com.lbs.leaf.ui.taglib.html.ErrorsTag</tag-class>
+		<body-content>empty</body-content>
+		<description>将后台业务的异常信息用弹出框的方式显示出来</description>
+	</tag>
+</taglib>

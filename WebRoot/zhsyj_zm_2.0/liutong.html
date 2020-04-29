@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>透明流通</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style>
+        .xux {
+            width: 200px;
+            height: 320px;
+            float: left;
+            margin: 10px;
+            padding: 10px;
+        }
+
+        p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        /*button {*/
+
+        /*padding: 5px;*/
+
+        /*}*/
+
+        #xuexiao {
+            width: 100%;;
+        }
+
+        button {
+            width: 70px;
+            height: 40px;
+            /*background-color: #337AB7;*/
+        }
+    </style>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div id="content"></div>
+    <div id="page" style="width: 100%;text-align:center;clear: left"></div>
+    <div class="clear"></div>
+</div>
+
+
+<div id="foot"></div>
+<script type="text/javascript">
+    $("#top").load("muban_top.html");
+    $("#foot").load("muban_foot.html");
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, commc = '';
+    var comdalei = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("commc" == name) {
+            commc = list[i].split('=')[1];
+        }
+        if ("comdalei" == name) {
+            comdalei = list[i].split('=')[1];
+        }
+    }
+
+    var pageNum = 1, pageSize = 10, pageSum = 0;
+
+    window.onload=function(){
+        data();
+    };
+    function data() {
+        $.ajax({
+            url: pathname + "/api/tmsyj/getPcompanyList",
+            type: "post",
+            dataType: 'json',
+            data: {
+                page: pageNum,
+                rows: pageSize,
+                commc:commc,
+//                comxiaolei:
+//                aaa027
+                comdalei: comdalei,
+                comspjkbz: '1'
+            },
+            success: function (result) {
+                if (result.code == '0') {
+                    pageSum = result.total;
+                    page(pageSize, pageNum, pageSum,'#BB691F');
+                    var html = "";
+                    var data = result.rows;
+                    for (var i = 0; i < data.length; i++) {
+                        html += "<div class='xux' onclick=\"showSpjky('" + data[i].comid + "','" + data[i].commc + "','" + +data[i].comxiaolei + "','" + data[i].comdalei + "')\">";
+                        html += "<img src='" + checkImg(data[i].icon) + "' style='width:200px;height:200px' />";
+                        html += "<p style='font-weight: 600;color: #000000;font-size: 1.2em'>" + data[i].commc + "</p>";
+                        html += "<p>地址:" + data[i].comdz + "</p>";
+                        html += "<p>主营范围:" + IsNull(data[i].comxiaoleiname) + "</p>";
+                        html += "</div>";
+                    }
+                    $('#content').html(html);
+                    $("#content").children("div").bind("mouseover", function () {
+                        $(this).css('box-shadow', '2px 2px 10px rgba(0, 159, 100,1)');
+                    }).bind("mouseout", function () {
+                        $(this).css('box-shadow', '');
+                    });
+                }
+            }
+        })
+    }
+
+    function showSpjky(comid, commc, comxiaolei,comdalei) {
+        linkToSelf('liutong_detail.html?comid=' + comid + '&commc=' + commc + '&comxiaolei=' + comxiaolei,comdalei);
+    }
+
+</script>
+</body>
+</html>

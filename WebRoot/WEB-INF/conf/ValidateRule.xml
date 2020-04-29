@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Validate>
+	<rule name="required" class="com.lbs.leaf.validate.validator.ValidateRequired"/>
+	<rule name="String1" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String2" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String3" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String6" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String10" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String12" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String16" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String20" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String30" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String32" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String40" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String50" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String100" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String200" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>
+	<rule name="String4000" class="com.lbs.leaf.validate.validator.ValidateVarChar"/>	
+	<rule name="year" class="com.lbs.leaf.validate.validator.ValidateYear"/>
+	<rule name="yearMonth" class="com.lbs.leaf.validate.validator.ValidateYearMonth"/>
+	<rule name="yearMonthDay" class="com.lbs.leaf.validate.validator.ValidateYearMonthDay"/>
+	<rule name="date" class="com.lbs.leaf.validate.validator.ValidateDate"/>
+	<rule name="int" class="com.lbs.leaf.validate.validator.ValidateInt" />
+	<rule name="number" class="com.lbs.leaf.validate.validator.ValidateNumber"/>
+	<rule name="bigDecimal" class="com.lbs.leaf.validate.validator.ValidateBigDecimal"/>
+	<rule name="money" class="com.lbs.leaf.validate.validator.ValidateMoney"/>
+	<rule name="positiveMoney" class="com.lbs.leaf.validate.validator.ValidatePositiveMoney"/>
+	<rule name="postNumber" class="com.lbs.leaf.validate.validator.ValidatePostNumber"/>
+	<rule name="card" class="com.lbs.leaf.validate.validator.ValidateCard"/>
+</Validate>

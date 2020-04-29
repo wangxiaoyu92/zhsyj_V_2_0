@@ -1,0 +1,23 @@
+/*Start*/
+.mainnav {	height: 52px;
+	width: 100%;
+	background: url(../images/mainnav.jpg)no-repeat;
+	background-size: 100% 100%;margin-bottom: 20px; }
+	.Mnav{	width: 1100px;
+	margin: 0 auto;}
+.mainnav ul{ display:inline-block; }
+.mainnav ul li {float:left; display:inline-block; position:relative; z-index:9999;}
+.mainnav ul li.end{ background:none;}
+.mainnav ul li a{ height:52px; display:inline-block;font-size:18px; color:#5a5a5a; line-height:52px; font-weight:bold; width:90px; text-align:center;}
+.mainnav ul li a:hover,.mainnav ul li a.acur{color:#fff;background:#0067B5;}
+
+
+.mainnav ul li ul{ position:absolute; left:0px; top:41px;  padding:5px 0px; background:#007bcb; display:none; _width:107px;}
+.mainnav ul li ul li{ background:none;}
+.mainnav ul li ul li a{ height:30px; line-height:30px; font-size:14px; font-weight:normal; color:#fff;font-weight: bold;}
+.mainnav ul li ul li a:hover{color:#007bcb;background: #EEEEEE;}
+.mainnav ul li ul li a.acur{color:#007bcb;background: #EEEEEE;}
+
+.mainnav ul li ul ul{ position:absolute; left:90px;  width:120px; display:none; top:0px; }
+
+/*End*/

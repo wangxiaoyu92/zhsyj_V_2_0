@@ -1,0 +1,133 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>生产企业自查透明</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style type="text/css">
+        button {
+            width: 70px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="middle">
+        <div style="clear: left">
+            <ul id="content"></ul>
+            <div style="clear: left;"></div>
+        </div>
+        <div id="page" class="page_btn" style="width: 100%;text-align:center;clear: left;margin-top: 10px"></div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+
+<div id="foot"></div>
+
+
+<script>
+    $('#top').load("muban_top.html");
+    $('#foot').load("muban_foot.html");
+    var pageNum = 1, pageSize = 10, pageSum = 0;
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, comid = '', commc = '';
+    var comdalei = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            comid = list[i].split('=')[1];
+        }
+        if ("comdalei" == name) {
+            comdalei = list[i].split('=')[1];
+        }
+        if ("commc" == name) {
+            commc = list[i].split('=')[1];
+        }
+    }
+    var score = [];
+
+    window.onload = function () {
+        data();
+    };
+
+    //查询列表
+    function data() {
+        $.ajax({
+            url: pathname + "/api/tmsyj/getZcbList",
+            type: "post",
+            dataType: 'json',
+            data: {page: pageNum, rows: pageSize, hviewjgztid: comid, jgztpickind: '1'},
+            success: function (result) {
+                if (result.code == '0') {
+                    page(pageSize, pageNum, result.total, '#2d286b');
+                    $('#content').empty();
+                    $.each(result.rows, function (index, item) {
+                        var html = "";
+                        var g_img = "";
+                        var g_txt = "";
+                        var h_img = "";
+                        var h_txt = "";
+                        if (index != result.rows.length - 1) {
+                            html += "<li style=\"border-bottom:1px #999 dotted;height:auto;width: 100%;\">";
+                        } else {
+                            html += "<li style=\"border-bottom:1px #00a0ea solid;height:auto;width: 100%;\">";
+                        }
+                        html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                        html += " <tr>";
+                        html += "     <td rowspan=\"5\" width=\"140px\" style=\"padding-right:15px;\">";
+                        html += "         <a href=\"javascript:linkToSelf('shengchan_qyzcb.html?hviewjgztid=" + IsNull(item.hviewjgztid) + "&fjwid=" + IsNull(item.hjgztxgpicid) + "&commc=" + commc + "&bt= 企业自查表" + "',101101);\"><img src=\"" + checkImg(item.fjpath) + "\" style=\"height:120px;width:160px;\" /></a>";
+                        html += "     </td>";
+                        html += "     <td><a href=\"javascript:linkToSelf('shengchan_qyzcb.html?hviewjgztid=" + IsNull(item.hviewjgztid) + "&fjwid=" + IsNull(item.hjgztxgpicid) + "&commc=" + commc + "&bt= 企业自查表" + "',101101);\" style=\"font-size:17px;color:#0000F0;text-decoration:none;font-weight:bold;\" >自查时间：" + IsNull(item.zcsj) + "</a></td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "     <td  style=\"font-size:14px;\">自查人：" + IsNull(item.zcry) + "</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "     <td  style=\"font-size:14px;\">联系电话：" + IsNull(item.lxdh) + "</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "     <td  style=\"font-size:14px;\">操作时间：" + IsNull(item.aae036) + "</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "</table>";
+                        html += "</li>";
+                        $('#content').append(html);
+                    });
+                    if (result.total <= 0) {
+                        var html = "";
+                        html += "<li style=\"border-bottom:1px #00a0ea solid;height:auto;width: 100%\">";
+                        html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                        html += " <tr>";
+                        html += "     <td rowspan=\"5\" width=\"140px\" style=\"padding-right:15px;\">";
+                        html += "         <img src=\"images/kong.jpg\" style=\"height:120px;width:160px;\" />";
+                        html += "     </td>";
+                        html += "     <td  style=\"font-size:14px;\">没有查询到符合条件的记录，如有疑问请联系系统管理员！</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "</table>";
+                        html += "</li>";
+                        $('#content').append(html);
+                    }
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

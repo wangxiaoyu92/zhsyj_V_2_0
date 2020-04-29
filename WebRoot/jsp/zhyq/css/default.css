@@ -1,0 +1,57 @@
+/*
+#1 = 35A49C
+#2 = 79CDC0
+*/
+a {
+	color: #35A49C;
+}
+a:hover {
+	color: #79CDC0;
+}
+
+/* menu */
+.nav>li>a:hover {
+	color: #79CDC0;
+}
+
+.navbar .navbar-nav > .active > a {
+	color: #79CDC0;
+}
+
+/* flexslider */
+.flex-control-paging li a {
+	background: #35A49C;
+}
+
+.flex-direction-nav a:hover{
+	background-color:#35A49C;
+}
+
+.testimonial span.author a {
+	color: #79CDC0;
+}
+
+/* --- icon box hover --- */
+
+
+/* btn */
+.btn-theme {
+  background: #79CDC0;
+}
+.btn-theme:hover,.btn-theme:focus,.btn-theme:active{
+  background: #35A49C;
+}
+
+/* contact */
+.validation {
+	color:#35A49C;
+}
+
+/* footer */
+.social-circle li a {
+	background:#35A49C;
+}
+
+a.scrollup{
+	background:#35A49C;
+}

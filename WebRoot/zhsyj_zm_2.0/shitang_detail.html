@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>食堂监控详情</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+
+
+    <script type="text/javascript" src="../jslib/myflashflowplayer/mclzplayer2.js"></script>
+    <script type="text/javascript" src="../jslib/myflashflowplayer/flowplayer-3.2.13.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../jslib/myflashflowplayer/mclzplayer.css"/>
+    <link href="../jslib/myflashflowplayer/home/inPage/files/css/css.css" rel="stylesheet" type="text/css" />
+    <link href="../jslib/myflashflowplayer/FlatUI/dist/css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../jslib/myflashflowplayer/FlatUI/dist/css/flat-ui.min.css" rel="stylesheet">
+
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="detail">
+        <div class="detailcon">
+            <div class="detailtxt fl">
+                <img id="enterpriseIcon" width="200" height="150" class="fl"/>
+
+                <div class="divp">
+                    <h2 id="commc"></h2>
+
+                    <p id="comdz">地址：</p>
+
+                    <p id="comyddh">电话：</p>
+                </div>
+            </div>
+            <div class="fanhui fr"><a href='shitang.html?comdalei=101201&title=学校食堂'>返回列表</a></div>
+            <div class="clear"></div>
+        </div>
+
+        <div class="mclzPlayer"></div>
+    </div>
+
+    <div class="clear"></div>
+</div>
+
+<div id="foot"></div>
+
+<script type="text/javascript">
+    $("#top").load("muban_top.html");
+    $("#foot").load("muban_foot.html");
+
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, comid = '', jklx = '', camorgid = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            comid = list[i].split('=')[1];
+        }
+        if ("jklx" == name) {
+            jklx = list[i].split('=')[1];
+        }
+        if ("camorgid" == name) {
+            camorgid = list[i].split('=')[1];
+        }
+    }
+
+    window.onload = function () {
+        getPcompany();
+        loadCameraPlayer();
+        loadCameraList(comid, jklx, camorgid);
+    };
+
+    //获取企业名称,地址,电话,门头照
+    function getPcompany() {
+        $.ajax({
+            type: "POST",
+            dataType: "json",
+            url: pathname + '/api/tmsyj/getPcompanyList',
+            data: {'comid': comid, userid: 6},
+            success: function (data) {
+                var userInfos = data.rows;
+                if (userInfos.length > 0) {
+                    $('#commc').html(userInfos[0].commc);
+                    $('#comdz').append(userInfos[0].comdz);
+                    $('#comyddh').append(userInfos[0].comyddh);
+                    $('#enterpriseIcon').attr("src", pathname + userInfos[0].icon);
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

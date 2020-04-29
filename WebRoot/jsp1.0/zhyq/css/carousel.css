@@ -1,0 +1,165 @@
+<!--<!--/*//'*/-->-->/*--------------------------------------------------	CAROUSEL SLIDER---------------------------------------------------*/
+.car-image2 {
+    -webkit-animation-duration: 2s;
+    -moz-animation-duration: 2s;
+    -o-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-delay: 0.3s;
+    -moz-animation-delay: 0.3s;
+    -o-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+
+.car-middlecircle span {
+    position: absolute;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 120px;
+    width: 120px;
+    margin: 0 auto;
+    right: 0;
+    font-weight: 100;
+    font-size: 19px;
+}
+
+.carouselText2 {
+    font-size: xx-large;
+    color: #404040;
+    padding: 10px 20px;
+    display: inline-block;
+    letter-spacing: 0.2em;
+    font-weight: lighter;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    font-family: "Microsoft YaHei";
+}
+
+.carouselText3 {
+    color: #404040;
+    padding: 10px 20px;
+    display: inline-block;
+    letter-spacing: 0.2em;
+    font-weight: lighter;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    border-radius: 0;
+    font: 25px/32px "Microsoft Yahei";
+}
+
+.carouselText4 {
+    font-size: x-large;
+    color: white;
+    /*letter-spacing: 1em;*/
+    font-weight: lighter;
+}
+.carousel .item {
+    padding: 0 0;
+/*    height: 700px;*/
+    overflow: hidden;
+    -webkit-background-size: cover !Important;
+    -moz-background-size: cover !Important;
+    -o-background-size: cover !Important;
+    background-size: cover !Important;
+}
+
+.carousel p {
+    color: #fff;
+    line-height: 30px;
+}
+
+.carousel-fade .carousel-inner .item {
+    opacity: 1;
+    -webkit-transition-property: opacity;
+    -moz-transition-property: opacity;
+    -o-transition-property: opacity;
+    transition-property: opacity;
+}
+
+.carousel-fade .carousel-inner .active {
+    opacity: 1;
+}
+
+.carousel-fade .carousel-inner .active.left, .carousel-fade .carousel-inner .active.right {
+    left: 0;
+    opacity: 0;
+    z-index: 1;
+}
+
+.carousel-fade .carousel-inner .next.left, .carousel-fade .carousel-inner .right {
+    opacity: 1;
+}
+
+.car-four {
+    margin-top: 80px;
+}
+
+.car-four i {
+    margin-bottom: 20px;
+    font-size: 5em;
+}
+
+@media only screen and (max-width: 1024px) {
+
+    .carouselText2 {
+        font-size: large;
+        padding: 0 0;
+        display: inline-block;
+        letter-spacing: 0.2em;
+        font-weight: lighter;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 0;
+        font-family: "Microsoft YaHei";
+    }
+
+    .carouselText3 {
+
+        font-size: small;
+        padding: 0 0;
+        display: inline-block;
+        letter-spacing: 0.2em;
+        font-weight: lighter;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+        border-radius: 0;
+        font-family: "Microsoft Yahei";
+    }
+
+    .car-image2 {
+        display: none;
+    }
+
+    .carouselText4 {
+        font-size: large;
+        color: white;
+        /*letter-spacing: 1em;*/
+        font-weight: lighter;
+    }
+
+    .car-four {
+        margin-top: 20px;
+    }
+
+    .car-four i {
+        margin-bottom: 10px;
+        font-size: 3em;
+    }
+
+    .carouselText1 {
+        margin-bottom: 10px;
+        font-size: x-small;
+        line-height: 10px;
+    }
+
+    .carousel p {
+        color: #fff;
+        line-height: 10px;
+    }
+
+    .carousel .item {
+        padding: 0 0;
+        height: 350px;
+        overflow: hidden;
+        -webkit-background-size: cover !Important;
+        -moz-background-size: cover !Important;
+        -o-background-size: cover !Important;
+        background-size: cover !Important;
+    }
+}

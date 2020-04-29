@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20110221">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="ydid"/>
+<O>
+<![CDATA[]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[FRDemo]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[ select ddid,dd.ddbh,ddhwmc,ddhwzl,ddzt,xdsj, khbh,khname,khdz,khlxr,khlxdh, zxhdbh,zxhdname,zxhddz,zxhdlxr,zxhdlxdh, yd.ydid,ydbh,ydhwzl,ydzt,wldh,ddsj,jdsj,jssj,ysjl,hszt, sj.sjid,sjbh,sjname,sjcph,sjsjh, yfhsid,yf,yb,lcbz,glf,yy,xslc,hslc,hssj 
+from Dd dd,Sjqd qd,Sj sj,Yd yd left join Yfhs yf 
+on yd.ydid = yf.ydid 
+where 1=1 
+and dd.ddbh = yd.ddbh 
+and yd.qdid = qd.qdid 
+and qd.sjid = sj.sjid
+and yd.ydid = ${ydid} ]]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0" footerHeight="0">
+<PaperSetting orientation="1">
+<Margin top="986400" left="2743200" bottom="986400" right="2743200"/>
+</PaperSetting>
+</ReportSettings>
+<ElementCase class="com.fr.report.SingleBlock">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[1981200,1447800,1447800,1447800,1447800,1447800,1447800,1447800,723900,723900,723900,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[4457700,5105400,4457700,4572000,3886200,4686300,3429000,4381500,2743200,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="8" s="0">
+<O>
+<![CDATA[骏化集团物流公司运费核算单 ]]></O>
+<Expand/>
+</C>
+<C c="8" r="0">
+<Expand/>
+</C>
+<C c="0" r="1" s="1">
+<O>
+<![CDATA[客户名称：]]></O>
+<Expand/>
+</C>
+<C c="1" r="1" cs="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="khname"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="1" s="1">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+</C>
+<C c="5" r="1" s="1">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+</C>
+<C c="6" r="1" s="1">
+<O>
+<![CDATA[打印时间：]]></O>
+<Expand/>
+</C>
+<C c="7" r="1">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=FORMAT(todate(), "yyyy年MM月dd日")]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="0" r="2" s="2">
+<O>
+<![CDATA[订单编号：]]></O>
+<Expand/>
+</C>
+<C c="1" r="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="ddbh"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="2" s="2">
+<O>
+<![CDATA[货物名称：]]></O>
+<Expand/>
+</C>
+<C c="3" r="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="ddhwmc"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="2" s="2">
+<O>
+<![CDATA[运单编号：]]></O>
+<Expand/>
+</C>
+<C c="5" r="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="ydbh"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="2" s="2">
+<O>
+<![CDATA[运量（吨）：]]></O>
+<Expand/>
+</C>
+<C c="7" r="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="ydhwzl"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="3" s="2">
+<O>
+<![CDATA[客户地址：]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="khdz"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="3" s="2">
+<O>
+<![CDATA[客户联系人：]]></O>
+<Expand/>
+</C>
+<C c="5" r="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="khlxr"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="3" s="2">
+<O>
+<![CDATA[联系电话：]]></O>
+<Expand/>
+</C>
+<C c="7" r="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="khlxdh"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="4" s="2">
+<O>
+<![CDATA[装货地点：]]></O>
+<Expand/>
+</C>
+<C c="1" r="4" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="zxhddz"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="4" s="2">
+<O>
+<![CDATA[装货联系人：]]></O>
+<Expand/>
+</C>
+<C c="5" r="4" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="zxhdlxr"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="4" s="2">
+<O>
+<![CDATA[联系电话：]]></O>
+<Expand/>
+</C>
+<C c="7" r="4" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="zxhdlxdh"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="5" s="2">
+<O>
+<![CDATA[运费（元）：]]></O>
+<Expand/>
+</C>
+<C c="1" r="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="yf"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="5" s="2">
+<O>
+<![CDATA[油补（元）：]]></O>
+<Expand/>
+</C>
+<C c="3" r="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="yb"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="5" s="2">
+<O>
+<![CDATA[里程补助（元）：]]></O>
+<Expand/>
+</C>
+<C c="5" r="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="lcbz"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="5" s="2">
+<O>
+<![CDATA[过路费（元）：]]></O>
+<Expand/>
+</C>
+<C c="7" r="5" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="glf"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="6" s="2">
+<O>
+<![CDATA[行驶里程（公里）：]]></O>
+<Expand/>
+</C>
+<C c="1" r="6" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="xslc"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="6" s="2">
+<O>
+<![CDATA[核算里程（公里）：]]></O>
+<Expand/>
+</C>
+<C c="3" r="6" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="hslc"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="6" s="2">
+<O>
+<![CDATA[核算时间：]]></O>
+<Expand/>
+</C>
+<C c="5" r="6" cs="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="hssj"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="7" s="2">
+<O>
+<![CDATA[司机姓名：]]></O>
+<Expand/>
+</C>
+<C c="1" r="7" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="sjname"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="7" s="2">
+<O>
+<![CDATA[车牌号：]]></O>
+<Expand/>
+</C>
+<C c="3" r="7" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="sjcph"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="7" s="2">
+<O>
+<![CDATA[司机手机号：]]></O>
+<Expand/>
+</C>
+<C c="5" r="7" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="sjsjh"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="6" r="7" s="2">
+<O>
+<![CDATA[司机签字：]]></O>
+<Expand/>
+</C>
+<C c="7" r="7" s="3">
+<Expand dir="0"/>
+</C>
+</CellElementList>
+</ElementCase>
+</Report>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="1" size="104" underline="1"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4">
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+</StyleList>
+</WorkBook>

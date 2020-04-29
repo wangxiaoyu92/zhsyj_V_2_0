@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<WorkBook xmlVersion="20110221">
+<TableDataMap>
+<TableData name="ds1" class="com.fr.data.impl.DBTableData">
+<Parameters>
+<Parameter>
+<Attributes name="csid"/>
+<O>
+<![CDATA[2016051720175196894464537]]></O>
+</Parameter>
+</Parameters>
+<Attributes maxMemRowCount="-1"/>
+<Connection class="com.fr.data.impl.NameDatabaseConnection">
+<DatabaseName>
+<![CDATA[FRDemo]]></DatabaseName>
+</Connection>
+<Query>
+<![CDATA[select csid,csbh,csxm,cspym,cscsrq,cssjh,cssfzjlx,cssfzjhm,
+getAa10_aaa103('AAC004',csxb) csxb, 
+getAa10_aaa103('AAC011',cswhcd) cswhcd,
+getAa10_aaa103('CYNX',cscynx) cscynx,
+getAa10_aaa103('JKZM',csjkzm) csjkzm,
+getAa10_aaa103('PXQK',cspxqk) cspxqk,
+csjtzz,cshkszd,csyx,csqq,cswx,csjkzyxq,csjktjdd,cspxhgzyxq,cssflx,csfwdbh,csfwqy,
+comshengdm,comshengmc,comshidm,comshimc,comxiandm,comxianmc,
+comxiangdm,comxiangmc,comcundm,comcunmc,
+(select username from Sysuser where userid = a.aae011) as aae011,
+to_char(aae036,'yyyy-mm-dd') aae036,aae013
+from Cs a 
+where 1=1  
+and  a.csid = '${csid}']]></Query>
+</TableData>
+</TableDataMap>
+<Report class="com.fr.report.WorkSheet" name="sheet1">
+<ReportSettings headerHeight="0" footerHeight="0">
+<PaperSetting>
+<Margin top="986400" left="2743200" bottom="986400" right="2743200"/>
+</PaperSetting>
+</ReportSettings>
+<ElementCase class="com.fr.report.SingleBlock">
+<ReportPageAttr>
+<HR/>
+<FR/>
+<HC/>
+<FC/>
+</ReportPageAttr>
+<RowHeight defaultValue="723900">
+<![CDATA[723900,685800,685800,1600200,1714500,1562100,1600200,1676400,2171700,2286000,7924800,7429500,1181100,723900]]></RowHeight>
+<ColumnWidth defaultValue="2743200">
+<![CDATA[3048000,4229100,2895600,2019300,3276600,3429000,2552700,723900,2514600,2743200,2743200]]></ColumnWidth>
+<CellElementList>
+<C c="0" r="0" cs="9" rs="3" s="0">
+<O>
+<![CDATA[商丘市农村聚餐厨师备案登记表]]></O>
+<Expand/>
+</C>
+<C c="0" r="3" s="1">
+<O>
+<![CDATA[编号：]]></O>
+<Expand/>
+</C>
+<C c="1" r="3" s="2">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="csbh"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="comxianmc"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="3" r="3" s="1">
+<O>
+<![CDATA[县(区)]]></O>
+<Expand/>
+</C>
+<C c="4" r="3" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="comxiangmc"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="3" s="1">
+<O>
+<![CDATA[乡镇(街道)]]></O>
+<Expand/>
+</C>
+<C c="6" r="3" cs="2" s="3">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="comcunmc"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="8" r="3" s="1">
+<O>
+<![CDATA[村(社区)]]></O>
+<Expand/>
+</C>
+<C c="0" r="4" s="4">
+<O>
+<![CDATA[厨师姓名]]></O>
+<Expand/>
+</C>
+<C c="1" r="4" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="csxm"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="4" s="4">
+<O>
+<![CDATA[性别]]></O>
+<Expand/>
+</C>
+<C c="3" r="4" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="csxb"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="4" r="4" s="4">
+<O>
+<![CDATA[年龄]]></O>
+<Expand/>
+</C>
+<C c="5" r="4" s="4">
+<Expand dir="0"/>
+</C>
+<C c="6" r="4" cs="3" rs="4" s="4">
+<O t="Formula" class="Formula">
+<Attributes>
+<![CDATA[=Toimage("D://Program Files2//apache-tomcat-6.0.26//webapps/syjzhpt//camera//download//"+"2016051720175196894464537"+".jpg")。]]></Attributes>
+</O>
+<Expand/>
+</C>
+<C c="0" r="5" s="4">
+<O>
+<![CDATA[联系电话]]></O>
+<Expand/>
+</C>
+<C c="1" r="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="cssjh"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="5" s="4">
+<O>
+<![CDATA[身份证号]]></O>
+<Expand/>
+</C>
+<C c="3" r="5" cs="3" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="cssfzjhm"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="6" s="4">
+<O>
+<![CDATA[家庭住址]]></O>
+<Expand/>
+</C>
+<C c="1" r="6" cs="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="csjtzz"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="7" s="4">
+<O>
+<![CDATA[服务范围]]></O>
+<Expand/>
+</C>
+<C c="1" r="7" cs="5" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="csfwqy"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="8" s="4">
+<O>
+<![CDATA[学历]]></O>
+<Expand/>
+</C>
+<C c="1" r="8" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="cswhcd"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="8" s="4">
+<O>
+<![CDATA[餐饮食品安全培训合格证]]></O>
+<Expand/>
+</C>
+<C c="3" r="8" cs="2" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="cspxqk"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="8" s="4">
+<O>
+<![CDATA[从事厨师年限]]></O>
+<Expand/>
+</C>
+<C c="6" r="8" cs="3" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="cscynx"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="9" s="4">
+<O>
+<![CDATA[健康证]]></O>
+<Expand/>
+</C>
+<C c="1" r="9" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="csjkzm"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="2" r="9" s="4">
+<O>
+<![CDATA[健康证有效期]]></O>
+<Expand/>
+</C>
+<C c="3" r="9" cs="2" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="csjkzyxq"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="9" s="4">
+<O>
+<![CDATA[健康查体地点]]></O>
+<Expand/>
+</C>
+<C c="6" r="9" cs="3" s="4">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="csjktjdd"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="10" s="4">
+<O>
+<![CDATA[是否患有不得从事餐饮食品安全工作的传染性疾病]]></O>
+<Expand/>
+</C>
+<C c="1" r="10" cs="8" s="4">
+<Expand dir="0"/>
+</C>
+<C c="0" r="11" s="4">
+<O>
+<![CDATA[以往是否有餐饮食品安全违法行为记录]]></O>
+<Expand/>
+</C>
+<C c="1" r="11" cs="8" s="5">
+<Expand/>
+</C>
+<C c="0" r="12" s="6">
+<O>
+<![CDATA[备案日期：]]></O>
+<Expand/>
+</C>
+<C c="1" r="12" s="6">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="aae036"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="5" r="12" s="6">
+<O>
+<![CDATA[登记人员：]]></O>
+<Expand/>
+</C>
+<C c="6" r="12" cs="3" s="6">
+<O t="DSColumn">
+<Attributes dsName="ds1" columnName="aae011"/>
+<Complex/>
+<RG class="com.fr.report.cellElement.core.FunctionGrouper"/>
+<Parameters/>
+</O>
+<Expand dir="0"/>
+</C>
+<C c="0" r="13" s="1">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+</C>
+<C c="1" r="13">
+<Expand/>
+</C>
+<C c="2" r="13">
+<Expand/>
+</C>
+<C c="3" r="13">
+<Expand/>
+</C>
+<C c="4" r="13">
+<Expand/>
+</C>
+<C c="5" r="13">
+<Expand/>
+</C>
+<C c="6" r="13">
+<Expand/>
+</C>
+<C c="7" r="13">
+<Expand/>
+</C>
+<C c="8" r="13">
+<Expand/>
+</C>
+<C c="0" r="14">
+<Expand/>
+</C>
+<C c="1" r="14">
+<Expand/>
+</C>
+<C c="2" r="14">
+<Expand/>
+</C>
+<C c="3" r="14">
+<Expand/>
+</C>
+<C c="4" r="14">
+<Expand/>
+</C>
+<C c="5" r="14">
+<Expand/>
+</C>
+<C c="6" r="14">
+<Expand/>
+</C>
+<C c="7" r="14">
+<Expand/>
+</C>
+<C c="8" r="14">
+<Expand/>
+</C>
+<C c="0" r="15">
+<Expand/>
+</C>
+<C c="1" r="15">
+<Expand/>
+</C>
+<C c="2" r="15">
+<Expand/>
+</C>
+<C c="3" r="15">
+<Expand/>
+</C>
+<C c="4" r="15">
+<Expand/>
+</C>
+<C c="5" r="15">
+<Expand/>
+</C>
+<C c="6" r="15">
+<Expand/>
+</C>
+<C c="7" r="15">
+<Expand/>
+</C>
+<C c="8" r="15">
+<Expand/>
+</C>
+<C c="0" r="16">
+<Expand/>
+</C>
+<C c="1" r="16">
+<Expand/>
+</C>
+<C c="2" r="16">
+<Expand/>
+</C>
+<C c="3" r="16">
+<Expand/>
+</C>
+<C c="4" r="16">
+<Expand/>
+</C>
+<C c="5" r="16">
+<Expand/>
+</C>
+<C c="6" r="16">
+<Expand/>
+</C>
+<C c="7" r="16">
+<Expand/>
+</C>
+<C c="8" r="16">
+<Expand/>
+</C>
+<C c="0" r="17">
+<Expand/>
+</C>
+<C c="1" r="17">
+<Expand/>
+</C>
+<C c="2" r="17">
+<Expand/>
+</C>
+<C c="3" r="17">
+<Expand/>
+</C>
+<C c="4" r="17">
+<Expand/>
+</C>
+<C c="5" r="17">
+<Expand/>
+</C>
+<C c="6" r="17">
+<Expand/>
+</C>
+<C c="7" r="17">
+<Expand/>
+</C>
+<C c="8" r="17">
+<Expand/>
+</C>
+<C c="0" r="18">
+<Expand/>
+</C>
+<C c="1" r="18">
+<Expand/>
+</C>
+<C c="2" r="18">
+<Expand/>
+</C>
+<C c="3" r="18">
+<Expand/>
+</C>
+<C c="4" r="18">
+<Expand/>
+</C>
+<C c="5" r="18">
+<Expand/>
+</C>
+<C c="6" r="18">
+<Expand/>
+</C>
+<C c="7" r="18">
+<Expand/>
+</C>
+<C c="8" r="18">
+<Expand/>
+</C>
+<C c="0" r="19">
+<Expand/>
+</C>
+<C c="1" r="19">
+<Expand/>
+</C>
+<C c="2" r="19">
+<Expand/>
+</C>
+<C c="3" r="19">
+<Expand/>
+</C>
+<C c="4" r="19">
+<Expand/>
+</C>
+<C c="5" r="19">
+<Expand/>
+</C>
+<C c="6" r="19">
+<Expand/>
+</C>
+<C c="7" r="19">
+<Expand/>
+</C>
+<C c="8" r="19">
+<Expand/>
+</C>
+<C c="0" r="20">
+<Expand/>
+</C>
+<C c="1" r="20">
+<Expand/>
+</C>
+<C c="2" r="20">
+<Expand/>
+</C>
+<C c="3" r="20">
+<Expand/>
+</C>
+<C c="4" r="20">
+<Expand/>
+</C>
+<C c="5" r="20">
+<Expand/>
+</C>
+<C c="6" r="20">
+<Expand/>
+</C>
+<C c="7" r="20">
+<Expand/>
+</C>
+<C c="8" r="20">
+<Expand/>
+</C>
+<C c="0" r="21">
+<Expand/>
+</C>
+<C c="1" r="21">
+<Expand/>
+</C>
+<C c="2" r="21">
+<Expand/>
+</C>
+<C c="3" r="21">
+<Expand/>
+</C>
+<C c="4" r="21">
+<Expand/>
+</C>
+<C c="5" r="21">
+<Expand/>
+</C>
+<C c="6" r="21">
+<Expand/>
+</C>
+<C c="7" r="21">
+<Expand/>
+</C>
+<C c="8" r="21">
+<Expand/>
+</C>
+<C c="0" r="22">
+<Expand/>
+</C>
+<C c="1" r="22">
+<Expand/>
+</C>
+<C c="2" r="22">
+<Expand/>
+</C>
+<C c="3" r="22">
+<Expand/>
+</C>
+<C c="4" r="22">
+<Expand/>
+</C>
+<C c="5" r="22">
+<Expand/>
+</C>
+<C c="6" r="22">
+<Expand/>
+</C>
+<C c="7" r="22">
+<Expand/>
+</C>
+<C c="8" r="22">
+<Expand/>
+</C>
+<C c="0" r="23" s="1">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+</C>
+<C c="1" r="23" s="6">
+<Expand dir="0"/>
+</C>
+<C c="2" r="23" s="1">
+<Expand/>
+</C>
+<C c="3" r="23" s="1">
+<Expand/>
+</C>
+<C c="4" r="23" s="1">
+<Expand/>
+</C>
+<C c="5" r="23" s="1">
+<O>
+<![CDATA[]]></O>
+<Expand/>
+</C>
+<C c="6" r="23" cs="3" s="6">
+<Expand dir="0"/>
+</C>
+</CellElementList>
+</ElementCase>
+</Report>
+<StyleList>
+<Style horizontal_alignment="0">
+<FRFont name="黑体" style="0" size="136"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="88" underline="1"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="4">
+<FRFont name="SimSun" style="0" size="88" underline="1"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+<Style horizontal_alignment="0">
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="72"/>
+<Background name="NullBackground"/>
+<Border>
+<Top style="1"/>
+<Bottom style="1"/>
+<Left style="1"/>
+<Right style="1"/>
+</Border>
+</Style>
+<Style>
+<FRFont name="SimSun" style="0" size="88"/>
+<Background name="NullBackground"/>
+<Border/>
+</Style>
+</StyleList>
+</WorkBook>

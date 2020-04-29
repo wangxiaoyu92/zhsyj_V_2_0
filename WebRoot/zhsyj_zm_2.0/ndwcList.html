@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>你点我检</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style>
+        button {
+            width: 70px;
+            height: 40px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<!------------banner------------->
+<div id="top"></div>
+
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <a href="javascript:linkToSelf('ndwcForm.html?commc=你点我检','')">
+        <button style="font-size: 18px;background-color: #42CB7A;width: 110px;">申请检测</button>
+    </a>
+    <!-------------xuexiaoshitang-------------------->
+    <div style="text-align: center">
+        <table id="content" style="width:100%;margin-top: 20px;border-collapse:collapse;line-height: 35px;padding: 5px;">
+            <thead style="font-weight:bold;text-align: center; font-size: 1.2em">
+            <tr>
+                <td>申请检测商品</td>
+                <td>申请人</td>
+                <td>申请时间</td>
+            </tr>
+            </thead>
+            <tbody style="text-align: center;"></tbody>
+        </table>
+    </div>
+    <div id="page" style="width: 100%;text-align:center;clear: left"></div>
+    <div class="clear"></div>
+</div>
+
+<div id="foot"></div>
+
+<script>
+    $("#top").load("muban_top.html");
+    $("#foot").load("muban_foot.html");
+    var pageNum = 1, pageSize = 30, pageSum = 0;
+
+
+    $(function () {
+        data();
+    });
+
+    function data() {
+        $.ajax({
+            url: pathname + "/api/tmsyj/querySqjccx",
+            type: "post",
+            dataType: 'json',
+            data: {page: pageNum, rows: pageSize, sfgk: '1'},
+            success: function (result) {
+                if (result.code == '0') {
+                    $('#content tbody').empty();
+                    var html = "";
+                    if(result.total>0){
+                        page(pageSize, pageNum, result.total, '#0F779E');
+                        $.each(result.rows, function (index, item) {
+                            if (index != result.rows.length - 1) {
+                                html += "<tr style=\"border-bottom:1px #999999 dotted;width: 100%;\">";
+                            } else {
+                                html += "<tr style=\"border-bottom:1px #00a0ea solid;width: 100%;\">";
+                            }
+                            html += "<td style=\"font-size:14px;color:#0000f0;text-decoration:none;font-weight:bold;\">" + IsNull(item.mc) + "</td>";
+                            html += "<td>" + IsNull2(item.sqrxm) + "</td>";
+                            html += "<td>" + IsNull(item.sqsj) + "</td>";
+                            html += "</tr>";
+                        });
+                    }else{
+                        html += "暂无数据";
+                    }
+                    $('#content tbody').append(html);
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

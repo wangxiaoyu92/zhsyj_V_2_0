@@ -1,0 +1,164 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>附件查看</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style type="text/css">
+        button {
+            width: 70px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="middle">
+        <div style="padding-left: 10%;padding-right: 10%;padding-bottom: 10px;">
+            <h3 style="font-weight:bold;font-size:20px;margin-top:5px;text-align:center;" id="title"></h3>
+
+            <p style="font-size:13px;line-height: 40px;margin-top:10px;text-align:left;background-color: #F5F5F5;border: 1px solid #D1D1D1;width: auto"
+               id="summary"></p>
+        </div>
+
+        <div id="bt_color">
+            <b style="line-height: 40px">监管检查附件</b>
+        </div>
+        <div style="clear: left">
+            <ul id="content"></ul>
+            <div style="clear: left;"></div>
+        </div>
+        <div id="page" class="page_btn" style="width: 100%;text-align:center;clear: left;margin-top: 10px"></div>
+        <div class="clear"></div>
+    </div>
+
+</div>
+
+<div id="foot"></div>
+
+<script>
+    $('#top').load("muban_top.html");
+    $('#foot').load("muban_foot.html");
+    var pageNum = 1, pageSize = 10, pageSum = 0;
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, comid = '';
+    var comdalei = '';
+    var t_resultid = '';
+    var t_commc = '';
+    var t_plantitle = '';
+    var t_operateperson = '';
+    var t_resultdate = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("comid" == name) {
+            comid = list[i].split('=')[1];
+        }
+        if ("comdalei" == name) {
+            comdalei = list[i].split('=')[1];
+        }
+        if ("resultid" == name) {
+            t_resultid = list[i].split('=')[1];
+        }
+        if ("commc" == name) {
+            t_commc = list[i].split('=')[1];
+        }
+        if ("plantitle" == name) {
+            t_plantitle = list[i].split('=')[1];
+        }
+        if ("operateperson" == name) {
+            t_operateperson = list[i].split('=')[1];
+        }
+        if ("resultdate" == name) {
+            t_resultdate = list[i].split('=')[1];
+        }
+    }
+    var score = [];
+    var dl;
+    var color;
+    $(function () {
+        dl = comdalei.substring(0, comdalei.length - 1);
+        if (dl == '10120') {
+            $('#bt_color').attr('class', 'bt_cymax');
+            color = '#B02828';
+        } else if (dl == '10130') {
+            $('#bt_color').attr('class', 'bt_ltmax');
+            color = '#B8641B';
+        } else if (dl == '10140') {
+            $('#bt_color').attr('class', 'bt_cscmax');
+            color = '#0A7D44';
+        } else {
+            $('#bt_color').attr('class', 'bt_scmax');
+            color = '#2D286B';
+        }
+    })
+    window.onload = function () {
+        data();
+    };
+
+
+    //查询列表
+    function data() {
+        $.ajax({
+            url: basePath + "api/tmsyj/getPfjList",
+            type: "post",
+            dataType: 'json',
+            data: {fjwid: t_resultid},
+            success: function (result) {
+
+                if (result.code == '0') {
+                    page(pageSize, pageNum, result.total, color);
+                    $('#content').empty();
+                    $('#title').empty();
+                    $('#summary').empty();
+                    $('#title').append(t_commc + ' >> ' + t_plantitle);
+                    var html = "";
+                    html += "<div style='text-align:center'>检查人员：" + t_operateperson + " &nbsp;&nbsp;&nbsp;&nbsp;检查日期：" + t_resultdate + "</div>";
+                    $('#summary').append(html);
+                    $('#content').empty();
+                    $.each(result.rows, function (index, item) {
+                        var html = "";
+                        if (index != result.rows.length - 1) {
+                            html += "<li style=\"border-bottom:1px #999999 dotted;width: 100%;\">";
+                        } else {
+                            html += "<li style=\"border-bottom:1px #00a0ea solid;width: 100%;\">";
+                        }
+                        html += "   <div style=\"text-align:center\"><img style=\"width:50%;height:50%;\" src=\"" + checkImg(item.fjpath) + "\"></div>";
+                        html += "</li>";
+                        $('#content').append(html);
+                    });
+                    if (result.total <= 0) {
+                        var html = "";
+                        html += "<li style=\"border-bottom:1px #00a0ea solid;height:135px;width: 100%;\">";
+                        html += " <table width=\"100%\"  style=\"text-align:left;margin-top:15px;\">";
+                        html += " <tr>";
+                        html += "     <td rowspan=\"5\" width=\"140px\" style=\"padding-right:15px;\">";
+                        html += "         <img src=\"images/kong.jpg\" style=\"height:120px;width:160px;\" />";
+                        html += "     </td>";
+                        html += "     <td  style=\"font-size:14px;\">没有查询到符合条件的记录，如有疑问请联系系统管理员！</td>";
+                        html += " </tr>";
+                        html += " <tr>";
+                        html += "</table>";
+                        html += "</li>";
+                        $('#content').append(html);
+                    }
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

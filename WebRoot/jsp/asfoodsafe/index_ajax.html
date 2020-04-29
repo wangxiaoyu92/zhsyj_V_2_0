@@ -1,0 +1,221 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>食品安全溯源系统查询中心</title>
+<link href="images/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="jslib/jquery-easyui/jquery-1.7.2.min.js"></script>
+<style type="text/css" > 
+	#symcontent { 
+		position:absolute; 
+		left: 40px; 
+		top: 20px; 
+		width:500px; 
+		height:300px;
+		line-height:30px; 
+		background: #FC6; 
+		color:blue;
+		border:1px solid #F90; 
+	} 
+	table{table-layout: fixed;}
+    td{word-break: break-all; word-wrap:break-word;}
+    table tr td input{background: #FC6; width:100%;}
+	.inputcs{bgcolor:#FC6;background: #FC6; }
+	.line{display:inline;float:left;overflow:hidden;width:22%;margin-top:10px;}
+	.line3{display:inline;float:left;overflow:hidden;width:28%;margin-top:10px;}
+	.hh{display:inline;overflow:hidden;width:30%;}
+</style>
+</head>
+<script type="text/javascript">
+//回车事件
+function onEnter()	{
+	if(event.keyCode==13){
+		if(myform.query_zsm.value==""){
+         	myform.query_zsm.focus();
+        	return;
+		}
+	}	
+}
+
+function addfocus(){
+   $("#query_zsm").focus();
+}
+
+$(function(){
+	addfocus();
+});
+
+//查询追溯码是否存在
+function queryData(){
+	var query_zsm = $('#query_zsm').val();
+	if(query_zsm.length<=0){
+		alert('请输入溯源码！');
+		$('#query_zsm').focus();
+		return false;
+	}
+	if(query_zsm.length>0){
+  		//window.location.href="product/symquery_query.do&sym="+query_zsm;
+  		$.ajax({
+			url:"product/symquery_query.action?symcode="+query_zsm,
+			type:'post',
+			async:true,
+			cache:false,
+			timeout: 100000,
+			//data:null, //formData,
+			error:function(){
+				 alert("服务器繁忙，请稍后再试！");
+			},
+			success: function(o){
+			   var obj = jQuery.parseJSON(o);
+			   var msg = obj.msg;
+			   if(msg && msg != null && msg.length > 0){
+				   alert(msg);
+			   	   return;
+			   }
+			  
+			   $('#cdNo').val(obj.cdNo);
+			   $('#cdNoLx2').val(obj.cdNoLx2);
+			   $('#proSccj').val(obj.proSccj);
+			   $('#proName').val(obj.proName);
+			   $('#ppPc').val(obj.ppPc);
+			   $('#ppScrq').val(obj.ppScrq2);
+			   $('#proCdjd').val(obj.proCdjd);
+			   $('#proGg').val(obj.proGg);
+			   $('#proSptm').val(obj.proSptm);
+			   $('#proPm').val(obj.proPm);
+			   $('#proBzq').val(obj.proBzq);
+			   $('#proBzgg').val(obj.proBzgg);
+			   $('#proPlxx').val(obj.proPlxx);
+			   
+			   //处理图片
+			   //条形码
+			   //var url = "<img id='imgtxm' src='servlet/barcode?type=EAN128&msg="+obj.cdNo+"&mw=0.5&hrfont=ean13&res=100' style='float:left;' />";
+			   
+			   
+			   var ncdNo = "01"+ obj.cdNo;
+			   ncdNo = ncdNo.substr(0,16)+ "10"+ncdNo.substr(16,ncdNo.length)
+			   var src = "servlet/barcode?type=EAN128&msg="+ncdNo+"&mw=0.5&hrfont=ean13&res=100";
+			   //$('#imgtxm').html(url);
+			   $('#imgtxm').attr("src",src);
+			   //二维码
+			   //src = "<img id='imgewm' src='servlet/qrcode?msg=http://localhost:8082/spsy?cdno="+obj.cdNo+"' alt='' width='100px' height='100px' />";
+			   src = "servlet/qrcode?msg=http://localhost:8082/spsy?cdno="+obj.cdNo;
+			   //$('#imgewm').html(url);
+			   $('#imgewm').attr("src",src);
+			   
+			   //$('#symcontent')[0].style.display = "inline";
+			   //$('#symcontent').attr('visibility',"visible");
+			   //$('#symcontent').html("style='position:absolute; visibility:visible;'");
+			   $('#symcontent')[0].style.visibility = "visible";
+	        }
+		});   
+  	}
+}
+
+function hidediv(){
+	$('#symcontent')[0].style.visibility = "hidden";
+}
+
+
+</script>
+<body>
+<div class="headbg"></div>
+<div class="loginmain_query2" >
+<img src="images/logo.jpg">
+<form id="myform" action="" method="post">
+<input type="text" id="query_zsm" name="query_zsm" value="" />
+<input type="button" value="查询一下" id="saveBtn" class="inp_L1" onMouseOver="this.className='inp_L2'" onMouseOut="this.className='inp_L1'" id="input_btn1 deluinput" tabindex="4" onclick="queryData();"/>
+<a href="user_login.jsp">企业登录</a> |  <a href="com_register.jsp">注册加入</a>
+</form>
+<div style="position:relative;">
+    <img id="img" src="images/clz1.jpg" width="480" height="320" alt="">
+
+ 	<%-- onClick="javascript:hidediv();" --%>
+	<div id="symcontent" style="visibility:hidden;float:left; overflow:hidden;"   onMouseLeave="javascript:hidediv();">
+	   <div style="width:70%;float:left;overflow:hidden;margin-top:5px;">
+	   	 <img id="imgtxm" src="servlet/barcode?type=EAN128&msg=01069012345678921007060102&mw=0.5&hrfont=ean13&res=100" width="300px">
+	   </div>
+	   <div style="width:30%">
+	     <%-- 这个是另一种二维码。但微信不识别
+	   	 <img id="imgewm" src="servlet/barcode?msg=http://localhost:8082/spsy&type=datamatrix" alt="">
+	   	 --%>
+	   	 
+	   	 <img id="imgewm" src="servlet/qrcode?msg=http://localhost:8082/spsy?cdno=132123233" alt="" width="120px" height="120px">
+	   </div>
+	   <table style="width:99%;display:inherit;margin:0 20px 20px 0; paddings:5px;">
+	   	<tr>
+	   		<td style="width:21%;text-align:right;">溯源码：</td>
+	   		<td style="width:28%" ><input type="text" id="cdNo" readonly="true"/> </td>
+	   		<td style="width:21%;text-align:right;">溯源码类型：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="cdNoLx2" readonly="true"/></td>
+	   	</tr>
+	   	<tr>
+	   		<td style="width:21%;text-align:right;">厂家：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="proSccj" readonly="true"/> </td>
+	   		<td style="width:21%;text-align:right;">商品：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="proName" readonly="true"/> </td>
+	    </tr>
+	    <tr>
+	   		<td style="width:21%;text-align:right;">批次：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="ppPc" readonly="true"/></td>
+	   		<td style="width:21%;text-align:right;">生产日期：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="ppScrq" readonly="true"/></td>
+	   	</tr>
+	   	<tr>
+	   		<td style="width:21%;text-align:right;">产地(基地)：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="proCdjd" readonly="true"/></td>
+	   		<td style="width:21%;text-align:right;">规格：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="proGg" readonly="true"/> </td>
+	   	</tr>
+	   	<tr>
+	   		<td style="width:21%;text-align:right;">商品条码：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="proSptm" readonly="true"/></td>
+	   		<td style="width:21%;text-align:right;">品名：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="proPm" readonly="true"/></td>
+	   	</tr>
+	   	<tr>	
+	   		<td style="width:21%;text-align:right;">保质期：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="proBzq" readonly="true"/></td>
+	   		<td style="width:21%;text-align:right;">包装规格：</td>
+	   		<td style="width:28%" class="inputcs"><input type="text" id="proBzgg" readonly="true"/></td>
+	   	</tr>
+	   	<tr>	
+	   		<td style="width:21%;text-align:right;">配料信息：</td>
+	   		<td style="width:79%;" colspan="3"><input style="width:100%;" type="text" id="proPlxx" readonly="true"/></td>
+	   	</tr>
+	   </table>
+	   <%--
+	   <div style="position:relative; float:left;">
+			<div class="line" >溯源码：</div> <div class="line3" > <input type="text" id="cdNo" readonly="true"/> <div>
+			<div class="line" >溯源码类型：</div> <div class="line3" > <input type="text" id="cdNoLx2" readonly="true"/> <div>
+			<div class="line" >厂家：</div> <div class="line3"> <input type="text" id="proSccj" readonly="true"/> <div>
+			<div class="line" >商品：</div> <div class="line3" > <input type="text" id="proName" readonly="true"/> <div>
+			<div class="line" >批次：</div> <div class="line3" > <input type="text" id="ppPc" readonly="true"/> <div>
+			<div class="line" >生产日期：</div> <div class="hh" > <input type="text" id="ppScrq" readonly="true"/> <div>
+			<div class="line" >产地(基地)：</div> <div class="line" > <input type="text" id="proCdjd" readonly="true"/> <div>
+			<div class="line" >规格：</div> <div class="hh" > <input type="text" id="proGg" readonly="true"/> <div>
+			<div class="line" >商品条码：</div> <div class="line" > <input type="text" id="proSptm" readonly="true"/> <div>
+			<div class="line" >品名：</div> <div class="hh" > <input type="text" id="proPm" readonly="true"/> <div>
+			<div class="line" >保质期：</div> <div class="line" > <input type="text" id="proBzq" readonly="true"/> <div>
+			<div class="line" >包装规格：</div> <div class="hh" > <input type="text" id="proBzgg" readonly="true"/> <div>
+			<div class="line" >配料信息：</div> <div class="line" > <input type="text" id="proPlxx" readonly="true"/> <div>
+	   </div>
+	   --%>
+    </div>
+</div>
+</div>
+
+<%--
+<div style="position:relative;width:800px;height:300px;margin-top:300px;" >
+   
+</div>
+--%>
+
+<div id="footer">
+	<div id="ftinfo">
+	FTS食品安全追溯平台 CopyRight @Right 2014<br/>
+	郑州华东计算机系统工程有限公司&nbsp;&nbsp;联系电话：0371-65751486 &nbsp;&nbsp;传真：0371-67993333<br/>
+    网址：http://www.zzhdsoft.com&nbsp;&nbsp; 豫ICP备XXXXXXXXXX号	
+	</div>
+</div>
+</body>
+</html>

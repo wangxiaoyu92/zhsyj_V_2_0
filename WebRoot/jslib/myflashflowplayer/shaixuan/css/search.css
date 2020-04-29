@@ -1,0 +1,625 @@
+.filter-sect::after {
+	height: 0px; clear: both; display: block; visibility: hidden; content: "\20";
+}
+.search-shop-box::after {
+	height: 0px; clear: both; display: block; visibility: hidden; content: "\20";
+}
+.filter-sequencebar::after {
+	height: 0px; clear: both; display: block; visibility: hidden; content: "\20";
+}
+.filter-group-classify::after {
+	height: 0px; clear: both; display: block; visibility: hidden; content: "\20";
+}
+.filter-sortbar-box::after {
+	height: 0px; clear: both; display: block; visibility: hidden; content: "\20";
+}
+.filter-sec {
+	position: relative; -ms-zoom: 1;
+}
+.search-shop-box {
+	position: relative; -ms-zoom: 1;
+}
+.filter-sequencebar {
+	position: relative; -ms-zoom: 1;
+}
+.filter-group-classify {
+	position: relative; -ms-zoom: 1;
+}
+.filter-sortbar-box {
+	position: relative; -ms-zoom: 1;
+}
+.filters-zone .del {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.sect-down {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.sect-up {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.sequence-item .sequence i {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.filter-list .hot .hot-icon {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.noresult .icon-noresult {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.search-seek .seek-icon {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.filter-unfold .unfold-down {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.filter-unfold .unfold-up {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.sequencebar-labe .hot .hot-icon {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.filter-tag .tag .ter-del {
+	background: url("../food_images/search2.png") no-repeat;
+}
+.group-nav-box {
+	margin-bottom: 5px; z-index: 13 !important;
+}
+.warp {
+	z-index: 11;
+}
+.sect-down {
+	width: 8px; height: 9px; overflow: hidden; margin-left: 5px; vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.sect-up {
+	width: 8px; height: 9px; overflow: hidden; margin-left: 5px; vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.sect-up {
+	background-position: -10px 0px;
+}
+.filter-sortbar-box {
+	border: 0px solid rgb(221, 221, 221); margin-bottom: 10px;;
+}
+.filter-sortbar-mode {
+	padding-top:10px; margin-bottom: -25px;
+}
+.filter-list {
+	padding: 0px 0px 5px 40px; margin-bottom: 6px; border-bottom-color: rgb(229, 229, 229); border-bottom-width: 1px; border-bottom-style: dotted;
+}
+.filter-list .tit {
+	padding: 2px 5px 0px 0px; color: rgb(153, 153, 153); line-height: 16px; margin-left: -40px; float: left;
+}
+.filter-list .tag {
+	padding: 1px 3px; margin-right: 15px; float: left;
+}
+.filter-list .tag:hover {
+	color: rgb(255, 255, 255); background-color:#148f2d;
+}
+.filter-list .tag.selected {
+	color: rgb(255, 255, 255); background-color:#148f2d;
+}
+.filter-list .active {
+	color: rgb(255, 255, 255); background-color:#148f2d;
+}
+.filter-list .tally {
+	height: 20px; overflow: hidden; float: left; white-space: nowrap; -ms-zoom: 1; -ms-text-overflow: ellipsis; max-width: 82px; _width: 82px;
+}
+.filter-hot-box {
+	padding-bottom: 24px; margin-bottom: 0px; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none;
+}
+.filter-list .filter-hot {
+	overflow: hidden; -ms-zoom: 1;
+}
+.filter-hot li {
+	padding-right: 5px; float: left; min-width: 80px; _width: 80px;
+}
+.filter-hot li .tag {
+	margin-right: 0px;
+}
+.filter-group-classify {
+	padding-bottom: 6px; margin-bottom: 9px; border-bottom-color: rgb(238, 238, 238); border-bottom-width: 1px; border-bottom-style: solid; position: relative; z-index: 9; -ms-zoom: 1; min-height: 21px; _height: 21px;
+}
+.filter-group-classify .tit {
+	margin-right: 6px; float: left;
+}
+.filter-group-classify .tit {
+	color: rgb(153, 153, 153); font-family: "Simsun";
+}
+.filter-group-classify .tit a {
+	color: rgb(153, 153, 153); font-family: "Simsun";
+}
+.filter-group-classify .tit a:hover {
+	color: rgb(153, 153, 153); text-decoration: underline;
+}
+.filter-classify {
+	padding: 3px 6px; border: 1px solid rgb(221, 221, 221); margin-top: -4px; float: left; background-color: rgb(255, 255, 255);
+}
+.filter-classify:hover {
+	border-color: rgb(123, 172, 238); color: rgb(51, 51, 51); background-color: rgb(227, 237, 251);
+}
+.filter-classify-active {
+	border-color: rgb(123, 172, 238); color: rgb(51, 51, 51); background-color: rgb(227, 237, 251);
+}
+.pop-filter-classify {
+	border: 1px solid rgb(123, 172, 238); left: 66px; top: 21px; display: none; position: absolute; z-index: 9; min-width: 97px; background-color: rgb(255, 255, 255);
+}
+.pop-filter-classify .pop-classify {
+	padding: 5px 10px; display: block;
+}
+.pop-filter-classify .pop-classify:hover {
+	color: rgb(255, 255, 255); background-color:#148f2d;
+}
+.filter-sect {
+	padding-left: 44px;
+	padding-bottom:10px;
+}
+.filter-sect2 {
+	padding-left: 2px;
+}
+.filter-sect .unlimited {
+	margin: 0px 0px 0px -44px; _display: inline;
+}
+.filter-sect .tabs {
+	padding: 5px 5px; top: -4px; float: left; position: relative; z-index: 2;
+}
+.filter-sect .cur {
+	font-weight: bold; border-bottom-color: currentColor; border-bottom-width: 0px; border-bottom-style: none; background-color:#fbfbfb;
+}
+.filter-item {
+	padding: 6px 53px 2px 10px; top: -6px; height: 23px; overflow: hidden; clear: both; margin-bottom: -3px; position: relative; z-index: 1; -ms-word-break: normal; -ms-zoom: 1; -ms-word-wrap: break-word;;
+}
+.filter-item .filter-more {
+	top: 8px; right: 10px;
+}
+.filter-item .tag {
+	margin: 0px 20px 5px 0px; overflow: hidden; vertical-align: middle; float: none; display: inline-block; -ms-zoom: 1;
+}
+.filter-metro {
+	height: auto; padding-right: 10px;
+}
+.filter-metro-line {
+	overflow: hidden; padding-bottom: 2px; margin-bottom: 7px; border-bottom-color: rgb(221, 221, 221); border-bottom-width: 1px; border-bottom-style: solid; -ms-zoom: 1;
+}
+.filter-label-box {
+	padding: 0px 0px 2px 40px;
+}
+.filter-label-list {
+	height: 26px; overflow: hidden; padding-right: 110px; -ms-zoom: 1; _width: 935px;
+}
+.filter-label-list ul {
+	overflow: hidden; -ms-zoom: 1;
+}
+.filter-label-list li {
+	width: 110px; padding-bottom: 5px; float: left;
+}
+.filter-label-list li .star-label {
+	padding: 2px 4px 0px 4px; float: left; cursor: pointer;
+}
+.star-label .filter-check {
+	margin: 2px 0px 0px -16px; float: left;
+}
+.filter-label-list li .star-label:hover {
+	color: rgb(255, 255, 255); background-color:#148f2d;
+}
+.filter-item .filter-metro-line .tag {
+	width: auto; height: auto;
+}
+.filter-more {
+	top: 2px; right: 12px; color: rgb(0, 102, 204); position: absolute;
+}
+.filter-more:hover {
+	text-decoration: underline;
+}
+.filter-list .hot {
+	padding: 0px 3px; top: -7px; color: rgb(255, 255, 255); line-height: 14px; margin-left: -5px; position: absolute; z-index: 8; background-color: rgb(255, 153, 19);
+}
+.sequencebar-labe .hot {
+	padding: 0px 3px; top: -7px; color: rgb(255, 255, 255); line-height: 14px; margin-left: -5px; position: absolute; z-index: 8; background-color: rgb(255, 153, 19);
+}
+.filter-list .hot .hot-icon {
+	background-position: -148px 0px; left: 0px; top: 14px; width: 3px; height: 3px; position: absolute;
+}
+.sequencebar-labe .hot .hot-icon {
+	background-position: -148px 0px; left: 0px; top: 14px; width: 3px; height: 3px; position: absolute;
+}
+.filter-list .tag .hot {
+	margin-left: 0px;
+}
+.total-amount {
+	padding: 11px 20px 9px; font-size: 14px; margin-top: -7px; border-top-color: rgb(221, 221, 221); border-top-width: 1px; border-top-style: solid;
+}
+.total-amount .figure {
+	padding: 0px 5px; color: rgb(255, 153, 19);
+}
+.total-amount .amount {
+	padding-right: 20px;
+}
+.filters-zone {
+	padding: 2px 5px 3px; color: rgb(255, 255, 255); overflow: hidden; font-size: 12px; margin-right: 10px; -ms-zoom: 1; background-color:#148f2d;
+}
+.filters-zone:hover {
+	color: rgb(255, 255, 255);
+}
+.filters-zone .del {
+	background-position: -97px 0px; width: 8px; height: 8px; overflow: hidden; margin-left: 10px; vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.total-amount .eliminate {
+	color: rgb(0, 102, 204); font-size: 12px;
+}
+.total-amount .eliminate:hover {
+	text-decoration: underline;
+}
+.range-frame {
+	float: left;
+}
+.range-frame .input-t {
+	border: 1px solid rgb(204, 204, 204); width: 50px;
+}
+.range-frame .btn-range {
+	margin: 0px 0px 0px 5px; padding: 0px 8px; border-radius: 2px; border: 1px solid rgb(154, 154, 154); width: auto; height: 20px; line-height: 16px; overflow: visible; font-size: 12px; visibility: hidden; cursor: pointer; background-color: rgb(247, 247, 247);
+}
+.filter-sequencebar {
+	border: 1px solid rgb(221, 221, 221); position: static; background-color: rgb(255, 255, 255);
+}
+.filter-sequencebar .sequence-item {
+	float: left;
+}
+.sequence-item .sequence {
+	padding: 9px 15px 6px; border-right-color: rgb(221, 221, 221); border-right-width: 1px; border-right-style: solid; float: left;
+}
+.sequence-item .sequence i {
+	background-position: -27px 0px; width: 9px; height: 10px; overflow: hidden; margin-left: 5px; vertical-align: middle; display: inline-block; -ms-zoom: 1;
+}
+.sequence-item .sequence:hover {
+	color: rgb(255, 127, 0);
+}
+.sequence-item .sequence:hover .drop-icon {
+	background-position: -38px 0px;
+}
+.sequence-item .active .drop-icon {
+	background-position: -38px 0px;
+}
+.sequence-item .active:hover .drop-icon {
+	background-position: -38px 0px;
+}
+.sequence-item .active {
+	padding: 8px 15px 6px; color: rgb(255, 127, 0); font-weight: bold; margin-top: -1px; border-top-color: rgb(255, 153, 19); border-top-width: 2px; border-top-style: solid;
+}
+.sequence-item .active:hover {
+	color: rgb(255, 127, 0);
+}
+.sequence-item .sequence .price-default-icon {
+	background-position: -61px 0px;
+}
+.sequence-item .active .price-tall-icon {
+	background-position: -70px 0px;
+}
+.sequence-item .active .price-low-icon {
+	background-position: -79px 0px;
+}
+.sequencebar-labe {
+	padding: 9px 0px 0px 10px; float: right;
+}
+.sequencebar-labe .sequen-l {
+	margin-right: 20px; cursor: pointer;
+}
+.sequencebar-labe .chaeck-box {
+	margin: 0px 3px; vertical-align: middle;
+}
+.search-shop-box {
+	-ms-zoom: 1; _width: 1200px; _overflow: hidden;
+}
+.search-shop-box .pic-list {
+	width: 100%;float:left;
+}
+.search-shop-box .check_houchu {
+	width:170px; margin:0px auto;float:right; text-align:center; 
+}
+.search-shop-box .check_houchu .list li {
+	font-weight:blod; margin:0px auto; height:30px;text-align:center; background-color:#f6f6f6;padding:6px 0px 6px 0px;
+}
+.greenbuttoncss {
+    font-family: "tahoma", "ËÎÌå"; /*www.52css.com*/
+    font-size: 9pt; color: #0066cc;
+    border: 1px #93bee2 solid;
+    border-bottom: #93bee2 1px solid;
+    border-left: #93bee2 1px solid;
+    border-right: #93bee2 1px solid;
+    border-top: #93bee2 1px solid;
+    background-image:url(../images/greenbuttonbg.gif);
+    background-color: #ffffff;
+    cursor: hand;
+    font-style: normal ;
+}
+.search-shop-box .check_houchu .list a { font-size:14px;
+ font:"Î¢ÈíÑÅºÚ", Gadget, sans-serif;
+ padding:10px 62px 10px 62px;
+}
+.search-shop-box .check_houchu .list a:hover { background-color:#d8d8d8;
+}
+.head_title{
+	padding:5px 0px 5px 0px;
+	font-size:16px;
+	font-weight:bold;
+	color:#fff;
+	background-color:#148f2d;
+}
+style="padding:20px; font-size:16px;"
+.search-shop-box .pic-list ul {
+	width: 1030px;
+}
+.search-shop-box .pic-list li {
+	padding: 0px 10px 10px 0px; width: 290px; float: left;
+}
+.search-shop-box .pic-list li .group-img {
+	width: 290px; height: 185px;
+}
+.distance-place {
+	padding: 3px 13px 2px; color: rgb(153, 153, 153); border-top-color: rgb(241, 241, 241); border-top-width: 1px; border-top-style: solid; background-color: rgb(249, 249, 249);
+}
+.search-shop-box .pic-list li  .distance-place {/*.group-pic:hover*/
+	padding: 3px 13px 1px; margin:0px auto;
+}
+.search-shop-box .pic-list li .pic {
+	left: 0px; top: 0px; width: 321px; height: 185px; position: absolute;
+}
+.search-shop-box .pic-list li .shop-txt .name {
+	_width: 300px;
+}
+.search-shop-box .pic-list li .shop-txt .tips {
+	_width: 300px;
+}
+.search-noresult {
+	padding: 42px 0px; border: 1px solid rgb(248, 213, 177); text-align: center; margin-bottom: 40px; background-color: rgb(255, 252, 216);
+}
+.search-noresult .noresult {
+	padding: 0px 0px 0px 72px; text-align: left; overflow: hidden; display: inline-block; -ms-zoom: 1;
+}
+.search-noresult .noresult h6 {
+	padding: 5px 0px; line-height: 24px; font-family: "Microsoft YaHei"; font-size: 24px; font-weight: normal;
+}
+.search-noresult .noresult .tips {
+	color: rgb(102, 102, 102);
+}
+.search-noresult .noresult .tips a {
+	color: rgb(0, 102, 204); text-decoration: underline;
+}
+.search-noresult .noresult .tips a:hover {
+	text-decoration: none;
+}
+.search-noresult .noresult .icon-noresult {
+	background-position: 0px -19px; width: 54px; height: 54px; margin-left: -72px; float: left;
+}
+.loading-box {
+	padding: 50px 0px; text-align: center; font-size: 14px;
+}
+.loading-box .figure {
+	color: rgb(255, 127, 0);
+}
+.filter-crumbs-t {
+	color: rgb(153, 153, 153); padding-left: 10px; font-family: "Simsun"; float: left;
+}
+.filter-item-administrative {
+	height: auto;
+}
+.filter-administrative-txt {
+	overflow: hidden; padding-left: 60px; -ms-zoom: 1;
+}
+.filter-administrative-txt .name {
+	width: 60px; color: rgb(153, 153, 153); margin-left: -60px; float: left; _display: inline;
+}
+.hot-recomm-tit {
+	padding-bottom: 10px;
+}
+.hot-recomm-tit h6 {
+	font: 20px/24px "Microsoft YaHei"; font-size-adjust: none; font-stretch: normal;
+}
+.c_sort_range {
+	display: inline-block; position: relative;
+}
+.sort_range_hover {
+	display: inline-block; position: relative;
+}
+.sort_range_hover .btn_range {
+	visibility: visible;
+}
+.sort_range_hover .range_bg {
+	visibility: visible;
+}
+.sort_range_hover .range_cont {
+	position: relative; z-index: 1;
+}
+.input_range {
+	font: 12px/normal arial, simsun; margin: 0px 3px; padding: 0px 2px; border: 1px solid rgb(187, 187, 187); width: 36px; height: 16px; font-size-adjust: none; font-stretch: normal; background-color: rgb(255, 255, 255);
+}
+.range_bg {
+	border: 1px solid rgb(254, 166, 81); left: -5px; top: -7px; width: 155px; height: 30px; display: none; visibility: hidden; position: absolute; background-color: rgb(254, 251, 216);
+}
+.btn_range {
+	margin: 0px; padding: 0px 8px; border-radius: 2px; border: 1px solid rgb(154, 154, 154); width: auto; height: 20px; line-height: 16px; overflow: visible; font-size: 12px; visibility: hidden; cursor: pointer; background-color: rgb(247, 247, 247);
+}
+.btn_range:hover {
+	background-color: rgb(240, 240, 240);
+}
+.mark {
+	color: rgb(51, 51, 51) !important; background-color: rgb(255, 255, 0);
+}
+.global-phone {
+	padding: 2px 2px 1px; top: -3px; color: rgb(255, 255, 255); line-height: 16px; font-size: 12px; font-weight: normal; margin-right: 5px; position: relative; background-color: rgb(225, 85, 68);
+}
+.eleven-activity {
+	height: 238px;
+}
+.eleven-activity .area {
+	bottom: 6px; position: absolute;
+}
+.eleven-activity .eleven-dimension {
+	left: 140px; top: 50px; height: 127px; font-size: 14px; position: absolute;
+}
+.eleven-activity .eleven-dimension strong {
+	font-family: Tahoma, Geneva, sans-serif; font-size: 18px;
+}
+.eleven-activity .eleven-dimension .dimension-img {
+	border: 4px solid rgb(255, 255, 255); width: 97px; height: 97px;
+}
+.eleven-activity-float {
+	 top: 150px !important; width: 117px; height: 285px; right: 0px; position: fixed; z-index: 9999;
+}
+.eleven-activity-float .close {
+	top: 0px; width: 20px; height: 20px; right: 0px; position: absolute;
+}
+.search-seek {
+	padding: 12px 10px 10px 40px; border: 1px solid rgb(248, 213, 177); font-size: 14px; margin-top: 15px; background-color: rgb(255, 252, 216);
+}
+.search-seek .seek-icon {
+	background-position: -1px -105px; margin: -1px 0px 0px -30px; width: 24px; height: 24px; float: left; _display: inline;
+}
+.ad_plus {
+	width: 232px; height: 240px; right: 75px; bottom: 0px; position: fixed; z-index: 99; _position: absolute;
+}
+.ad_plus img {
+	width: 232px; height: 240px;
+}
+.ad_plus .close {
+	font: 20px/28px "simsun"; border-radius: 50%; border: 1px solid rgb(204, 204, 204); top: 15px; width: 26px; height: 26px; text-align: center; right: -28px; color: rgb(170, 170, 170); position: absolute; font-size-adjust: none; font-stretch: normal; background-color: rgb(255, 255, 255);
+}
+.ad_plus .close:hover {
+	color: rgb(255, 255, 255); cursor: pointer; background-color: rgb(147, 197, 245);
+}
+.filter-unfold {
+	text-align: center; margin-top: -11px; position: relative; z-index: 2;
+}
+.filter-unfold .unfold-more {
+	border-width: 0px 1px 1px; border-style: none solid solid; border-color: currentColor rgb(221, 221, 221) rgb(221, 221, 221); padding: 5px 20px; overflow: hidden; display: inline-block; -ms-zoom: 1; background-color: rgb(255, 255, 255);
+}
+.filter-unfold .unfold-more:hover {
+	color: rgb(0, 102, 204); background-color: rgb(241, 246, 255);
+}
+.filter-unfold .unfold-down {
+	background-position: -290px -127px; width: 10px; height: 8px; overflow: hidden; display: inline-block; -ms-zoom: 1;
+}
+.filter-unfold .unfold-up {
+	background-position: -290px -127px; width: 10px; height: 8px; overflow: hidden; display: inline-block; -ms-zoom: 1;
+}
+.filter-unfold .unfold-up {
+	background-position: -290px -152px;
+}
+.sequencebar-labe .hot {
+	top: -5px; margin-left: 0px;
+}
+.filter-tag {
+	padding: 0px 180px 0px 8px; width: 735px; float: left; position: relative; -ms-word-break: normal; -ms-word-wrap: break-word;
+}
+.filter-ther {
+	top: -2px; right: 0px; font-size: 14px; position: absolute;
+}
+.filter-ther strong {
+	padding: 0px 8px; color: rgb(255, 127, 0);
+}
+.filter-tag .tag {
+	margin: -1px 10px 3px 0px; padding: 0px 20px 0px 5px; color: rgb(255, 255, 255); overflow: hidden; vertical-align: middle; display: inline-block; position: relative; -ms-zoom: 1; background-color:#148f2d;
+}
+.filter-tag .tag .ter-del {
+	background-position: -109px 4px; top: 2px; width: 11px; height: 16px; right: 5px; color: rgb(255, 255, 255); position: absolute;
+}
+.filter-price .filter-label-list {
+	padding-right: 0px; float: left;
+}
+.filter-item-administrative .filter-label-list {
+	height: auto; padding-right: 0px;
+}
+.filter-administrative {
+	overflow: hidden; padding-left: 60px; -ms-zoom: 1;
+}
+.filter-administrative .name {
+	width: 60px; color: rgb(153, 153, 153); margin-left: -60px; float: left;
+}
+.unlimited-active {
+	color: rgb(0, 102, 204);
+}
+.filter-list .unlimited:hover {
+	color: rgb(0, 102, 204); background-color: inherit;
+}
+.filter-list a.unlimited-active:hover {
+	color: rgb(0, 102, 204); background-color: inherit;
+}
+.filter-district {
+	height: auto; padding-left: 43px;
+}
+.filter-tag-del {
+	color: rgb(0, 102, 204);
+}
+.filter-tag-del:hover {
+	text-decoration: underline;
+}
+.search-shop-abtest .pic-list li {
+	width: 280px; padding-right: 20px;
+}
+.search-shop-abtest .pic-list li .group-img {
+	width: 278px; height: 187px;
+}
+.search-shop-abtest .pic-list li .pic {
+	width: 278px; height: 187px;
+}
+.search-shop-abtest .pic-list li .shop-txt .name {
+	_width: 278px;
+}
+.search-shop-box .pic-list li .shop-txt .tips {
+	_width: 278px;
+}
+.group-shop-mode .pic-list li.search-shop-travel .shop-txt .name {
+	height: 48px; margin-left: 0px; white-space: normal;
+}
+@media screen and (max-width:1200px)
+{
+.search-shop-box .pic-list li {
+	width: 323px; padding-right: 7px;
+}
+.search-shop-box .pic-list li .group-img {
+	width: 323px; height: 185px;
+}
+.search-shop-box .pic-list li .pic {
+	width: 323px; height: 185px;
+}
+.eleven-activity {
+	height: 195px;
+}
+.eleven-activity .eleven-dimension {
+	left: 105px; top: 34px;
+}
+.eleven-activity .eleven-dimension .dimension-img {
+	width: 80px; height: 80px;
+}
+.group-shop-mode .pic-list li .shop-txt {
+	padding: 13px 5px 10px;
+}
+.group-shop-mode .pic-list li .group-pic:hover .shop-txt {
+	padding: 13px 5px 9px;
+}
+.eleven-activity-float {
+	display: none;
+}
+.filter-tag {
+	width: 534px;
+}
+.search-shop-abtest .pic-list li {
+	width: 228px;
+}
+.search-shop-abtest .pic-list li .group-img {
+	width: 226px; height: 150px;
+}
+.search-shop-abtest .pic-list li .pic {
+	width: 226px; height: 150px;
+}
+}
+.u-search2{ 
+	margin:0px; height:25px; width:100%;float:left; padding-top:7px;
+} 
+.u-search2 .div_s{ 
+	float:left; line-height:22px; width:auto; padding-right:10px; 
+}
+.u-search2 input{ 
+	margin:0px; width:221px; height:22px; line-height:22px; padding-left:5px; padding-right:5px;border:1px #148f2d;float:left; font-size:12px;color:#666; background-color:#fff;
+}  
+.u-search2 .input-qd{ 
+	margin:0px; padding:0px; width:50px; height:22px; line-height:22px;  border:1px #148f2d;  float:left; background:url(../images/search.png) right no-repeat;border:0px; cursor:pointer; margin-left:10px; 
+} 

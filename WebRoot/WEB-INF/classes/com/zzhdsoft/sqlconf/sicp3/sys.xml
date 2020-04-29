@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<!--
+		为了使该WEB应用能够适应不同的业务数据库，本系统主要业务语句需要通过配置文件获取。 A、什么样的语句需要写入这个配置文件：
+		操作业务数据库的所有sql/proc语句，也就是通过数据服务JsonWebServiceUtil执行的任何语句。 B、语句编写规范：
+		1、不得采用*来获取字段值，要明确所有字段名 。 2、所有计算列必须有别名
+		3、SQL语句的参数名以冒号【：】开头，然后通过QueryFactory自动构造生成SQL语句。 4、存储过程的参数可以使用【?】占位符
+		C、ID命名规范：文件名的第一个字母+下划线+任意名称 下面为标准SQL语句: <sql id="s_getsysdate"
+		desc="获取系统时间" author="Wangxueshu" lastmodify="zzd"> select sysdate
+		from dual where para = :aaa </sql> 属性说明： id:
+		全局唯一，作为取SQL语句的唯一依据，如果重复，则引发WEB应用启动异常。 desc：描述SQL语句的用途 author: 开发人员
+		lastmodify: 最后修改人员姓名
+	-->
+
+<sqls>
+	<sql id="s_loginservice.queryaab069" desc="获取登录人员所在单位名称" author="Wangxueshu"
+		lastmodify="">
+		select aab069 from ae10 where aaz001=:aaz001
+	</sql>
+	<sql id="s_useractiveservice.queryac01" desc="获取人员信息" author="Wangxueshu"
+		lastmodify="">
+		select
+		aac001,aac002,aac003,f_get_aa10value('AAC004',aac004) as
+		aac004,aab069,aac154,aac007 from v_ac01_aab069
+		where aac002 = :aac002
+		and aac003 = :aac003 and aac154 = :aac154
+	</sql>
+
+	<sql id="s_useractiveservice.personuser" desc="激活个人用户" type="proc"
+		author="Wangxueshu" lastmodify="">
+		{
+		"name":"PKG_SI_WEB.Proc_ActivePersonUser",
+		"inparam":["p_aac001","p_mobile"],
+		"outparam":["p_code","p_msg"]
+		}
+	</sql>
+
+
+</sqls>

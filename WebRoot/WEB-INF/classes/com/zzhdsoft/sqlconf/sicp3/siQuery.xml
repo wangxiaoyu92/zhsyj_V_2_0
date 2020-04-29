@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sqls>
+	<sql id="siQuery.queryPersonYiLiaoInfo" desc="人员基本信息、医疗参保信息查询"   author="zjf" lastmodify="">
+		select ac01.aac001,
+		   aac058,
+	       aac002,
+	       aac003,
+	       aac004,       
+	       aac006,
+	       aac007,
+	       ac20.aac066,
+	       '' aic161,
+	       ac01.aac154,
+	       ac20.aae140,
+	       ae10.aaz001 aab001,
+	       aab069
+		 from ac01, ae10, ac20
+		where ac01.aac001 = ac20.aac001
+		  and ac20.aab001 = ae10.aaz001
+		  and ac20.aae031 is null
+		  and ac20.aae100 = '1'
+		  and ac20.aae140 in ('110','310','390')
+		  and ac01.aac001 = :aac001
+		  and rownum = 1
+	</sql> 
+	<sql id="siQuery.queryPersonYiLiaoAccount" desc="医疗个人账户查询"   author="zjf" lastmodify="">
+			select ac51.aac001,
+		      ac51.aae001,
+		      ac51.aaa027 aab001,
+		      0 akc010,
+		      aae182 akc085,
+		      0 akc096,
+		      aae252 akc080,
+		      aae264 akc081,
+		      aae262 akc082,
+		      0 akc083,
+		      aae263 + aae265 + aae267 akc084,
+		      0 akc097,
+		      0 akc098,
+		      aae262 + aae264 akc099,
+		      aae250 akc086,
+		      (aae252 + aae262 + aae264 - aae250) +
+		      (aae263 - aae295 + aae265 - aae297) akc087,
+		      ake039 akc088,
+		      ake029 akc121,
+		      ake035 akc123,
+		      0 akc091,
+		      ake330 akc092,
+		      0 akc132,
+		      0 akc133,
+		      ake073 akc134,
+		      0 akc093,
+		      0 akc089,
+		      0 akc100,
+		      0 akc137,
+		      aka043 akc090
+		 from ac51, kc40
+		where ac51.aac001 = kc40.aac001
+		  and ac51.aae001 = kc40.aae001
+		  and ac51.aac001 = :aac001
+		  and ac51.aae001 &gt;= :startYear
+		  and ac51.aae001 &lt;= :endYear
+		order by aae001 desc
+	</sql> 
+	<sql id="siQuery.queryPersonYiLiaoAc43" desc="医疗缴费信息查询"   author="zjf" lastmodify="">
+			select aaa027,
+		      aab001,
+		      (select aab069 from ae10 where aaz001 = aab001) aab069,
+		      aaa115,
+		      aae078,
+		      aae140,
+		      aac001,
+		      aae002,
+		      aae003,
+		      aae079,
+		      aac040,
+		      aae180 feebaseman,
+		      aae020 pubacctotal,
+		      aae022 mantax,
+		      aae020 + aae022 taxsum,
+		      aae021 splitpacc,
+		      aae020 - aae021 splitsoci,
+		      aae023 splitman,
+		      aae021 + aae023 peracctotal,
+		      aaz289,
+		      (select aac066
+		         from ac20
+		        where aac001 = ac43.aac001
+		          and aab001 = ac43.aab001
+		          and aae140 = ac43.aae140
+		          and aaa027 = ac43.aaa027
+		          and (aae003 * 100 + 01 between aae030 and aae031 or
+		              (aae003 * 100 + 01 >= aae030 and aae031 is null))
+		          and rownum = 1) aac066
+			 from ac43
+			where aae017 = 0
+			  and aae078 = '1'
+			  and aae140 in (310, 390)
+			  and aac001 = :aac001
+			  and aae002 &gt;= :startYM
+			  and aae002 &lt;= :endYM
+			order by aae002 desc, aae003, aaa115, aae140	   
+	</sql> 
+	<sql id="siQuery.queryPersonYiLiaoKc24" desc="医疗消费信息查询"   author="zjf" lastmodify="">
+		select kc21.aae001,
+		       kc21.aaz107,
+		       (select akb020 from kb01 where aaz107 = kc21.aaz107) akb020,
+		       (select aab069 from kb01 where aaz107 = kc21.aaz107) akb021,
+		       to_char(aae372, 'yyyymm') aae002,
+		       kc21.aac154,
+		       aac003,
+		       aac066,
+		       aab069,
+		       akc190,
+		       aae372 aae040,
+		       aae373,
+		       akf025,
+		       aac153,
+		       akf030,
+		       aka121,
+		       kc21.aka130,
+		       aae334,
+		       aka078,
+		       aae240,
+		       aaa131,
+		       aka043 hosptimes,
+		       aka178 inhospdays,
+		       akc293 akc264,
+		       akc264 validfee,
+		       ake034 akc255,
+		       ake039 akc286,
+		       ake073 akc261,
+		       ake074 persr,
+		       ake075 burdenr,
+		       akc228 selfr,
+		       ake051 ownr,
+		       ake035 akc285,
+		       ake076 premoney,
+		       ake077 bigr,
+		       ake026 bigcash,
+		       ake041 bigtopr,
+		       0 akc265_invalidfee
+		  from kc21, kc24
+		 where kc21.aaz218 = kc24.aaz218
+		   and aae334 != '0'
+		   and (aaa131 = '0' or aaa131 is null)
+		   and kc21.aac001 = :aac001
+		   and kc24.aae209 &gt;= :startYM
+		   and kc24.aae209 &lt;= :endYM
+		 order by kc21.aaz218 desc	   
+	</sql>
+	<sql id="siQuery.queryKb01" desc="定点医疗机构查询"   author="zjf" lastmodify="">
+		select af05.aaz269,
+		       ae10.aab069,
+		       kb01.aaa027,
+		       kb01.aaz107,
+		       kb01.aaf003,
+		       kb01.akb020,
+		       kb01.aka101,
+		       af05.aaz003,
+		       af05.akb022,
+		       ae10.aab003,
+		       kb01.aka087,
+		       kb01.aka088,
+		       kb01.aka089,
+		       ae10.aae004,
+		       ae10.aae005
+		  from Af05 af05, Kb01 kb01, Ae10 ae10
+		 where 1 = 1
+		   and ae10.aaz001 = af05.aaz269
+		   and af05.aaz269 = kb01.aaz269
+		   and kb01.akb020 = :akb020
+		   and kb01.akb022 = :akb022
+		   and ae10.aab069 like :aab069
+		   and kb01.aae030 &gt;= :aae030
+		   and ( kb01.aae031 &lt;= :aae031  or kb01.aae031 is null )
+		   and kb01.aaa027 = :aaa027 
+	</sql>
+	<sql id="siQuery.queryKa20" desc="医疗三大目录查询"   author="zjf" lastmodify="">
+			select aaz231,
+		       aaz232,
+		       aja006,
+		       aka020,
+		       aka021,
+		       aka022,
+		       aka063,
+		       aka065,
+		       ake001,
+		       ake002,
+		       aka061,
+		       aka062,
+		       aka052,
+		       ake003,
+		       ake004,
+		       ala011,
+		       ama011,
+		       aae324,
+		       aka064,
+		       aae030,
+		       aae031,
+		       aka036,
+		       aae013,
+		       aaa027,
+		       prseno,
+		       aae036,
+		       aka074,
+		       aka070,
+		       aae011,
+		       akc225
+		  from ka20
+		 where 1 = 1   
+		   and ka20.ake001 = :ake001
+		   and ka20.ake002 like :ake002
+		   and ka20.ake003 = :ake003
+		   and ka20.aka020 = :aka020
+		   and ka20.aka036 = :aka036
+		   and ka20.aae030 &gt;= :aae030
+		   and ( ka20.aae031 &lt;= :aae031 or ka20.aae031 is null )
+		   and ka20.aaa027 = :aaa027 
+	</sql>
+</sqls>

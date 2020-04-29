@@ -1,0 +1,70 @@
+<div class="row"
+	style="border:1px  solid #ccc;margin-top:15px;margin-right:0px;margin-left:0px;">
+	<div style="margin-top:15px;">
+		<div class="col-xs-4 col-sm-4"
+			style="font-size:20px;font-weight:bold;padding:0px;text-align:center;">新闻公告</div>
+		<div class="col-xs-8 col-sm-8"
+			style="color:#666;font-size:14px;margin-top:5px;font-family:&#39;宋体&#39;;padding-left:0px">News bulletin</div>
+	</div>
+	<div id="qxdt_news" style="margin-top:60px;padding-left:15px;padding-bottom:10px;line-height:1.9">
+
+	</div>
+</div>
+<div class="row"
+	style="border:1px  solid  #ccc;margin-top:15px;margin-right:0px;margin-left:0px;">
+	<div style="margin-top:15px;">
+		<div class="col-xs-4 col-sm-4"
+			style="font-size:20px;font-weight:bold;padding:0px;text-align:center;">法律法规</div>
+		<div class="col-xs-8 col-sm-8"
+			style="color:#666;font-size:14px;margin-top:5px;font-family:&#39;宋体&#39;;padding-left:0px">Laws regulations</div>
+	</div>
+	<div id="flfg_news" style="margin-top:60px;padding-left:15px;padding-bottom:10px;line-height:1.9">
+		
+	</div>
+</div>
+<div class="row"
+	style="border:1px  solid  #ccc;margin-top:15px;margin-right:0px;margin-left:0px;">
+	<div style="margin-top:15px;">
+		<div class="col-xs-4 col-sm-4"
+			style="font-size:20px;font-weight:bold;padding:0px;text-align:center;">消费公示</div>
+		<div class="col-xs-8 col-sm-8"
+			style="color:#666;font-size:14px;margin-top:5px;font-family:&#39;宋体&#39;;padding-left:0px">Consumption public</div>
+	</div>
+	<div id="xfgs_news" style="margin-top:60px;padding-left:15px;padding-bottom:10px;line-height:1.9">
+		
+	</div>
+</div>
+<script type="text/javascript">
+	$(function() {	
+		getNewsList("qxdt_news","qxdt");
+		getNewsList("flfg_news","flfg");
+		getNewsList("xfgs_news","xfgs");
+	});
+	// 获取新闻列表
+	function getNewsList(oid,catejc) {
+	    $.ajax({
+	        url: basePath + "api/tmsyj/getNewsList",
+	        type: "post",
+	        dataType: 'json',
+	        data: { page: 1, rows: 5, catejc: catejc },
+	        success: function(result){ 
+            	if(result.code == '0'){
+		            $.each(result.rows, function (index, item) {
+		                $('#'+oid).append("<a href=\"news_info.jsp?newsid=" + item.newsid + "\" style='display:block;color:black;text-decoration:none;' title='" + item.newstitle + "' target=\"self\">" + getPartContent(item.newstitle,18) + "</a>");
+		                $('#'+oid).children().on("mouseover mouseout", function (event) {
+		                    if (event.type == "mouseover") {
+		                        $(this).css('color', '#0874bf');
+		                        //鼠标悬浮
+		                    } else if (event.type == "mouseout") {
+		                        //鼠标离开
+		                        $(this).css('color', 'black');
+		                    }
+		                })
+		            });
+				}else{
+					alert(result.msg);	
+				}
+	        }
+	    });
+	}
+</script>

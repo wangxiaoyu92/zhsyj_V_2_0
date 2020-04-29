@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>餐饮食品留样公示</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+    <script type="text/javascript" src="js/jquery-1.8.0.min.js"></script>
+    <script type="text/javascript" src="js/jquery.jslides.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <style>
+        #table {
+            background-color: #F5F5F5;
+            border: 1px #D1D1D1 solid;
+        }
+    </style>
+</head>
+
+<body>
+<div id="top"></div>
+
+<!-------------xuexiaoshitang-------------------->
+<div class="xuexiao">
+    <div class="xuexiaotit"></div>
+    <div class="middle" style="height: auto">
+        <h3 style="font-weight:bold;font-size:20px;margin-top:5px;text-align:center;" id="title"></h3>
+        <pre style="font-size:14px;margin:15px;padding:10px;text-align:left;background-color: #F5F5F5;border: 1px solid #D1D1D1"
+             id="summary"></pre>
+        <div>
+            <ul id="marqueeDiv"></ul>
+            <div style="clear: both"></div>
+        </div>
+    </div>
+</div>
+
+<div id="foot"></div>
+<!--弹窗-->
+<div class="img-shadow">
+    <div class="img-box" style="padding: 0px;text-align: center" >
+        <div id="yl">
+            <img>
+        </div>
+        <div class="img-gb" style='background-image: url("images/cancle.png");width: 38px; height: 38px;'></div>
+    </div>
+</div>
+
+<script>
+    $('#top').load("muban_top.html");
+    $('#foot').load("muban_foot.html");
+    var pageNum = 1, pageSize = 10, pageSum = 0;
+
+    //获取URL传递的参数commc
+    var test = decodeURI(window.location.search);
+    var list = test.substring(1, test.length).split('&');
+    var name, hsplyid = '', splypz = '', splysj = '', splyry = '', commc = '', jccc = '';
+    for (var i = 0; i < list.length; i++) {
+        name = list[i].split('=')[0];
+        if ("hsplyid" == name) {
+            hsplyid = list[i].split('=')[1];
+        }
+        if ("splypz" == name) {
+            splypz = list[i].split('=')[1];
+        }
+        if ("splysj" == name) {
+            splysj = list[i].split('=')[1];
+        }
+        if ("splyry" == name) {
+            splyry = list[i].split('=')[1];
+        }
+        if ("commc" == name) {
+            commc = list[i].split('=')[1];
+        }
+        if ("jccc" == name) {
+            jccc = list[i].split('=')[1];
+        }
+    }
+
+    window.onload=function(){
+        getFjList();
+    };
+
+    function getFjList() {
+        $.ajax({
+            url: pathname + "/api/tmsyj/getFjList",
+            type: "post",
+            dataType: 'json',
+            data: {fjwid: hsplyid},
+            success: function (result) {
+                if (result.code == '0') {
+                    $('#title').append(commc + '>>' + jccc);
+                    var html = "";
+                    html += "<div style='text-align:left'>留样名称：" + splypz + "</div>";
+                    html += "<div style='text-align:left'>留样日期：" + splysj + "</div>";
+                    html += "<div style='text-align:left'>留样人：" + splyry + "</div>";
+                    $('#summary').append(html);
+                    $.each(result.rows, function (index, item) {
+                        var fjpath = pathname + item.fjpath;
+                        var html = "";
+                        html += "<li><a onclick='showPic(\"" + fjpath + "\")' ><img style='width:202px;height:202px;' src='" + fjpath + "'></a></li>";
+                        //滚动图片
+                        $('#marqueeDiv').append(html);
+                    });
+                } else {
+                    alert(result.msg);
+                }
+            }
+        });
+    }
+
+
+    //图片预览
+    function showPic(url) {
+        $(".img-shadow").show();
+        $('#yl').find('img').attr('style', 'width: 780px;height: 488px ;');
+        $('#yl').find('img').attr('src', url);
+    }
+
+    //预览
+    $(".img-gb").click(function () {
+        $(".img-shadow").hide()
+    });
+
+</script>
+</body>
+</html>
